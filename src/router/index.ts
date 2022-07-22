@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react";
-import Login from "../pages/Login";
-import Students from "../pages/students";
-import Teacher from "../pages/Teacher";
+import { FunctionComponent } from 'react';
+import Login from '../pages/Login';
+import Students from '../pages/students';
+import Teacher from '../pages/Teacher';
 interface RouterType {
   key: string;
   path: string;
@@ -9,19 +9,19 @@ interface RouterType {
 }
 const routers: RouterType[] = [
   {
-    key: "login",
-    path: "/",
-    component: Login,
+    key: 'login',
+    path: '/',
+    component: Login
   },
   {
-    key: "students",
-    path: "/students",
-    component: Students,
+    key: 'students',
+    path: '/students',
+    component: Students
   },
   {
-    key: "teacher",
-    path: "/teacher",
-    component: Teacher,
-  },
+    key: 'teacher',
+    path: '/teacher',
+    component: Teacher
+  }
 ];
 export default routers;

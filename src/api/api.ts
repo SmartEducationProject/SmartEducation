@@ -1,5 +1,5 @@
-import qs from "qs";
-import { axiosInstance } from "../utils/request";
+import qs from 'qs';
+import { axiosInstance } from '../utils/request';
 
 //一个请求的例子
 /**
@@ -20,7 +20,7 @@ export interface IResponse {
   msg: string;
 }
 export const Login = (params: Partial<ILogin>): Promise<IResponse> => {
-  return axiosInstance.post("/login", qs.stringify(params)).then((res) => {
+  return axiosInstance.post('/login', qs.stringify(params)).then((res) => {
     return res.data;
   });
 };

@@ -1,20 +1,21 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { message } from "antd";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { message } from 'antd';
+
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: 'http://localhost:3000',
   headers: {
-    Accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
+    Accept: 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
 });
 // axios实例拦截响应
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     if (response.headers.authorization) {
-      localStorage.setItem("token", response.headers.authorization);
+      localStorage.setItem('token', response.headers.authorization);
     } else {
       if (response.data && response.data.token) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem('token', response.data.token);
       }
     }
 
@@ -33,7 +34,7 @@ axiosInstance.interceptors.response.use(
       // showMessage(response.status);
       return Promise.reject(response.data);
     } else {
-      message.error("网络连接异常,请稍后再试!");
+      message.error('网络连接异常,请稍后再试!');
     }
   }
 );
@@ -41,7 +42,7 @@ axiosInstance.interceptors.response.use(
 // axios实例拦截请求
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       config.headers!.authorization = `Bearer ${token}`;
     }
