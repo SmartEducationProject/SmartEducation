@@ -1,13 +1,9 @@
-import { FunctionComponent } from 'react';
-import Login from '../pages/Login';
-import Students from '../pages/students';
-import Teacher from '../pages/Teacher';
-interface RouterType {
-  key: string;
-  path: string;
-  component: FunctionComponent;
-}
-const routers: RouterType[] = [
+import Login from 'pages/Login';
+import Students from '@/pages/Student';
+import Teacher from 'pages/Teacher';
+import { IRouter } from 'types';
+
+const routers: IRouter[] = [
   {
     key: 'login',
     path: '/',
