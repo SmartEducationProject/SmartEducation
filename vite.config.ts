@@ -21,7 +21,7 @@ export default defineConfig({
         javascriptEnabled: true, // 支持内联 JavaScript
         // 重写 less 变量，定制样式
         modifyVars: {
-          '@primary-color': 'rgb(222,132,255)' // 全局样式
+          '@primary-color': 'rgb(54,117,83)' // 全局样式
         }
       }
     }
