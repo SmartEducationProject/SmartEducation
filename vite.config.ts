@@ -1,10 +1,31 @@
 import { defineConfig } from 'vite';
 import * as path from 'path';
 import react from '@vitejs/plugin-react';
-// import postcsspxtoviewport from 'postcss-px-to-viewport'
-// https://vitejs.dev/config/
+import vitePluginImp from 'vite-plugin-imp';
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    vitePluginImp({
+      libList: [
+        {
+          libName: 'antd',
+          style: (name) => `antd/lib/${name}/style/index.less`
+        }
+      ]
+    })
+  ],
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true, // 支持内联 JavaScript
+        // 重写 less 变量，定制样式
+        modifyVars: {
+          '@primary-color': 'rgb(222,132,255)' // 全局样式
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

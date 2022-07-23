@@ -1,7 +1,6 @@
 import React from 'react';
 import routers from 'router';
 import Header from '@/components/Header';
-import 'antd/dist/antd.css';
 import './app.less';
 import styles from './app.module.less';
 import { Route, Routes } from 'react-router-dom';
