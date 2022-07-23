@@ -1,5 +1,5 @@
 import Login from 'pages/Login';
-import Students from '@/pages/Student';
+import Student from 'pages/Student';
 import Teacher from 'pages/Teacher';
 import { IRouter } from 'types';
 
@@ -11,8 +11,8 @@ const routers: IRouter[] = [
   },
   {
     key: 'students',
-    path: '/students',
-    component: Students
+    path: '/student/*',
+    component: Student
   },
   {
     key: 'teacher',
