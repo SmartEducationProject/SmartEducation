@@ -59,17 +59,10 @@ const MultipleQuestion: React.FC<MultipleQuestionProps> = ({ index, question, op
         return (
           <div key={question.questionId} style={{ display: 'flex' }}>
             <span style={checkSpanStyle}>{question.content}</span>
-            <Item name={name + question.content} rules={[{ required: true, message: '需要全部填写才能提交哦~' }]} {...itemProps}>
-              {multiple ? (
-                // <Checkbox.Group>
-                //   {options.map((option) => (
-                //     <span style={checkSpanStyle} key={option.optionId}>
-                //       <Checkbox style={{ width: '18px' }} value={option.optionId} />
-                //     </span>
-                //   ))}
-                // </Checkbox.Group>
-                <Checkbox options={options} multiple={multiple} checkSpanStyle={checkSpanStyle} />
-              ) : (
+            {multiple ? (
+              <Checkbox boxName={name + question.content} options={options} multiple={multiple} checkSpanStyle={checkSpanStyle} {...itemProps} />
+            ) : (
+              <Item name={name + question.content} rules={[{ required: true, message: '需要全部填写才能提交哦~' }]} {...itemProps}>
                 <Radio.Group>
                   {options.map((option) => (
                     <span style={checkSpanStyle} key={option.optionId}>
@@ -77,8 +70,8 @@ const MultipleQuestion: React.FC<MultipleQuestionProps> = ({ index, question, op
                     </span>
                   ))}
                 </Radio.Group>
-              )}
-            </Item>
+              </Item>
+            )}
           </div>
         );
       })}
