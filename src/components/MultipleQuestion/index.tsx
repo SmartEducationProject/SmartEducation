@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Radio, Form } from 'antd';
-import styles from './index.module.less';
 import { IOption, ISubProblem } from 'types/question';
 
 const { Item } = Form;
