@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Radio, Form, Input, Checkbox } from 'antd';
+import { Radio, Form, Input } from 'antd';
+import Checkbox from './CheckBox';
 import { IOption, ISubProblem } from 'types/question';
 
 const { Item } = Form;
@@ -29,7 +30,7 @@ const MultipleQuestion: React.FC<MultipleQuestionProps> = ({ index, question, op
     color: 'rgb(54, 117, 83)'
   };
 
-  const radioSpanStyle = {
+  const checkSpanStyle = {
     display: 'inline-flex',
     justifyContent: 'center',
     width: `${parseInt(containerStyles.width) / (options.length + 1)}px`,
@@ -53,24 +54,25 @@ const MultipleQuestion: React.FC<MultipleQuestionProps> = ({ index, question, op
           </span>
         ))}
       </div>
+
       {subProblem.map((question) => {
         return (
           <div key={question.questionId} style={{ display: 'flex' }}>
-            <span style={radioSpanStyle}>{question.content}</span>
-            <Item name={name + question.content} {...itemProps}>
+            <span style={checkSpanStyle}>{question.content}</span>
+            <Item name={name + question.content} rules={[{ required: true, message: '需要全部填写才能提交哦~' }]} {...itemProps}>
               {multiple ? (
-                <Checkbox.Group>
-                  {/* TODO:还没做最多选几项的功能和最少选一项 */}
-                  {options.map((option) => (
-                    <span style={radioSpanStyle} key={option.optionId}>
-                      <Checkbox style={{ width: '18px' }} value={option.optionId} />
-                    </span>
-                  ))}
-                </Checkbox.Group>
+                // <Checkbox.Group>
+                //   {options.map((option) => (
+                //     <span style={checkSpanStyle} key={option.optionId}>
+                //       <Checkbox style={{ width: '18px' }} value={option.optionId} />
+                //     </span>
+                //   ))}
+                // </Checkbox.Group>
+                <Checkbox options={options} multiple={multiple} checkSpanStyle={checkSpanStyle} />
               ) : (
                 <Radio.Group>
                   {options.map((option) => (
-                    <span style={radioSpanStyle} key={option.optionId}>
+                    <span style={checkSpanStyle} key={option.optionId}>
                       <Radio style={{ width: '9px' }} value={option.optionId} />
                     </span>
                   ))}
