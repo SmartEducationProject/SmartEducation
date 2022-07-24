@@ -10,6 +10,8 @@ import { useForm } from 'antd/lib/form/Form';
 const { Item } = Form;
 
 const Welcome = () => {
+  console.log('render Welcome');
+
   const [form] = useForm();
   const onChange = () => {
     console.log(111111111);
@@ -19,12 +21,20 @@ const Welcome = () => {
     <Form form={form} onFinish={onChange}>
       {data.map((question, index) =>
         question.composition ? (
-          <MultipleQuestion name={String(question.questionId)} index={index + 1} question={question.content} subProblem={question.subProblems} options={question.options} key={question.questionId} />
+          <MultipleQuestion
+            name={String(question.questionId)}
+            index={index + 1}
+            question={question.content}
+            subProblem={question.subProblems}
+            options={question.options}
+            key={question.questionId}
+            multiple={question?.multiple}
+          />
         ) : (
           <SingleQuestion name={String(question.questionId)} index={index + 1} question={question.content} options={question.options} key={question.questionId} />
         )
       )}
-      <Button type="primary" htmlType="submit">
+      <Button type="primary" htmlType="submit" shape="round">
         Submit
       </Button>
     </Form>
