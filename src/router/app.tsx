@@ -24,7 +24,7 @@ const routes: RouteObject[] = [
       },
       {
         path: '*',
-        element: <Navigate to="/welcome" replace={true} />
+        element: <Navigate to="welcome" replace={true} />
       }
     ]
   },
