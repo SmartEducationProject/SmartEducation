@@ -1,5 +1,5 @@
 import React from 'react';
-import routers from 'router';
+import routers from 'router/app';
 import Header from '@/components/Header';
 import './app.less';
 import styles from './app.module.less';
@@ -12,7 +12,7 @@ function App() {
       <main className={styles['main']}>
         <Routes>
           {routers.map((item) => {
-            return <Route path={item.path} key={item.key} element={<item.component />}></Route>;
+            return <Route key={item.path} {...item}></Route>;
           })}
         </Routes>
       </main>

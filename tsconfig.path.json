@@ -15,7 +15,7 @@
       "context/*": ["src/context/*"],
       "context": ["src/context"],
       "pic/*": ["src/assets/pic/*"],
-      "router": ["src/router"],
+      "router/*": ["src/router/*"],
       "data/*": ["src/data/*"]
     }
   }

@@ -1,23 +1,20 @@
 import Login from 'pages/Login';
 import Student from 'pages/Student';
 import Teacher from 'pages/Teacher';
-import { IRouter } from 'types/Router';
+import { PathRouteProps } from 'react-router-dom';
 
-const routers: IRouter[] = [
+const routers: PathRouteProps[] = [
   {
-    key: 'login',
     path: '/',
-    component: Login
+    element: <Login />
   },
   {
-    key: 'students',
     path: '/student/*',
-    component: Student
+    element: <Student />
   },
   {
-    key: 'teacher',
     path: '/teacher',
-    component: Teacher
+    element: <Teacher />
   }
 ];
 export default routers;
