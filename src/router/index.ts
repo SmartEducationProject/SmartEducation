@@ -1,7 +1,7 @@
 import Login from 'pages/Login';
 import Student from 'pages/Student';
 import Teacher from 'pages/Teacher';
-import { IRouter } from 'types';
+import { IRouter } from 'types/Router';
 
 const routers: IRouter[] = [
   {

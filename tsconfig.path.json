@@ -9,13 +9,14 @@
       "utils/*": ["src/utils/*"],
       "assets/*": ["src/assets/*"],
       "service": ["src/service"],
-      "types": ["src/types"],
+      "types/*": ["src/types/*"],
       "hooks": ["src/hooks"],
       "constant": ["src/constant"],
       "context/*": ["src/context/*"],
       "context": ["src/context"],
       "pic/*": ["src/assets/pic/*"],
-      "router": ["src/router"]
+      "router": ["src/router"],
+      "data/*": ["src/data/*"]
     }
   }
 }
