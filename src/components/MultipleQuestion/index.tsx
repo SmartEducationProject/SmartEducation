@@ -60,6 +60,7 @@ const MultipleQuestion: React.FC<MultipleQuestionProps> = ({ index, question, op
             <Item name={name + question.content} {...itemProps}>
               {multiple ? (
                 <Checkbox.Group>
+                  {/* TODO:还没做最多选几项的功能和最少选一项 */}
                   {options.map((option) => (
                     <span style={radioSpanStyle} key={option.optionId}>
                       <Checkbox style={{ width: '18px' }} value={option.optionId} />

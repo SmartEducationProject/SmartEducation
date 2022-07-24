@@ -14,7 +14,7 @@ const Welcome = () => {
 
   const [form] = useForm();
   const onChange = () => {
-    console.log(111111111);
+    console.log(form.getFieldsValue());
   };
 
   return (
