@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Welcome = () => {
   return (
     <div>
-      <Link to="/student/questionare">Begin</Link>
+      <Link to="/student/questionnaire">Begin</Link>
     </div>
   );
 };

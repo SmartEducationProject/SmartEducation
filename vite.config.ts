@@ -37,7 +37,8 @@ export default defineConfig({
       context: path.resolve(__dirname, 'src/context'),
       pic: path.resolve(__dirname, 'src/assets/pic'),
       types: path.resolve(__dirname, 'src/types'),
-      router: path.resolve(__dirname, 'src/router')
+      router: path.resolve(__dirname, 'src/router'),
+      data: path.resolve(__dirname, 'src/data')
     }
   }
 });
