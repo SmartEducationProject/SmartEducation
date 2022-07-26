@@ -7,7 +7,7 @@
   background-color: @middle-green;
 
   .people-img {
-    margin: 100px 0 0 40px;
+    margin: 70px 0 0 40px;
     width: 450px;
   }
 
@@ -16,15 +16,15 @@
     position: absolute;
     background-image: url('assets/pic/student/dialog.png');
     background-size: cover;
-    top: 60px;
-    width: 405px;
-    height: 416px;
+    top: 100px;
+    width: 422px;
+    height: 400px;
     padding: 40px 20px;
 
     h2 {
       margin: 25px 0 0 80px;
       color: @high-green;
-      font-size: 28px;
+      font-size: 25px;
     }
 
     p {
@@ -33,9 +33,14 @@
       margin: 55px 0 0 80px;
     }
 
-    button {
-      .btn-with-bg(url('assets/pic/student/welcome-begin.png'), 161px, 38px);
+    button:nth-of-type(1) {
+      .btn-with-bg(url('assets/pic/student/choice-cqupt.png'), 195px, 38px);
       margin: 100px 0 0 145px;
+    }
+
+    button:nth-of-type(2) {
+      .btn-with-bg(url('assets/pic/student/choice-other.png'), 200px, 38px);
+      margin: 60px 0 0 145px;
     }
   }
 }
