@@ -1,0 +1,87 @@
+@import '../../../assets/style/common.less';
+
+.college-header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  background-color: @middle-green;
+
+  .hat-img {
+    width: 30px;
+    margin-left: 40px;
+  }
+
+  h5 {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    color: @font-green;
+    font-weight: normal;
+
+    span {
+      color: rgb(233, 84, 18);
+    }
+  }
+
+  .my-detail-btn {
+    margin: 0 20px 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 30px;
+    }
+
+    h5 {
+      margin: 10px 0 0 0;
+    }
+  }
+}
+
+.college-time,
+.college-process,
+.college-experience {
+  header {
+    display: flex;
+    align-items: center;
+    margin: 100px 0 0 0;
+
+    h2 {
+      display: inline-block;
+      margin: 0;
+      color: @font-green;
+      font-weight: 500;
+    }
+    img {
+      margin-left: 10px;
+      width: 30px;
+    }
+  }
+}
+
+.college-time main {
+  .bar-box {
+    display: flex;
+    height: 300px;
+  }
+}
+
+.college-process main {
+  .sentence-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('assets/pic/student/college-process-blue.png');
+    background-size: cover;
+    width: 140px;
+    height: 206px;
+
+    p {
+      color: rgb(56, 85, 165);
+      font-size: 14px;
+      text-align: center;
+      margin: 10px 0;
+    }
+  }
+}
