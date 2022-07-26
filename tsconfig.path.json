@@ -14,9 +14,9 @@
       "constant": ["src/constant"],
       "context/*": ["src/context/*"],
       "context": ["src/context"],
-      "pic/*": ["src/assets/pic/*"],
       "router/*": ["src/router/*"],
-      "data/*": ["src/data/*"]
+      "data/*": ["src/data/*"],
+      "api/*": ["src/api/*"]
     }
   }
 }

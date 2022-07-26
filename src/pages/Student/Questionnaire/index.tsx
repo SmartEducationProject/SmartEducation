@@ -1,43 +1,54 @@
 import React from 'react';
-import { Button, Form, Input, Radio, Space } from 'antd';
-import { Link } from 'react-router-dom';
+import { Form } from 'antd';
+import { useForm } from 'antd/lib/form/Form';
+import { useNavigate } from 'react-router-dom';
+import data from 'data/questionnaire';
 import SingleQuestion from 'components/SingleQuestion';
 import MultipleQuestion from 'components/MultipleQuestion';
-import data from 'data/questionnaire.json';
+import useAsync from 'utils/useAsync';
+import { submit } from 'api/student';
+import { ISubQuestion } from 'types/question';
 import styles from './index.module.less';
-import { useForm } from 'antd/lib/form/Form';
+import envelopeImg from 'assets/pic/student/envelope.png';
 
 const { Item } = Form;
 
 const Welcome = () => {
-  console.log('render Welcome');
-
+  const navigate = useNavigate();
+  const { run, isLoading } = useAsync();
   const [form] = useForm();
-  const onChange = () => {
-    console.log(form.getFieldsValue());
+
+  const onChange = async () => {
+    await run(submit(form.getFieldsValue()));
+    navigate('/student/result');
   };
 
   return (
-    <Form form={form} onFinish={onChange}>
-      {data.map((question, index) =>
-        question.composition ? (
-          <MultipleQuestion
-            name={String(question.questionId)}
-            index={index + 1}
-            question={question.content}
-            subProblem={question.subProblems}
-            options={question.options}
-            key={question.questionId}
-            multiple={question?.multiple}
-          />
-        ) : (
-          <SingleQuestion name={String(question.questionId)} index={index + 1} question={question.content} options={question.options} key={question.questionId} />
-        )
-      )}
-      <Button type="primary" htmlType="submit" shape="round">
-        Submit
-      </Button>
-    </Form>
+    <div className={styles['container']}>
+      <main>
+        <header>
+          <img src={envelopeImg} className={styles['envelope-img']} />
+          <span>考研预测-调查问卷</span>
+        </header>
+        <Form form={form} onFinish={onChange} className={styles['form-box']}>
+          {data.map((question, index) =>
+            question.composition ? (
+              <MultipleQuestion
+                index={index + 1}
+                question={question.content}
+                subQuestion={question.subQuestions as ISubQuestion[]}
+                options={question.options}
+                multiple={question?.multiple}
+                key={question.questionId}
+              />
+            ) : (
+              <SingleQuestion name={String(question.value)} index={index + 1} options={question.options} question={question.content} key={question.questionId} />
+            )
+          )}
+          <button className={styles['submit-btn']} type="submit"></button>
+        </Form>
+      </main>
+    </div>
   );
 };
 

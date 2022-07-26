@@ -15,6 +15,16 @@ export default defineConfig({
       ]
     })
   ],
+  server: {
+    cors: true,
+    proxy: {
+      '^/api': {
+        target: 'http://172.20.2.82:8080/', // 后端服务实际地址
+        changeOrigin: true, //开启代理
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  },
   css: {
     preprocessorOptions: {
       less: {
@@ -35,10 +45,10 @@ export default defineConfig({
       assets: path.resolve(__dirname, 'src/assets'),
       constant: path.resolve(__dirname, 'src/constant'),
       context: path.resolve(__dirname, 'src/context'),
-      pic: path.resolve(__dirname, 'src/assets/pic'),
       types: path.resolve(__dirname, 'src/types'),
       router: path.resolve(__dirname, 'src/router'),
-      data: path.resolve(__dirname, 'src/data')
+      data: path.resolve(__dirname, 'src/data'),
+      api: path.resolve(__dirname, 'src/api')
     }
   }
 });

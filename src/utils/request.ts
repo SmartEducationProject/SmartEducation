@@ -2,10 +2,10 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: '/api',
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/json'
   }
 });
 // axios实例拦截响应
