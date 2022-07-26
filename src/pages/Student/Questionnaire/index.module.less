@@ -1,3 +1,5 @@
+@import '../../../assets/style/common.less';
+
 .container {
   background-color: rgb(121, 180, 73);
   overflow: hidden;
@@ -26,11 +28,7 @@
       margin: 30px 0 0 80px;
 
       .submit-btn {
-        width: 161px;
-        height: 38px;
-        background: url('assets/pic/student/button.png') no-repeat;
-        background-size: cover;
-        border-style: none;
+        .btn-with-bg(url('assets/pic/student/button.png'), 161px, 38px);
         margin: 0 0 0 280px;
       }
     }
