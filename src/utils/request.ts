@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://172.20.2.82:8080',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded'
