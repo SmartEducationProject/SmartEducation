@@ -8,6 +8,10 @@ import Welcome from 'pages/Student/Welcome';
 import College from 'pages/Student/College';
 import Message from '@/pages/Teacher/PredictResult';
 import UncommittedPage from '@/pages/Teacher/UnCommitted';
+import Mine from 'pages/Student/Mine';
+import Lib from 'pages/Student/Mine/lib';
+import Daily from 'pages/Student/Mine/Daily';
+import Same from 'pages/Student/Mine/Same';
 
 // TODO:路由守卫
 
@@ -35,6 +39,28 @@ const routes: RouteObject[] = [
       {
         path: 'college/:isCqupt',
         element: <College />
+      },
+      {
+        path: 'mine/*',
+        element: <Mine />,
+        children: [
+          {
+            path: 'lib',
+            element: <Lib />
+          },
+          {
+            path: 'daily',
+            element: <Daily />
+          },
+          {
+            path: 'Same',
+            element: <Same />
+          },
+          {
+            path: '*',
+            element: <Navigate to="lib" replace={true} />
+          }
+        ]
       },
       {
         path: '*',

@@ -1,21 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 2
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "questionnaire": [
     {
       "Motivation": 3,
@@ -285,5 +268,22 @@
       "politics_other": 0,
       "id": 6
     }
-  ]
+  ],
+  "same": {
+    "total": 100,
+    "result": [
+      {
+        "name": "电子科技大学",
+        "id": 1,
+        "total": 3,
+        "success": 1
+      },
+      {
+        "name": "重庆邮电大学",
+        "id": 3,
+        "total": 10,
+        "success": 3
+      }
+    ]
+  }
 }

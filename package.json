@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "test",
-    "mock": "json-server --watch __json_server_mock__/db.json --port 3000"
+    "mock": "json-server --watch __json_server_mock__/db.json --routes __json_server_mock__/routes.json --port 3000"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.0.8",

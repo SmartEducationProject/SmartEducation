@@ -1,0 +1,85 @@
+@import '../../../assets/style/common.less';
+
+.container {
+  .mine-header {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background-color: @middle-green;
+
+    .student-img {
+      margin-left: 45px;
+      width: 45px;
+    }
+
+    .sentence-box {
+      margin-left: 23px;
+
+      h3 {
+        font-size: 19px;
+        font-weight: 600;
+        color: @font-green;
+        margin: 0px 0px 7px 0px;
+      }
+
+      h4 {
+        font-size: 13px;
+        font-weight: normal;
+        color: @font-green;
+        margin: 0;
+      }
+
+      h5 {
+        font-size: 10px;
+        font-weight: normal;
+        color: @high-green;
+        margin: 5px 0px 0px 0px;
+      }
+    }
+
+    .up-img {
+      margin: 0px 20px 0 auto;
+      width: 65px;
+    }
+  }
+
+  .menu {
+    background-color: rgb(126, 189, 71);
+    color: rgb(33, 95, 51);
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.same-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  margin-top: 40px;
+
+  .sentence-box {
+    background-image: url('assets/pic/student/mine-same-bg.png');
+    background-size: cover;
+    width: 600px;
+    height: 645px;
+    padding: 90px 0px 0px 100px;
+
+    p {
+      color: @high-green;
+    }
+
+    & > div:nth-of-type(1) {
+      display: flex;
+    }
+  }
+
+  footer {
+    background-image: url('assets/pic/student/mine-people.png');
+    background-size: cover;
+    margin: 20px 475px 0 0;
+    width: 230px;
+    height: 163px;
+  }
+}
