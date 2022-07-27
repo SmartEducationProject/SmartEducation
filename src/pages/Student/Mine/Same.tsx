@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getSame } from 'api/student';
 import styles from './index.module.less';
+import useAsync from 'utils/useAsync';
 
 interface ISameData {
   total: number;
@@ -13,13 +14,10 @@ interface ISameData {
 }
 
 const Same = () => {
-  const [data, setData] = useState<ISameData | null>(null);
+  const { data, run, isLoading } = useAsync<ISameData>();
 
   useEffect(() => {
-    (async function () {
-      const newData = await getSame();
-      setData(newData);
-    })();
+    run(getSame());
   }, []);
 
   return (
