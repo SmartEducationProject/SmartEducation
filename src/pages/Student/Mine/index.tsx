@@ -21,14 +21,13 @@ const items: MenuProps['items'] = [
   }
 ];
 
+// TODO: 加载状态
 const Mine = () => {
   const navigate = useNavigate();
   let location = useLocation();
   const menuKey = location.pathname.match(/(?<=\/student\/mine\/)(lib|daily|same)(?=\/?)/)?.[0] || 'lib'; // 如果不是lib或者daily或者same，则为undefined，当为undefined时直接渲染lib
 
-  const changeMenu: MenuProps['onClick'] = (e) => {
-    navigate('/student/mine/' + e.key);
-  };
+  const changeMenu: MenuProps['onClick'] = (e) => navigate('/student/mine/' + e.key);
 
   return (
     <div className={styles['container']}>

@@ -285,5 +285,49 @@
         "success": 3
       }
     ]
+  },
+  "lib": {
+    "yesterday": {
+      "period": [
+        {
+          "from": "2020-07-22:00:00:00",
+          "to": "2020-07-22:00:00:00"
+        },
+        {
+          "from": "2020-07-22:00:00:00",
+          "to": "2020-07-22:00:00:00"
+        }
+      ],
+      "count": 13.2,
+      "countRank": 34,
+      "earliestRank": 54,
+      "totalStudent": 100
+    },
+    "week": {
+      "count": 83.2,
+      "countRank": 23,
+      "totalStudent": 100
+    },
+    "month": {
+      "count": 433.2,
+      "countRank": 39,
+      "totalStudent": 100
+    }
+  },
+  "daily": {
+    "yesterday": {
+      "leave": "2020-07-22:00:00:00",
+      "back": "2020-07-22:00:00:00",
+      "earliestRank": 54,
+      "latestRank": 54,
+      "leaveTotal": 344,
+      "backTotal": 344
+    },
+    "week": {
+      "earliestRank": 1,
+      "latestRank": 23,
+      "leaveTotal": 544,
+      "backTotal": 534
+    }
   }
 }

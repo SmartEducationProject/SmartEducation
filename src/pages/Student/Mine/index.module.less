@@ -52,6 +52,38 @@
   }
 }
 
+.lib-and-daily-sentence-box() {
+  overflow: hidden;
+  background-image: url('assets/pic/student/mine-sentence-bg.png');
+  background-size: cover;
+  height: 215px;
+  width: 720px;
+  margin: 40px auto 0 auto;
+  color: @high-green;
+}
+
+.lib-container {
+  .sentence-box {
+    .lib-and-daily-sentence-box();
+    box-sizing: border-box;
+    padding-top: 40px;
+
+    p {
+      margin: 0 0 20px 70px;
+    }
+  }
+}
+
+.daily-container {
+  .sentence-box {
+    .lib-and-daily-sentence-box();
+
+    p {
+      margin: 50px 0px 0px 60px;
+    }
+  }
+}
+
 .same-container {
   display: flex;
   flex-direction: column;
