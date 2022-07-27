@@ -1,0 +1,102 @@
+.predict {
+  width: 100%;
+  .predict-header {
+    height: 100px;
+    box-sizing: border-box;
+    background-color: rgb(121, 180, 73);
+    .header-content {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      margin: 0 auto;
+      .header-left {
+        color: green;
+        span:nth-child(2) {
+          // background-color:;
+          color: white;
+          text-decoration: underline;
+          cursor: pointer;
+          margin-left: 10px;
+        }
+      }
+      .header-right {
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-end;
+        .search {
+          display: flex;
+          align-items: center;
+          background-color: white;
+          border-radius: 5px;
+          img {
+            width: 20px;
+            margin-left: 2px;
+            height: 20px;
+          }
+          img:hover {
+            width: 22px;
+            height: 22px;
+          }
+        }
+        input {
+          width: 220px;
+          height: 25px;
+          border-radius: 5px;
+          border: none;
+        }
+        input::placeholder {
+          color: rgb(121, 180, 73);
+          font-size: 14px;
+        }
+        input:focus {
+          outline: none;
+        }
+        img {
+          margin-left: auto;
+          width: 140px;
+        }
+        span {
+          text-decoration: underline;
+          cursor: pointer;
+          font-size: 10px;
+          margin-left: auto;
+          // color: rgb(75,131,101);
+          color: gray;
+        }
+      }
+    }
+  }
+  .predict-content {
+    margin-top: 70px;
+    .predict-table {
+      width: 100%;
+      margin: 0 auto;
+      .ant-table-thead > tr > th > .ant-table-cell {
+        color: white !important;
+        font-size: 50px;
+        background-color: red !important;
+        // background: red !important;
+      }
+    }
+    .table-rowClass {
+      font-size: 10px;
+    }
+    .table-class {
+      :global .ant-table-thead {
+        // width: 100%;
+        > tr {
+          > th {
+            font-size: 10px;
+            // background: red !important;
+          }
+        }
+      }
+    }
+  }
+  .colums {
+    // width:0px;
+    background-color: rgb(155, 213, 172);
+    //   background:linear-gradient(0deg, green, rgb(155,213,172) 2%, white);
+  }
+}

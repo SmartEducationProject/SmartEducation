@@ -7,6 +7,8 @@ import { Route, Routes, useRoutes } from 'react-router-dom';
 
 function App() {
   const elements = useRoutes(routes);
+  console.log(elements);
+
   return (
     <div className={styles['app']}>
       <Header />

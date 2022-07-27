@@ -1,0 +1,45 @@
+.uncommitted {
+  width: 100%;
+  .uncommitted-header {
+    height: 100px;
+    box-sizing: border-box;
+    background-color: rgb(121, 180, 73);
+    .header-content {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      margin: 0 auto;
+      .header-left {
+        color: green;
+        span:nth-child(2) {
+          // background-color:;
+          color: white;
+          text-decoration: underline;
+          cursor: pointer;
+          margin-left: 10px;
+        }
+      }
+      .header-right {
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-end;
+        img {
+          margin-left: auto;
+          width: 140px;
+        }
+        span {
+          text-decoration: underline;
+          cursor: pointer;
+          font-size: 10px;
+          margin-left: auto;
+          // color: rgb(75,131,101);
+          color: gray;
+        }
+      }
+    }
+  }
+  .uncommitted-content {
+    margin-top: 50px;
+  }
+}

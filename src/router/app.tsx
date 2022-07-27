@@ -6,6 +6,8 @@ import Choice from 'pages/Student/Choice';
 import Questionnaire from 'pages/Student/Questionnaire';
 import Welcome from 'pages/Student/Welcome';
 import College from 'pages/Student/College';
+import Message from '@/pages/Teacher/PredictResult';
+import UncommittedPage from '@/pages/Teacher/UnCommitted';
 
 // TODO:路由守卫
 
@@ -41,8 +43,18 @@ const routes: RouteObject[] = [
     ]
   },
   {
-    path: '/teacher',
-    element: <Teacher />
+    path: '/teacher/*',
+    element: <Teacher />,
+    children: [
+      {
+        path: 'predictresult',
+        element: <Message />
+      },
+      {
+        path: 'uncommitted',
+        element: <UncommittedPage />
+      }
+    ]
   },
   {
     path: '*',

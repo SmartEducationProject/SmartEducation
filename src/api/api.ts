@@ -7,3 +7,11 @@ export const Login = (params: Partial<ILogin>): Promise<IResponse> => {
     return res.data;
   });
 };
+
+export const UnSubmitted = (): Promise<IResponse> => {
+  return axiosInstance.get('/teacher/unsubmitted/').then((res) => {
+    console.log('res', res);
+
+    return res.data;
+  });
+};
