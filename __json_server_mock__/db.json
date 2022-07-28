@@ -270,64 +270,92 @@
     }
   ],
   "same": {
-    "total": 100,
     "result": [
       {
-        "name": "电子科技大学",
-        "id": 1,
-        "total": 3,
-        "success": 1
+        "total": 19.0,
+        "success": 6.0,
+        "name": "重邮学硕"
       },
       {
-        "name": "重庆邮电大学",
-        "id": 3,
-        "total": 10,
-        "success": 3
+        "total": 23.0,
+        "success": 14.0,
+        "name": "重邮专硕"
+      },
+      {
+        "total": 1.0,
+        "success": 1.0,
+        "name": "北京理工大学"
+      },
+      {
+        "total": 1.0,
+        "success": 1.0,
+        "name": "南京理工大学"
+      },
+      {
+        "total": 1.0,
+        "success": 1.0,
+        "name": "西南交通大学"
+      },
+      {
+        "total": 3.0,
+        "success": 2.0,
+        "name": "重庆大学"
+      },
+      {
+        "total": 1.0,
+        "success": 1.0,
+        "name": "东南大学"
+      },
+      {
+        "total": 1.0,
+        "success": 1.0,
+        "name": "云南大学"
       }
-    ]
+    ],
+    "total": 50
   },
   "lib": {
     "yesterday": {
       "period": [
         {
-          "from": "2020-07-22:00:00:00",
-          "to": "2020-07-22:00:00:00"
+          "from": "2022-07-27 07:00:00",
+          "to": "2022-07-27 18:35:30"
         },
         {
-          "from": "2020-07-22:00:00:00",
-          "to": "2020-07-22:00:00:00"
+          "from": "2022-07-27 20:50:25",
+          "to": "2022-07-27 23:00:00"
         }
       ],
-      "count": 13.2,
-      "countRank": 34,
-      "earliestRank": 54,
-      "totalStudent": 100
+      "totalStudent": 21,
+      "earliestRank": 21,
+      "count": 13.751388888888888,
+      "countRank": 1
     },
     "week": {
-      "count": 83.2,
-      "countRank": 23,
-      "totalStudent": 100
+      "totalStudent": 21,
+      "count": 68.75694444444444,
+      "countRank": 1
     },
     "month": {
-      "count": 433.2,
-      "countRank": 39,
-      "totalStudent": 100
+      "totalStudent": 21,
+      "count": 68.75694444444444,
+      "countRank": 1
     }
   },
   "daily": {
     "yesterday": {
-      "leave": "2020-07-22:00:00:00",
-      "back": "2020-07-22:00:00:00",
-      "earliestRank": 54,
-      "latestRank": 54,
-      "leaveTotal": 344,
-      "backTotal": 344
+      "leave_room": "2022-07-27 07:00:00",
+      "back_room": "2022-07-27 23:00:00",
+      "earliestRank": 3,
+      "leaveTotal": 26,
+      "backTotal": 26,
+      "latestRank": 26
     },
     "week": {
-      "earliestRank": 1,
-      "latestRank": 23,
-      "leaveTotal": 544,
-      "backTotal": 534
+      "earliestRank": 22,
+      "leaveTotal": 26,
+      "backTotal": 26,
+      "latestRank": 26
     }
   }
 }

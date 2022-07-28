@@ -1,20 +1,14 @@
 import React, { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { getLib } from 'api/student';
-import useAsync from 'utils/useAsync';
 import styles from './index.module.less';
 
 interface ILib {
   yesterday: {
-    period: [
-      {
-        from: string;
-        to: string;
-      },
-      {
-        from: string;
-        to: string;
-      }
-    ];
+    period: {
+      from: string;
+      to: string;
+    }[];
     count: number;
     countRank: number;
     earliestRank: number;
@@ -33,26 +27,19 @@ interface ILib {
 }
 
 const Lib = () => {
-  const { data, run, isLoading } = useAsync<ILib>();
+  /** @description 接口调用 */
+  const { data } = useQuery<ILib>('lib', getLib);
 
-  useEffect(() => {
-    run(getLib());
-  }, []);
+  /** @description 获得在馆时间段展示字符串 */
+  const periodFormat = data?.yesterday?.period?.map((period) => `${period.from.split(' ')[1]}-${period.to.split(' ')[1]}`)?.join(', ');
 
   return (
     <div className={styles['lib-container']}>
       <div className={styles['sentence-box']}>
-        <p>
-          昨日在馆时间：
-          {data?.yesterday?.period?.map((period, index) => (
-            <span key={index}>
-              {period.from}——{period.to}{' '}
-            </span>
-          ))}
-        </p>
-        <p>昨日在馆总时长：{data?.yesterday?.count}h</p>
-        <p>最近一周在馆总时长：{data?.week?.count}h</p>
-        <p>最近一月在馆总时长：{data?.month?.count}h</p>
+        <p>昨日在馆时间：{periodFormat}</p>
+        <p>昨日在馆总时长：{(data?.yesterday?.count as number)?.toFixed(2)}h</p>
+        <p>最近一周在馆总时长：{(data?.week?.count as number)?.toFixed(2)}h</p>
+        <p>最近一月在馆总时长：{(data?.month?.count as number)?.toFixed(2)}h</p>
       </div>
 
       <div></div>

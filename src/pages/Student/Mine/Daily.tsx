@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getDaily } from 'api/student';
-import useAsync from 'utils/useAsync';
-import styles from './index.module.less';
 import { useQuery } from 'react-query';
+import { getDaily } from 'api/student';
+import styles from './index.module.less';
 
 interface IDaily {
   yesterday: {
@@ -27,8 +26,8 @@ const Daily = () => {
   return (
     <div className={styles['daily-container']}>
       <div className={styles['sentence-box']}>
-        <p>昨日最早出寝时间：{data?.yesterday?.leave_room}</p>
-        <p>昨日最晚归寝时间：{data?.yesterday?.back_room}</p>
+        <p>昨日最早出寝时间：{data?.yesterday?.leave_room?.split(' ')[1]}</p>
+        <p>昨日最晚归寝时间：{data?.yesterday?.back_room?.split(' ')[1]}</p>
       </div>
     </div>
   );
