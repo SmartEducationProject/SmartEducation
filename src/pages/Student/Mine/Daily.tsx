@@ -2,36 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { getDaily } from 'api/student';
 import useAsync from 'utils/useAsync';
 import styles from './index.module.less';
+import { useQuery } from 'react-query';
 
 interface IDaily {
   yesterday: {
-    leave: string;
-    back: string;
+    leave_room: string;
+    back_room: string;
     earliestRank: number;
-    latestRank: number;
     leaveTotal: number;
     backTotal: number;
+    latestRank: number;
   };
   week: {
     earliestRank: number;
-    latestRank: number;
     leaveTotal: number;
     backTotal: number;
+    latestRank: number;
   };
 }
 
 const Daily = () => {
-  const { data, run, isLoading } = useAsync<IDaily>();
-
-  useEffect(() => {
-    run(getDaily());
-  }, []);
+  const { data } = useQuery<IDaily>('daily', getDaily); // 查询
 
   return (
     <div className={styles['daily-container']}>
       <div className={styles['sentence-box']}>
-        <p>昨日最早出寝时间：{data?.yesterday?.leave}</p>
-        <p>昨日最晚归寝时间：{data?.yesterday?.back}</p>
+        <p>昨日最早出寝时间：{data?.yesterday?.leave_room}</p>
+        <p>昨日最晚归寝时间：{data?.yesterday?.back_room}</p>
       </div>
     </div>
   );

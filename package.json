@@ -12,7 +12,6 @@
     "mock": "json-server --watch __json_server_mock__/db.json --routes __json_server_mock__/routes.json --port 3000"
   },
   "dependencies": {
-    "@tanstack/react-query": "^4.0.8",
     "@types/qs": "^6.9.7",
     "antd": "^4.21.7",
     "axios": "^0.27.2",

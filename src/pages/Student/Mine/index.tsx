@@ -22,6 +22,7 @@ const items: MenuProps['items'] = [
 ];
 
 // TODO: 加载状态
+// TODO: header的数据，需要登录那边写完后去获取
 const Mine = () => {
   const navigate = useNavigate();
   let location = useLocation();
