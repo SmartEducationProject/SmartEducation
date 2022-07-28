@@ -1,0 +1,34 @@
+@import '../../../../assets/style/common.less';
+@import '../index.module.less';
+
+.same-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  margin-top: 40px;
+
+  .sentence-box {
+    background-image: url('assets/pic/student/mine-same-bg.png');
+    background-size: cover;
+    width: 600px;
+    height: 645px;
+    padding: 90px 0px 0px 100px;
+
+    p {
+      color: @high-green;
+    }
+
+    & > div:nth-of-type(1) {
+      display: flex;
+    }
+  }
+
+  footer {
+    background-image: url('assets/pic/student/mine-people.png');
+    background-size: cover;
+    margin: 20px 475px 0 0;
+    width: 230px;
+    height: 163px;
+  }
+}

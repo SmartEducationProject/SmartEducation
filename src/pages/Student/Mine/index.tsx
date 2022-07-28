@@ -46,6 +46,8 @@ const Mine = () => {
       <Menu mode="horizontal" items={items} selectedKeys={[menuKey]} onClick={changeMenu} className={styles['menu']} />
 
       <Outlet></Outlet>
+
+      <footer />
     </div>
   );
 };

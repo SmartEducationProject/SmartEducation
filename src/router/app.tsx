@@ -9,9 +9,9 @@ import College from 'pages/Student/College';
 import Message from '@/pages/Teacher/PredictResult';
 import UncommittedPage from '@/pages/Teacher/UnCommitted';
 import Mine from 'pages/Student/Mine';
-import Lib from 'pages/Student/Mine/lib';
-import Daily from 'pages/Student/Mine/Daily';
-import Same from 'pages/Student/Mine/Same';
+import Lib from '@/pages/Student/Mine/Lib/Lib';
+import Daily from '@/pages/Student/Mine/Daily/Daily';
+import Same from '@/pages/Student/Mine/Same/Same';
 
 // TODO:路由守卫
 
