@@ -3,8 +3,8 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import styles from './index.module.less';
-import studentIcon from 'assets/pic/student/student.png';
-import upIcon from 'assets/pic/student/mine-up.png';
+
+import Header from './Header';
 
 const items: MenuProps['items'] = [
   {
@@ -28,20 +28,12 @@ const Mine = () => {
   let location = useLocation();
   const menuKey = location.pathname.match(/(?<=\/student\/mine\/)(lib|daily|same)(?=\/?)/)?.[0] || 'lib'; // 如果不是lib或者daily或者same，则为undefined，当为undefined时直接渲染lib
 
-  const changeMenu: MenuProps['onClick'] = (e) => navigate('/student/mine/' + e.key);
+  /** @description 当要切换到不同页面才会切换路由 */
+  const changeMenu: MenuProps['onClick'] = (e) => e.key !== menuKey && navigate('/student/mine/' + e.key);
 
   return (
     <div className={styles['container']}>
-      <header className={styles['mine-header']}>
-        <img src={studentIcon} className={styles['student-img']} />
-        <div className={styles['sentence-box']}>
-          <h3>Hello,{'myy'}!</h3>
-          <h4>美好的一天从看看我的考研情况开始~以下情况实时更新哦！</h4>
-          <h5>今天是2022年7月7日，距离考研上岸还有{7}天</h5>
-          <h5>距离初次登录，你已努力了{10}天</h5>
-        </div>
-        <img src={upIcon} className={styles['up-img']} />
-      </header>
+      <Header />
 
       <Menu mode="horizontal" items={items} selectedKeys={[menuKey]} onClick={changeMenu} className={styles['menu']} />
 
