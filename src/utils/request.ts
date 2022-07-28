@@ -44,7 +44,9 @@ axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = localStorage.getItem('token');
     if (token) {
-      config.headers!.authorization = `Bearer ${token}`;
+      // config.headers!.authorization = `Bearer ${token}`;
+      // config.headers!.authorization = `${token}`;
+      config.headers!.token = `${token}`;
     }
     return config;
   },

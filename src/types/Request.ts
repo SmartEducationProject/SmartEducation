@@ -17,3 +17,7 @@ export interface IResponse {
   data: any;
   msg: string;
 }
+
+export interface ISearch {
+  name: string | null;
+}
