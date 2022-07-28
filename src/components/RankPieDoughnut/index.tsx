@@ -2,7 +2,7 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 import styles from './index.module.less';
 
-interface PieDoughnutProps {
+interface RankPieDoughnutProps {
   index: number;
   name: string;
   rank: number;
@@ -13,9 +13,7 @@ const pieColorList = ['rgb(102,183,192)', 'rgb(242,186,75)'];
 const rankColorList = ['rgb(74,191,209)', 'rgb(243,162,73)'];
 const totalColorList = ['rgb(133,181,219)', 'rgb(244,169,137)'];
 
-const PieDoughnut: React.FC<PieDoughnutProps> = ({ index, name, rank, exceed }) => {
-  console.log(rank);
-
+const RankPieDoughnut: React.FC<RankPieDoughnutProps> = ({ index, name, rank, exceed }) => {
   const option = {
     tooltip: {
       trigger: 'item'
@@ -53,11 +51,11 @@ const PieDoughnut: React.FC<PieDoughnutProps> = ({ index, name, rank, exceed }) 
     <div className={styles['container']}>
       <div className={styles['number-box']}>
         <h1 style={{ color: rankColorList[index % pieColorList.length], borderBottom: `1px solid ${totalColorList[index % pieColorList.length]}` }}>{rank || 0}</h1>
-        <h5 style={{ color: totalColorList[index % pieColorList.length] }}>{rank + exceed}</h5>
+        <h5 style={{ color: totalColorList[index % pieColorList.length] }}>{rank + exceed || 0}</h5>
       </div>
       <ReactECharts option={option} style={{ width: '100%' }} />
     </div>
   );
 };
 
-export default PieDoughnut;
+export default RankPieDoughnut;
