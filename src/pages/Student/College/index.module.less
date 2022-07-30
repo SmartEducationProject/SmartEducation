@@ -1,5 +1,14 @@
 @import '../../../assets/style/common.less';
 
+.container {
+  position: relative;
+
+  & > footer {
+    height: 20px;
+    background-color: rgb(121, 180, 74);
+  }
+}
+
 .college-header {
   display: flex;
   align-items: center;
@@ -39,13 +48,20 @@
   }
 }
 
+.college-rank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 .college-time,
 .college-process,
 .college-experience {
   header {
     display: flex;
     align-items: center;
-    margin: 100px 0 0 0;
+    margin: 30px 0 0 0;
 
     h2 {
       display: inline-block;
@@ -63,14 +79,16 @@
 .college-time main {
   .bar-box {
     display: flex;
-    height: 300px;
+    height: 230px;
+    justify-content: space-evenly;
   }
 }
 
 .college-process main {
-  height: 300px;
+  height: 500px;
 
   .pie-box {
     display: flex;
+    justify-content: space-evenly;
   }
 }
