@@ -8,13 +8,17 @@ import Welcome from 'pages/Student/Welcome';
 import College from 'pages/Student/College';
 import Message from '@/pages/Teacher/PredictResult';
 import UncommittedPage from '@/pages/Teacher/UnCommitted';
-
+import SignIn from '@/pages/signin';
 // TODO:路由守卫
 
 const routes: RouteObject[] = [
   {
     path: '/',
     element: <Login />
+  },
+  {
+    path: '/signin',
+    element: <SignIn />
   },
   {
     path: '/student/*',

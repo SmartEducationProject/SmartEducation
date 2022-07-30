@@ -13,9 +13,9 @@ export interface ILogin {
   username: string;
 }
 export interface IResponse {
-  status: number | string;
+  code: number | string;
   data: any;
-  msg: string;
+  info: string;
 }
 
 export interface ISearch {

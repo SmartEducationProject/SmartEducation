@@ -1,5 +1,5 @@
 import React, { Children, FunctionComponent, useCallback, useEffect, useState } from 'react';
-import { Spin, Table } from 'antd';
+import { List, Spin, Table } from 'antd';
 import type { ColumnsType, TableProps } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 // import useDebounceFn from '@/utils/useDebounceFn';
 // import { useQuery } from '@tanstack/react-query';
 import { useQuery } from 'react-query';
-import { SubmittedCond, Statistics, Search } from '../../../api/teacher';
+import { SubmittedCond, Statistics, Search, exportData } from '../../../api/teacher';
 import useDebounceHook from '@/utils/useDebounceFn';
 const PredictResult: FunctionComponent = () => {
   interface collegeType {
@@ -27,6 +27,12 @@ const PredictResult: FunctionComponent = () => {
     submitTime: string;
     college: collegeType[];
   }
+
+  //导出Excel数据的order
+  const [order, setOrder] = useState<number>(0);
+  //导出Excel数据的排序方式：ascend/descend
+  const [orderDirection, setOrderDirection] = useState<number>(0);
+
   /**
    * @description:将表格所有行进行排序
    * @params {a:DataType,b:DataType}
@@ -36,8 +42,13 @@ const PredictResult: FunctionComponent = () => {
   type CompareFn<T> = (a: T, b: T, sortOrder?: SortOrder) => number;
   const sortFunc = useCallback((index: number) => {
     const compare: CompareFn<DataType> = (...args) => {
+      //排序方法：升序和降序
+      let method = args[2] === 'ascend' ? 1 : 0;
+      setOrderDirection(method);
+      setOrder(index);
       return (args[0] as DataType).college[index].rate - (args[1] as DataType).college[index].rate;
     };
+
     return compare;
   }, []);
   /**
@@ -90,8 +101,9 @@ const PredictResult: FunctionComponent = () => {
   const [searchValue, setSearchValue] = useState<string | null>('');
   const debounceText = useDebounceHook(searchValue, 1000);
   useEffect(() => {
-    // ...
-    console.info('change', debounceText);
+    if (debounceText === '') {
+      setTableData(StatisticsData?.data.list);
+    }
   }, [debounceText]);
 
   const inputChange = (e: any) => {
@@ -105,9 +117,30 @@ const PredictResult: FunctionComponent = () => {
    */
   const searchBtn = async () => {
     let result = await Search({ name: searchValue });
-    console.log('result', result);
+    setTableData(result.data.list);
   };
 
+  /**
+   * @description:导出Excel表数据
+   * @params {}
+   * @return  {}
+   */
+
+  const exportExcel = async () => {
+    let result = await exportData({
+      order: order!,
+      method: orderDirection!
+    });
+    console.log('order', order);
+    console.log('orderDirection', orderDirection);
+
+    let link = document.createElement('a');
+    link.download = 'aa.xlsx';
+    link.href = `http://172.20.2.82:8080/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
+    link.click();
+  };
+
+  //tabel属性列
   const columns: ColumnsType<DataType> = [
     {
       key: 'id',
@@ -225,6 +258,8 @@ const PredictResult: FunctionComponent = () => {
       }
     }
   ];
+  //table的dataSource
+  const [tableData, setTableData] = useState<DataType[]>();
   // // scroll={{x:'100%' }}
   const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
@@ -236,9 +271,15 @@ const PredictResult: FunctionComponent = () => {
 
   //获取老师端考研概率统计情况
   const { data: StatisticsData, isLoading: StatisticsIsLoading } = useQuery('Statistics', Statistics);
+  console.log('StatisticsData', StatisticsData);
+  useEffect(() => {
+    setTableData(StatisticsData?.data.list);
+  }, [StatisticsData]);
+
   if (isLoading || StatisticsIsLoading) {
     return <Spin />;
   }
+
   return (
     <div className={styles['predict']}>
       <div className={styles['predict-header']}>
@@ -255,7 +296,7 @@ const PredictResult: FunctionComponent = () => {
               <img src={search} alt="" onClick={() => searchBtn()} />
             </div>
             <img src={contact}></img>
-            <span>以Excel表导出数据</span>
+            <span onClick={() => exportExcel()}>以Excel表导出数据</span>
           </div>
         </div>
       </div>
@@ -273,7 +314,7 @@ const PredictResult: FunctionComponent = () => {
             bordered
             columns={columns}
             rowKey={'id'}
-            dataSource={StatisticsData?.data.list}
+            dataSource={tableData}
             onChange={onChange}
             pagination={false}
           />

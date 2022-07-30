@@ -34,7 +34,16 @@ const UncommittedPage = () => {
   if (isLoading) {
     return <Spin />;
   }
-  console.log('data', data);
+  /**
+   * @description:将未提交学生名单导出Excel
+   * @params {data} 未提交学生名单
+   */
+  const exportUncommitted = () => {
+    let link = document.createElement('a');
+    link.download = '未提交学生名单.xlsx';
+    link.href = 'http://172.20.2.82:8080/teacher/unsubmitted/excel';
+    link.click();
+  };
 
   return (
     <div className={styles['uncommitted']}>
@@ -45,12 +54,12 @@ const UncommittedPage = () => {
           </div>
           <div className={styles['header-right']}>
             <img src={contact}></img>
-            <span>以Excel表导出数据</span>
+            <span onClick={() => exportUncommitted()}>以Excel表导出数据</span>
           </div>
         </div>
       </div>
       <div className={styles['uncommitted-content']}>
-        <TableComponent columns={columns} dataSource={data?.data.list} rowKey={'stdId'} />
+        <TableComponent columns={columns} dataSource={data?.data.list} rowKey={'stdId'} pagination={false} />
       </div>
     </div>
   );
