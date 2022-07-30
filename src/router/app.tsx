@@ -1,24 +1,24 @@
 import { Navigate, RouteObject } from 'react-router-dom';
-import Login from 'pages/Login';
 import Student from 'pages/Student';
 import Teacher from 'pages/Teacher';
 import Choice from 'pages/Student/Choice';
 import Questionnaire from 'pages/Student/Questionnaire';
 import Welcome from 'pages/Student/Welcome';
 import College from 'pages/Student/College';
-import Message from '@/pages/Teacher/PredictResult';
+import Message from 'pages/Teacher/PredictResult';
 import UncommittedPage from '@/pages/Teacher/UnCommitted';
 import Mine from 'pages/Student/Mine';
-import Lib from '@/pages/Student/Mine/Lib/Lib';
-import Daily from '@/pages/Student/Mine/Daily/Daily';
-import Same from '@/pages/Student/Mine/Same/Same';
+import Lib from 'pages/Student/Mine/Lib/Lib';
+import Daily from 'pages/Student/Mine/Daily/Daily';
+import Same from 'pages/Student/Mine/Same/Same';
+import SignIn from 'pages/signin';
 
 // TODO:路由守卫
 
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Login />
+    element: <SignIn />
   },
   {
     path: '/student/*',

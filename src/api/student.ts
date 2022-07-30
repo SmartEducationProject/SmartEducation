@@ -1,6 +1,18 @@
 import { axiosInstance } from 'utils/request';
 import processData from 'utils/processData';
-import { IResponse } from 'types/request';
+import { ILogin, IResponse } from 'types/Request';
+
+/**
+ * @description 学生登录接口
+ * @returns {Promise}
+ */
+export const studentLogin = (params: any): Promise<IResponse> => {
+  return axiosInstance.get('/student/login', { params }).then((res) => {
+    console.log('studentLogin', res);
+
+    return res.data;
+  });
+};
 
 /**
  *

@@ -1,18 +1,16 @@
 import React from 'react';
-// import {useQuery} from 'react-query'
-// import {UnSubmitted} from '../../../api/api'
+import { useQuery } from 'react-query';
+import { UnSubmitted } from '../../../api/teacher';
+import { Spin } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './index.module.less';
 import contact from '../../../assets/teacher/contact.jpg';
 import TableComponent from '../Table';
 interface DataType {
-  key: string;
   name: string;
-  age: number;
-  address: string;
-  tags: string[];
+  class: number;
+  stdId: string;
 }
-
 const columns: ColumnsType<DataType> = [
   {
     title: '学生',
@@ -22,40 +20,31 @@ const columns: ColumnsType<DataType> = [
   },
   {
     title: '学号',
-    dataIndex: 'age',
-    key: 'age'
+    dataIndex: 'stdId',
+    key: 'stdId'
   },
   {
     title: '班级',
-    dataIndex: 'address',
-    key: 'address'
-  }
-];
-
-const datas: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser']
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher']
+    dataIndex: 'class',
+    key: 'class'
   }
 ];
 const UncommittedPage = () => {
+  const { data, isLoading, isError } = useQuery('uncommitted', UnSubmitted);
+  if (isLoading) {
+    return <Spin />;
+  }
+  /**
+   * @description:将未提交学生名单导出Excel
+   * @params {data} 未提交学生名单
+   */
+  const exportUncommitted = () => {
+    let link = document.createElement('a');
+    link.download = '未提交学生名单.xlsx';
+    link.href = 'http://172.20.2.82:8080/teacher/unsubmitted/excel';
+    link.click();
+  };
+
   return (
     <div className={styles['uncommitted']}>
       <div className={styles['uncommitted-header']}>
@@ -65,12 +54,12 @@ const UncommittedPage = () => {
           </div>
           <div className={styles['header-right']}>
             <img src={contact}></img>
-            <span>以Excel表导出数据</span>
+            <span onClick={() => exportUncommitted()}>以Excel表导出数据</span>
           </div>
         </div>
       </div>
       <div className={styles['uncommitted-content']}>
-        <TableComponent columns={columns} dataSource={datas} />
+        <TableComponent columns={columns} dataSource={data?.data.list} rowKey={'stdId'} pagination={false} />
       </div>
     </div>
   );

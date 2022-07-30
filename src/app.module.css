@@ -1,0 +1,11 @@
+.app {
+  min-height: 500px;
+  overflow-x: hidden;
+}
+.app .main {
+  background-color: #eeeeee;
+  width: 1000px;
+  margin: 0 auto;
+  min-height: 500px;
+  margin-top: 40px;
+}
