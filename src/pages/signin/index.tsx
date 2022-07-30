@@ -10,7 +10,7 @@ import { studentLogin } from '@/api/student';
 import { teacherLogin } from '@/api/teacher';
 import { message } from 'antd';
 const SignIn: FunctionComponent = () => {
-  const nvigate = useNavigate();
+  const navigate = useNavigate();
   /**
    *  @description:对input的输入进行消抖处理
    *
@@ -37,7 +37,14 @@ const SignIn: FunctionComponent = () => {
       let result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
         localStorage.setItem('studentInfo', JSON.stringify(result.data));
-        nvigate('/student/');
+        /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
+        result.data.hasPredict
+          ? navigate('/student/college', {
+              replace: true
+            })
+          : navigate('/student/welcome', {
+              replace: true
+            });
       } else {
         message.error('统一认证码输入错误');
       }
@@ -45,7 +52,9 @@ const SignIn: FunctionComponent = () => {
     } else if (regEnLow.test(signIhValue!)) {
       let result = await teacherLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
-        nvigate('/teacher/predictresult');
+        navigate('/teacher/predictresult', {
+          replace: true
+        });
       } else {
         message.error('统一认证码输入错误');
       }
