@@ -20,7 +20,7 @@ const Welcome = () => {
 
   const onChange = async () => {
     await run(submit(form.getFieldsValue()));
-    navigate('/student/result');
+    navigate('/student/choice');
   };
 
   return (

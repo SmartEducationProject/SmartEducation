@@ -1,12 +1,13 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import hatImg from 'assets/pic/student/college-hat.png';
 import studentImg from 'assets/pic/student/student.png';
+import useCqupt from '@/utils/useCqupt';
 
 export default () => {
+  const isCqupt = useCqupt();
   const navigate = useNavigate();
-  const isCqupt = useParams().isCqupt === '1';
 
   return (
     <header className={styles['college-header']}>
