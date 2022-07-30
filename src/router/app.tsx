@@ -1,5 +1,5 @@
 import { Navigate, RouteObject } from 'react-router-dom';
-import Login from 'pages/Login';
+// import Login from 'pages/Login';
 import Student from 'pages/Student';
 import Teacher from 'pages/Teacher';
 import Choice from 'pages/Student/Choice';
@@ -14,10 +14,6 @@ import SignIn from '@/pages/signin';
 const routes: RouteObject[] = [
   {
     path: '/',
-    element: <Login />
-  },
-  {
-    path: '/signin',
     element: <SignIn />
   },
   {
