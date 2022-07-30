@@ -59,7 +59,7 @@ const BarChart: React.FC<BarChartProp> = ({ data }) => {
     ]
   };
 
-  return <ReactECharts option={option} style={{ width: '15%', height: '70%' }} />;
+  return <ReactECharts option={option} style={{ width: '15%', height: '100%' }} />;
 };
 
 export default BarChart;
