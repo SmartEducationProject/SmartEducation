@@ -1,51 +1,59 @@
 @import '../../../assets/style/common.less';
 
+@college-header-height: 100px;
+@footer-height: 20px;
+
 .container {
   position: relative;
+  min-height: 100%;
+
+  .college-header {
+    display: flex;
+    align-items: center;
+    height: @college-header-height;
+    width: 100%;
+    background-color: @middle-green;
+
+    .hat-img {
+      width: 30px;
+      margin-left: 40px;
+    }
+
+    h5 {
+      display: inline-block;
+      margin: 0 0 0 10px;
+      color: @font-green;
+      font-weight: normal;
+
+      span {
+        color: rgb(233, 84, 18);
+      }
+    }
+
+    .my-detail-btn {
+      margin: 0 20px 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+
+      img {
+        width: 30px;
+      }
+
+      h5 {
+        margin: 10px 0 0 0;
+      }
+    }
+  }
+
+  & > main {
+    min-height: calc(100vh - @header-height - @college-header-height - @footer-height);
+  }
 
   & > footer {
     height: 20px;
     background-color: rgb(121, 180, 74);
-  }
-}
-
-.college-header {
-  display: flex;
-  align-items: center;
-  height: 100px;
-  width: 100%;
-  background-color: @middle-green;
-
-  .hat-img {
-    width: 30px;
-    margin-left: 40px;
-  }
-
-  h5 {
-    display: inline-block;
-    margin: 0 0 0 10px;
-    color: @font-green;
-    font-weight: normal;
-
-    span {
-      color: rgb(233, 84, 18);
-    }
-  }
-
-  .my-detail-btn {
-    margin: 0 20px 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-
-    img {
-      width: 30px;
-    }
-
-    h5 {
-      margin: 10px 0 0 0;
-    }
   }
 }
 
@@ -86,10 +94,19 @@
 }
 
 .college-process main {
-  height: 500px;
-
   .pie-box {
     display: flex;
     justify-content: space-evenly;
+  }
+
+  .sentence-box {
+    background-image: url('assets/pic/student/college-process-sentence.png');
+    background-size: cover;
+    box-sizing: border-box;
+    height: 169px;
+    width: 70%;
+    margin: 180px auto 40px auto;
+    padding: 40px 40px 0 40px;
+    color: rgb(39, 133, 99);
   }
 }

@@ -1,41 +1,48 @@
 @import '../../../assets/style/common.less';
 
 .container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+  display: flex;
+  align-items: center;
   background-color: @middle-green;
+  width: 100%;
+  height: calc(100vh - @header-height);
 
-  .people-img {
-    margin: 100px 0 0 40px;
-    width: 450px;
-  }
+  & > main {
+    position: relative;
+    height: 560px;
+    width: 100%;
 
-  .dialog-box {
-    display: inline-block;
-    position: absolute;
-    background-image: url('assets/pic/student/dialog.png');
-    background-size: cover;
-    top: 60px;
-    width: 405px;
-    height: 416px;
-    padding: 40px 20px;
-
-    h2 {
-      margin: 25px 0 0 80px;
-      color: @high-green;
-      font-size: 28px;
+    .people-img {
+      margin: 100px 0 0 40px;
+      width: 450px;
     }
 
-    p {
-      color: @high-green;
-      width: 80%;
-      margin: 55px 0 0 80px;
-    }
+    .dialog-box {
+      position: absolute;
+      display: inline-block;
+      background-image: url('assets/pic/student/dialog.png');
+      background-size: cover;
+      top: 40px;
+      width: 420px;
+      height: 395px;
+      padding: 40px 20px;
 
-    button {
-      .btn-with-bg(url('assets/pic/student/welcome-begin.png'), 161px, 38px);
-      margin: 100px 0 0 145px;
+      h2 {
+        margin: 25px 0 0 80px;
+        color: @high-green;
+        font-size: 28px;
+      }
+
+      p {
+        color: @high-green;
+        width: 80%;
+        margin: 55px 0 0 80px;
+      }
+
+      button {
+        .btn-with-bg(url('assets/pic/student/welcome-begin.png'), 161px, 38px);
+        margin: 100px 0 0 145px;
+      }
     }
   }
 }

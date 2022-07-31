@@ -11,19 +11,21 @@ import styles from './index.module.less';
 
 const College = () => {
   const { data: predictData } = useQuery<IPredict>('predict', getPredict);
-  const { data: comparisonData } = useQuery<IComparison>('predict', getCompare);
+  const { data: comparisonData } = useQuery<IComparison>('compare', getCompare);
 
   return (
     <div className={styles['container']}>
       <Header />
-      {predictData && <CollegeRank data={predictData as IPredict} />}
-      {comparisonData && (
-        <>
-          <StudyTime />
-          <StudyProcess />
-        </>
-      )}
-      {/* <StudyExperience /> */}
+      <main>
+        {predictData && <CollegeRank data={predictData as IPredict} />}
+        {comparisonData && (
+          <>
+            <StudyTime data={comparisonData} />
+            <StudyProcess data={comparisonData} />
+          </>
+        )}
+        {/* <StudyExperience /> */}
+      </main>
       <footer />
     </div>
   );

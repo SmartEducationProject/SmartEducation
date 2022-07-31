@@ -1,15 +1,26 @@
 @import '../../../assets/style/common.less';
 
+@mine-header-height: 100px;
+@menu-height: 45px;
+@footer-height: 20px;
+
 .container {
+  min-height: 100%;
+
   .menu {
     background-color: rgb(126, 189, 71);
     color: rgb(33, 95, 51);
     display: flex;
     justify-content: center;
+    height: @menu-height;
+  }
+
+  & > main {
+    min-height: calc(100vh - @header-height - @mine-header-height - @menu-height - @footer-height);
   }
 
   & > footer {
-    height: 20px;
+    height: @footer-height;
     background-color: rgb(121, 180, 74);
   }
 }
