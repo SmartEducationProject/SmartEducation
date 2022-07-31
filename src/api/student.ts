@@ -11,8 +11,6 @@ const token = JSON.parse(localStorage.getItem('studentInfo') as string)?.token;
  */
 export const studentLogin = (params: any): Promise<IResponse> => {
   return axiosInstance.get('/student/login', { params }).then((res) => {
-    console.log('studentLogin', res);
-
     return res.data;
   });
 };

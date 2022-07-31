@@ -1,14 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
-import Person from '@/assets/signin/person.png';
-import Border from '@/assets/signin/border.png';
-import Signin from '@/assets/signin/signin.png';
-import useDebounceHook from '@/utils/useDebounceFn';
-import { useQuery } from 'react-query';
-import { studentLogin } from '@/api/student';
-import { teacherLogin } from '@/api/teacher';
+import Person from 'assets/signin/person.png';
+import Signin from 'assets/signin/signin.png';
+import useDebounceHook from 'utils/useDebounceFn';
+import { studentLogin } from 'api/student';
+import { teacherLogin } from 'api/teacher';
 import { message } from 'antd';
+
 const SignIn: FunctionComponent = () => {
   const navigate = useNavigate();
   /**
@@ -36,7 +35,7 @@ const SignIn: FunctionComponent = () => {
     } else if (regEnUp.test(signIhValue!)) {
       let result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
-        localStorage.setItem('studentInfo', JSON.stringify(result.data));
+        sessionStorage.setItem('studentInfo', JSON.stringify(result.data));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
         result.data.hasPredict
           ? navigate('/student/college', {

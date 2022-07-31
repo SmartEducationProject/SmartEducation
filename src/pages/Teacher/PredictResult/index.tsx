@@ -1,17 +1,30 @@
-import React, { Children, FunctionComponent, useCallback, useEffect, useState } from 'react';
-import { List, Spin, Table } from 'antd';
+import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { Spin } from 'antd';
 import type { ColumnsType, TableProps } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
-import contact from '../../../assets/teacher/contact.jpg';
-import search from '../../../assets/teacher/search.png';
-import { useNavigate } from 'react-router-dom';
-// import useDebounceFn from '@/utils/useDebounceFn';
-// import { useQuery } from '@tanstack/react-query';
+import contact from 'assets/teacher/contact.jpg';
+import search from 'assets/teacher/search.png';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { SubmittedCond, Statistics, Search, exportData } from '../../../api/teacher';
-import useDebounceHook from '@/utils/useDebounceFn';
+import { SubmittedCond, Statistics, Search, exportData } from 'api/teacher';
+import useDebounceHook from 'utils/useDebounceFn';
+import guard from 'router/routeGuard';
+
 const PredictResult: FunctionComponent = () => {
+  let navigator = useNavigate();
+  let { pathname } = useLocation();
+  /**
+   * 此处根据loccation.pathname来进行路由守卫，防止用户直接跳转到此页面
+   * 如果用户直接跳转道老师页面，首先会判断有没有token，如果没有，则会跳转到首页
+   */
+  useEffect(() => {
+    if (guard(pathname) === false) {
+      sessionStorage.clear();
+      navigator('/');
+    }
+  }, []);
+
   interface collegeType {
     name: string;
     id: number;
@@ -73,9 +86,9 @@ const PredictResult: FunctionComponent = () => {
    * @params {}
    * @return  {}
    */
-  const navigate = useNavigate();
+
   const uncommittedPage = () => {
-    navigate('/teacher/uncommitted');
+    navigator('/teacher/uncommitted');
   };
 
   /**

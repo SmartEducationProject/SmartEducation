@@ -5,7 +5,6 @@ import { axiosInstance } from 'utils/request';
 //获取老师端未提交学生名单
 export const UnSubmitted = (): Promise<IResponse> => {
   return axiosInstance.get('/teacher/unsubmitted').then((res) => {
-    console.log('UnSubmitted', res);
     return res.data;
   });
 };
@@ -45,7 +44,6 @@ export const exportData = (params: { order: number; method: number }): Promise<I
 //老师登录接口
 export const teacherLogin = (params: any): Promise<IResponse> => {
   return axiosInstance.get('/teacher/login', { params }).then((res) => {
-    console.log('teacherLogin', res);
     return res.data;
   });
 };
