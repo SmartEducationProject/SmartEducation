@@ -12,3 +12,13 @@ export interface IPredict {
   college: ICollege[];
   count: number;
 }
+
+export interface IComparison {
+  process: {
+    all: number;
+    student: number;
+    success: number;
+    content: string;
+  }[];
+  suggestion: string;
+}

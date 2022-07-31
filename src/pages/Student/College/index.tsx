@@ -5,19 +5,24 @@ import CollegeRank from './CollegeRank';
 import StudyExperience from './StudyExperience';
 import StudyProcess from './StudyProcess';
 import StudyTime from './StudyTime';
-import { getPredict } from 'api/student';
-import type { IPredict } from 'types/college';
+import { getCompare, getPredict } from 'api/student';
+import type { IPredict, IComparison } from 'types/college';
 import styles from './index.module.less';
 
 const College = () => {
-  const { data: predictData, isSuccess } = useQuery<IPredict>('predict', getPredict);
+  const { data: predictData } = useQuery<IPredict>('predict', getPredict);
+  const { data: comparisonData } = useQuery<IComparison>('predict', getCompare);
 
   return (
     <div className={styles['container']}>
       <Header />
-      {isSuccess && <CollegeRank data={predictData as IPredict} />}
-      <StudyTime />
-      <StudyProcess />
+      {predictData && <CollegeRank data={predictData as IPredict} />}
+      {comparisonData && (
+        <>
+          <StudyTime />
+          <StudyProcess />
+        </>
+      )}
       {/* <StudyExperience /> */}
       <footer />
     </div>
