@@ -36,7 +36,7 @@ const SignIn: FunctionComponent = () => {
     } else if (regEnUp.test(signIhValue!)) {
       let result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
-        localStorage.setItem('studentInfo', JSON.stringify(result.data));
+        sessionStorage.setItem('studentInfo', JSON.stringify(result.data));
         nvigate('/student/');
       } else {
         message.error('统一认证码输入错误');

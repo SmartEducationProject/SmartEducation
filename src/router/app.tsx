@@ -9,8 +9,6 @@ import College from 'pages/Student/College';
 import Message from '@/pages/Teacher/PredictResult';
 import UncommittedPage from '@/pages/Teacher/UnCommitted';
 import SignIn from '@/pages/signin';
-// TODO:路由守卫
-
 const routes: RouteObject[] = [
   {
     path: '/',
@@ -45,6 +43,7 @@ const routes: RouteObject[] = [
   {
     path: '/teacher/*',
     element: <Teacher />,
+
     children: [
       {
         path: 'predictresult',

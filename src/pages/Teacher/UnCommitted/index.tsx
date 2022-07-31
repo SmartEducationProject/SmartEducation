@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { UnSubmitted } from '../../../api/teacher';
 import { Spin } from 'antd';
@@ -6,6 +6,8 @@ import type { ColumnsType } from 'antd/es/table';
 import styles from './index.module.less';
 import contact from '../../../assets/teacher/contact.jpg';
 import TableComponent from '../Table';
+import { useLocation, useNavigate } from 'react-router-dom';
+import guard from '@/router/routeGuard';
 interface DataType {
   name: string;
   class: number;
@@ -30,6 +32,14 @@ const columns: ColumnsType<DataType> = [
   }
 ];
 const UncommittedPage = () => {
+  let navigator = useNavigate();
+  let { pathname } = useLocation();
+  useEffect(() => {
+    if (guard(pathname) === false) {
+      sessionStorage.clear();
+      navigator('/');
+    }
+  }, []);
   const { data, isLoading, isError } = useQuery('uncommitted', UnSubmitted);
   if (isLoading) {
     return <Spin />;
