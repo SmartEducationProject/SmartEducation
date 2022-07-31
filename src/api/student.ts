@@ -51,7 +51,7 @@ export const getLib = (): Promise<IResponse['data']> => axiosInstance.get(`/stud
 export const getPredict = (): Promise<IResponse['data']> => axiosInstance.post(`/student/hasPredictTest?token=${token}`).then((res) => res.data.data);
 
 /**
- * @description 获取上岸概率详情
+ * @description 获取比较详情
  * @returns {Promise}
  */
-export const getCompare = (): Promise<IResponse['data']> => axiosInstance.post(`/student/college/process/cy/test?token=${token}`).then((res) => res.data.data);
+export const getCompare = (): Promise<IResponse['data']> => axiosInstance.get(`/student/college/process/cy/test?token=${token}`).then((res) => res.data.data);

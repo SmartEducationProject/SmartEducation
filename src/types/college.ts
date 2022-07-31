@@ -13,12 +13,14 @@ export interface IPredict {
   count: number;
 }
 
+export interface Process {
+  all: number;
+  student: number;
+  success: number;
+  content: string;
+}
+
 export interface IComparison {
-  process: {
-    all: number;
-    student: number;
-    success: number;
-    content: string;
-  }[];
+  process: Process[];
   suggestion: string;
 }

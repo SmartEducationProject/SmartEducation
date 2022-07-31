@@ -16,14 +16,24 @@ const backgroundList = [greenBackground, redBackground, blueBackground];
 interface PieDoughnutProps {
   index: number; // 序号
   subject: string; // 科目
-  require: number; // 需要投入时间
-  complete: number; // 已完成时间
+  month?: number; // 月份
+  children?: React.ReactNode; // 子元素
 }
 
-const PieDoughnut: React.FC<PieDoughnutProps> = ({ index, subject, require, complete }) => {
+const PieDoughnut = ({ index, subject, month, children }: PieDoughnutProps) => {
+  console.log(children);
+
   const option = {
-    tooltip: {
-      trigger: 'item'
+    // tooltip: {
+    //   trigger: 'item'
+    // },
+    title: {
+      text: subject,
+      left: 'center',
+      top: 'center',
+      textStyle: {
+        color: colorList[index % colorList.length].dark
+      }
     },
     series: [
       {
@@ -39,8 +49,8 @@ const PieDoughnut: React.FC<PieDoughnutProps> = ({ index, subject, require, comp
           show: false
         },
         data: [
-          { value: complete, name: '你已学习了' },
-          { value: require - complete, name: '还需投入' }
+          { value: month || 1, name: '你已学习了' },
+          { value: month || 1, name: '还需投入' }
         ],
         itemStyle: {
           color: function (params: { dataIndex: number }) {
@@ -55,10 +65,7 @@ const PieDoughnut: React.FC<PieDoughnutProps> = ({ index, subject, require, comp
     <div className={styles['container']}>
       <ReactECharts option={option} style={{ width: '200%' }} />
       <div className={styles['sentence-box']} style={{ backgroundImage: `url(${backgroundList[index % backgroundList.length]})`, color: colorList[index % colorList.length].dark }}>
-        <p>
-          {subject}需要投入{require}小时
-        </p>
-        <p>你已经学习{complete}小时</p>
+        {children ? children : <p>你开始复习的月份:{month}</p>}
       </div>
     </div>
   );
