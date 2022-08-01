@@ -2,9 +2,8 @@ import React, { startTransition } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
-import styles from './index.module.less';
-
 import Header from './Header';
+import styles from './index.module.less';
 
 const items: MenuProps['items'] = [
   {
@@ -21,8 +20,6 @@ const items: MenuProps['items'] = [
   }
 ];
 
-// TODO: 加载状态
-// TODO: header的数据，需要登录那边写完后去获取
 const Mine = () => {
   const navigate = useNavigate();
   let location = useLocation();

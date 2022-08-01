@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
+import RankPieDoughnut from 'components/RankPieDoughnut';
 import { getDaily } from 'api/student';
 import styles from './index.module.less';
-import RankPieDoughnut from 'components/RankPieDoughnut';
 
 interface IDaily {
   yesterday: {
@@ -22,7 +22,10 @@ interface IDaily {
 }
 
 const Daily = () => {
-  const { data } = useQuery<IDaily>('daily', getDaily); // 查询
+  const { data } = useQuery<IDaily>('daily', getDaily, {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  }); // 查询
 
   return (
     <div className={styles['daily-container']}>
