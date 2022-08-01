@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'antd';
+import { Form, Spin } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { useNavigate } from 'react-router-dom';
 import data from 'data/questionnaire';
@@ -10,8 +10,6 @@ import { submit } from 'api/student';
 import { ISubQuestion } from 'types/question';
 import styles from './index.module.less';
 import envelopeImg from 'assets/pic/student/envelope.png';
-
-const { Item } = Form;
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -25,29 +23,31 @@ const Welcome = () => {
 
   return (
     <div className={styles['container']}>
-      <main>
-        <header>
-          <img src={envelopeImg} className={styles['envelope-img']} />
-          <span>考研预测-调查问卷</span>
-        </header>
-        <Form form={form} onFinish={onChange} className={styles['form-box']}>
-          {data.map((question, index) =>
-            question.composition ? (
-              <MultipleQuestion
-                index={index + 1}
-                question={question.content}
-                subQuestion={question.subQuestions as ISubQuestion[]}
-                options={question.options}
-                multiple={question?.multiple}
-                key={question.questionId}
-              />
-            ) : (
-              <SingleQuestion name={String(question.value)} index={index + 1} options={question.options} question={question.content} key={question.questionId} />
-            )
-          )}
-          <button className={styles['submit-btn']} type="submit"></button>
-        </Form>
-      </main>
+      <Spin spinning={isLoading} size="large">
+        <main>
+          <header>
+            <img src={envelopeImg} className={styles['envelope-img']} />
+            <span>考研预测-调查问卷</span>
+          </header>
+          <Form form={form} onFinish={onChange} className={styles['form-box']}>
+            {data.map((question, index) =>
+              question.composition ? (
+                <MultipleQuestion
+                  index={index + 1}
+                  question={question.content}
+                  subQuestion={question.subQuestions as ISubQuestion[]}
+                  options={question.options}
+                  multiple={question?.multiple}
+                  key={question.questionId}
+                />
+              ) : (
+                <SingleQuestion name={String(question.value)} index={index + 1} options={question.options} question={question.content} key={question.questionId} />
+              )
+            )}
+            <button className={styles['submit-btn']} type="submit"></button>
+          </Form>
+        </main>
+      </Spin>
     </div>
   );
 };
