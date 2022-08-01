@@ -1,6 +1,6 @@
 import qs from 'qs';
 import { axiosInstance } from 'utils/request';
-import { ILogin, IResponse } from 'types/request';
+import { ILogin, IResponse } from 'types/Request';
 
 /**
  * @description 登录这种统一接口放在api.ts文件中
