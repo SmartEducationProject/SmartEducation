@@ -11,9 +11,11 @@ export const axiosInstance: AxiosInstance = axios.create({
 // axios实例拦截响应
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.data.data.token && response.config.url?.startsWith('/teacher')) {
+    console.log('AxiosResponse', response);
+
+    if (response.data.data?.token && response.config.url?.startsWith('/teacher/login')) {
       sessionStorage.setItem('token', response.data.data.token);
-    } else if (response.data.data.token && response.config.url?.startsWith('/student')) {
+    } else if (response.data.data?.token && response.config.url?.startsWith('/student/login')) {
       sessionStorage.setItem('studentInfo', response.data.data);
     }
 
@@ -46,8 +48,6 @@ axiosInstance.interceptors.request.use(
     } else if (config.url?.startsWith('/student')) {
       token = sessionStorage.getItem(`studentInfo.token`);
     }
-    console.log('token', token);
-
     if (token) {
       // config.headers!.authorization = `Bearer ${token}`;
       // config.headers!.authorization = `${token}`;

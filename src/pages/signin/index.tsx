@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/signin/person.png';
@@ -59,6 +59,10 @@ const SignIn: FunctionComponent = () => {
       }
     }
   };
+
+  useEffect(() => {
+    sessionStorage.clear();
+  });
 
   return (
     <div className={styles['signin']}>
