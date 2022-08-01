@@ -1,17 +1,18 @@
+import React, { lazy } from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
-import Student from 'pages/Student';
-import Teacher from 'pages/Teacher';
-import Choice from 'pages/Student/Choice';
-import Questionnaire from 'pages/Student/Questionnaire';
-import Welcome from 'pages/Student/Welcome';
-import College from 'pages/Student/College';
-import Message from 'pages/Teacher/PredictResult';
-import UncommittedPage from 'pages/Teacher/UnCommitted';
-import Mine from 'pages/Student/Mine';
-import Lib from 'pages/Student/Mine/Lib/Lib';
-import Daily from 'pages/Student/Mine/Daily/Daily';
-import Same from 'pages/Student/Mine/Same/Same';
 import SignIn from 'pages/signin';
+const Student = lazy(() => import('pages/Student'));
+const Teacher = lazy(() => import('pages/Teacher'));
+const Choice = lazy(() => import('pages/Student/Choice'));
+const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
+const Welcome = lazy(() => import('pages/Student/Welcome'));
+const College = lazy(() => import('pages/Student/College'));
+const Message = lazy(() => import('pages/Teacher/PredictResult'));
+const UncommittedPage = lazy(() => import('pages/Teacher/UnCommitted'));
+const Mine = lazy(() => import('pages/Student/Mine'));
+const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
+const Daily = lazy(() => import('pages/Student/Mine/Daily/Daily'));
+const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
 
 const routes: RouteObject[] = [
   {
