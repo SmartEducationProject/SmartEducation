@@ -1,4 +1,4 @@
-import React, { startTransition, useEffect, useState } from 'react';
+import React, { startTransition } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
@@ -24,7 +24,6 @@ const items: MenuProps['items'] = [
 // TODO: 加载状态
 // TODO: header的数据，需要登录那边写完后去获取
 const Mine = () => {
-  const a: any = undefined;
   const navigate = useNavigate();
   let location = useLocation();
   const menuKey = location.pathname.match(/(?<=\/student\/mine\/)(lib|daily|same)(?=\/?)/)?.[0] || 'lib'; // 如果不是lib或者daily或者same，则为undefined，当为undefined时直接渲染lib
@@ -44,7 +43,6 @@ const Mine = () => {
       <Menu mode="horizontal" items={items} selectedKeys={[menuKey]} onClick={changeMenu} className={styles['menu']} />
 
       <main>
-        {a.a}
         <Outlet />
       </main>
 
