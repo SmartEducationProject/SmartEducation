@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/pic/signin/person.png';
@@ -31,7 +31,7 @@ const SignIn: FunctionComponent = () => {
     if (signIhValue === '') {
       alert('请输入统一认证码');
       return;
-    } else if (regEnUp.test(signIhValue!)) {
+    } else if (signIhValue?.startsWith('1')) {
       let result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
         sessionStorage.setItem('studentInfo', JSON.stringify(result.data));
@@ -47,7 +47,7 @@ const SignIn: FunctionComponent = () => {
         message.error('统一认证码输入错误');
       }
       return;
-    } else if (regEnLow.test(signIhValue!)) {
+    } else if (signIhValue?.startsWith('0')) {
       let result = await teacherLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
         navigate('/teacher/predictresult', {
@@ -58,6 +58,10 @@ const SignIn: FunctionComponent = () => {
       }
     }
   };
+
+  useEffect(() => {
+    sessionStorage.clear();
+  });
 
   return (
     <div className={styles['signin']}>
