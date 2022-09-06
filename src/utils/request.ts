@@ -11,7 +11,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 // axios实例拦截响应
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log('AxiosResponse', response);
+    // console.log('AxiosResponse', response);
 
     if (response.data.data?.token && response.config.url?.startsWith('/teacher/login')) {
       sessionStorage.setItem('token', response.data.data.token);

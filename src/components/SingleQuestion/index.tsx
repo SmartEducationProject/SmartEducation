@@ -18,7 +18,7 @@ const App: React.FC<SingleQuestionProps> = ({ index, question, options, itemProp
   // const [value, setValue] = useState(1);
 
   const onChange = (e: RadioChangeEvent) => {
-    console.log('radio checked', e.target.value);
+    // console.log('radio checked', e.target.value);
     // setValue(e.target.value);
   };
 
