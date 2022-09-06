@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
+import RankPieDoughnut from 'components/RankPieDoughnut';
 import { getLib } from 'api/student';
 import styles from './index.module.less';
-import RankPieDoughnut from 'components/RankPieDoughnut';
 
 interface ILib {
   yesterday: {
@@ -29,7 +29,10 @@ interface ILib {
 
 const Lib = () => {
   /** @description 接口调用 */
-  const { data } = useQuery<ILib>('lib', getLib);
+  const { data } = useQuery<ILib>('lib', getLib, {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  });
 
   /** @description 获得在馆时间段展示字符串 */
   const periodFormat = data?.yesterday?.period?.map((period) => `${period.from.split(' ')[1]}-${period.to.split(' ')[1]}`)?.join(', ');

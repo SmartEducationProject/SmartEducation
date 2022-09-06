@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useRoutes } from 'react-router-dom';
 import routes from 'router/app';
-import Header from '@/components/Header';
-import './app.less';
+import Header from 'components/Header';
 import styles from './app.module.less';
-import { Route, Routes, useRoutes } from 'react-router-dom';
+import FullPageWithLoading from 'components/FullPageWithLoading';
+import { ErrorBoundary } from 'components/ErrorBoundary';
+import FullPageErrorFallback from 'components/FullPageErrorFallback';
 
 function App() {
   const elements = useRoutes(routes);
-  console.log(elements);
 
   return (
     <div className={styles['app']}>
       <Header />
-      <main className={styles['main']}>{elements}</main>
+      <ErrorBoundary fallbackRender={FullPageErrorFallback}>
+        <Suspense fallback={<FullPageWithLoading />}>
+          <main className={styles['main']}>{elements}</main>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }

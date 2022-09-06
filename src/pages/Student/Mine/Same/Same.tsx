@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 import { getSame } from 'api/student';
 import styles from './index.module.less';
-import useAsync from 'utils/useAsync';
-import { useQuery } from 'react-query';
 
 interface ISame {
   total: number;
@@ -15,7 +14,10 @@ interface ISame {
 
 const Same = () => {
   /** @description 接口调用 */
-  const { data } = useQuery<ISame>('same', getSame);
+  const { data } = useQuery<ISame>('same', getSame, {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  });
 
   return (
     <div className={styles['same-container']}>

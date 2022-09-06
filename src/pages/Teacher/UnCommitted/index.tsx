@@ -4,7 +4,7 @@ import { UnSubmitted } from 'api/teacher';
 import { Spin } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import styles from './index.module.less';
-import contact from 'assets/teacher/contact.jpg';
+import contact from 'assets/pic/teacher/contact.jpg';
 import TableComponent from '../Table';
 import { useLocation, useNavigate } from 'react-router-dom';
 import guard from 'router/routeGuard';

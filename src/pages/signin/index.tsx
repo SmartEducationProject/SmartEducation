@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
-import Person from 'assets/signin/person.png';
-import Signin from 'assets/signin/signin.png';
+import Person from 'assets/pic/signin/person.png';
+import Signin from 'assets/pic/signin/signin.png';
 import useDebounceHook from 'utils/useDebounceFn';
 import { studentLogin } from 'api/student';
 import { teacherLogin } from 'api/teacher';
@@ -12,7 +12,6 @@ const SignIn: FunctionComponent = () => {
   const navigate = useNavigate();
   /**
    *  @description:对input的输入进行消抖处理
-   *
    */
   const [signIhValue, setSignIhValue] = useState<string | null>('');
   const debounceText = useDebounceHook(signIhValue, 1000);

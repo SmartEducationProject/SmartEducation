@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { startTransition } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
-import styles from './index.module.less';
-
 import Header from './Header';
+import styles from './index.module.less';
 
 const items: MenuProps['items'] = [
   {
@@ -21,15 +20,18 @@ const items: MenuProps['items'] = [
   }
 ];
 
-// TODO: 加载状态
-// TODO: header的数据，需要登录那边写完后去获取
 const Mine = () => {
   const navigate = useNavigate();
   let location = useLocation();
   const menuKey = location.pathname.match(/(?<=\/student\/mine\/)(lib|daily|same)(?=\/?)/)?.[0] || 'lib'; // 如果不是lib或者daily或者same，则为undefined，当为undefined时直接渲染lib
 
   /** @description 当要切换到不同页面才会切换路由 */
-  const changeMenu: MenuProps['onClick'] = (e) => e.key !== menuKey && navigate('/student/mine/' + e.key);
+  const changeMenu: MenuProps['onClick'] = (e) => {
+    // 准备新UI时，展示旧UI 参考：https://zh-hans.reactjs.org/docs/code-splitting.html#avoiding-fallbacks
+    startTransition(() => {
+      e.key !== menuKey && navigate('/student/mine/' + e.key);
+    });
+  };
 
   return (
     <div className={styles['container']}>
