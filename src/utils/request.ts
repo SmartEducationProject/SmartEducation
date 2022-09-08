@@ -14,9 +14,9 @@ axiosInstance.interceptors.response.use(
     // console.log('AxiosResponse', response);
 
     if (response.data.data?.token && response.config.url?.startsWith('/teacher/login')) {
-      sessionStorage.setItem('token', response.data.data.token);
+      localStorage.setItem('token', response.data.data.token);
     } else if (response.data.data?.token && response.config.url?.startsWith('/student/login')) {
-      sessionStorage.setItem('studentInfo', response.data.data);
+      localStorage.setItem('studentInfo', response.data.data);
     }
 
     if (response.status === 200) {
@@ -44,9 +44,9 @@ axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     let token;
     if (config.url?.startsWith('/teacher')) {
-      token = sessionStorage.getItem('token');
+      token = localStorage.getItem('token');
     } else if (config.url?.startsWith('/student')) {
-      token = sessionStorage.getItem(`studentInfo.token`);
+      token = localStorage.getItem(`studentInfo.token`);
     }
     if (token) {
       // config.headers!.authorization = `Bearer ${token}`;

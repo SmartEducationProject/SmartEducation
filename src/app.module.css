@@ -1,0 +1,11 @@
+.app {
+  font-family: 'Microsoft YaHei';
+  min-height: calc(100vh - 40px);
+}
+.app .main {
+  background-color: #7ebd47;
+  width: 100vw;
+  margin: 0 auto;
+  height: calc(100vh - 40px);
+  margin-top: 40px;
+}

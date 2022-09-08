@@ -2,8 +2,8 @@ import { axiosInstance } from 'utils/request';
 import processData from 'utils/processData';
 import { ILogin, IResponse } from 'types/Request';
 
-const sfrzh = JSON.parse(sessionStorage.getItem('studentInfo') as string)?.sfrzh;
-const token = JSON.parse(sessionStorage.getItem('studentInfo') as string)?.token;
+const sfrzh = JSON.parse(localStorage.getItem('studentInfo') as string)?.sfrzh;
+const token = JSON.parse(localStorage.getItem('studentInfo') as string)?.token;
 
 /**
  * @description 学生登录接口
