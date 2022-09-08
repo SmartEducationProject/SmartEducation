@@ -23,10 +23,10 @@ const StudyTime: React.FC<StudyTimeProps> = ({ data }) => {
 
       <main>
         <div className={styles['bar-box']}>
-          <BarChart data={[prepare.all, prepare.student, prepare.success]} />
-          <BarChart data={[review.all, review.student, review.success]} />
-          <BarChart data={[dailyStudy.all, dailyStudy.student, dailyStudy.success]} />
-          <BarChart data={[exercise.all, exercise.student, exercise.success]} />
+          <BarChart title="当前所花时间" data={[prepare.all, prepare.student, prepare.success]} />
+          <BarChart title="复习进度" data={[review.all, review.student, review.success]} />
+          <BarChart title="每天学习时间" data={[dailyStudy.all, dailyStudy.student, dailyStudy.success]} />
+          <BarChart title="每周锻炼时间" data={[exercise.all, exercise.student, exercise.success]} />
         </div>
       </main>
     </div>

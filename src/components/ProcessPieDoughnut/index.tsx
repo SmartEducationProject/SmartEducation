@@ -65,7 +65,7 @@ const PieDoughnut = ({ index, subject, month, children }: PieDoughnutProps) => {
     <div className={styles['container']}>
       <ReactECharts option={option} style={{ width: '200%' }} />
       <div className={styles['sentence-box']} style={{ backgroundImage: `url(${backgroundList[index % backgroundList.length]})`, color: colorList[index % colorList.length].dark }}>
-        {children ? children : <p>你开始复习的月份:{month}</p>}
+        <div>{children ? children : <p>你开始复习的月份:{month}</p>}</div>
       </div>
     </div>
   );
