@@ -1,23 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { getSame } from 'api/student';
+import { useSame } from 'api/student';
 import styles from './index.module.less';
-
-interface ISame {
-  total: number;
-  result: {
-    total: number;
-    success: number;
-    name: string;
-  }[];
-}
 
 const Same = () => {
   /** @description 接口调用 */
-  const { data } = useQuery<ISame>('same', getSame, {
-    staleTime: 1000 * 60 * 60, // 1小时
-    cacheTime: 1000 * 60 * 60 * 2 // 2小时
-  });
+  const { data } = useSame();
 
   return (
     <div className={styles['same-container']}>

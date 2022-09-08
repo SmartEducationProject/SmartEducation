@@ -1,31 +1,11 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import RankPieDoughnut from 'components/RankPieDoughnut';
-import { getDaily } from 'api/student';
+import { useDaily } from 'api/student';
 import styles from './index.module.less';
 
-interface IDaily {
-  yesterday: {
-    leave_room: string;
-    back_room: string;
-    earliestRank: number;
-    leaveTotal: number;
-    backTotal: number;
-    latestRank: number;
-  };
-  week: {
-    earliestRank: number;
-    leaveTotal: number;
-    backTotal: number;
-    latestRank: number;
-  };
-}
-
 const Daily = () => {
-  const { data } = useQuery<IDaily>('daily', getDaily, {
-    staleTime: 1000 * 60 * 60, // 1小时
-    cacheTime: 1000 * 60 * 60 * 2 // 2小时
-  }); // 查询
+  /** @description 接口调用 */
+  const { data } = useDaily();
 
   return (
     <div className={styles['daily-container']}>
