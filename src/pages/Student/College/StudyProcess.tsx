@@ -35,13 +35,15 @@ const StudyProcess: React.FC<StudyProcessProps> = ({ data }) => {
             <p>计网开始复习的月份:{network.student}</p>
             {!isCqupt && (
               <>
-                <p>操作系统开始复习的月份:{system!.student}</p>
-                <p>计组开始复习的月份:{composition!.student}</p>
+                <p>操作系统开始复习的月份:{system?.student}</p>
+                <p>计组开始复习的月份:{composition?.student}</p>
               </>
             )}
           </PieDoughnut>
         </div>
-        <div className={styles['sentence-box']}>{data.suggestion}</div>
+        <div className={styles['sentence-box']}>
+          <div>{data.suggestion}</div>
+        </div>
       </main>
     </div>
   );
