@@ -1,5 +1,9 @@
 # README
 
+<p>
+<a href="https://www.oscs1024.com/project/oscs/SmartEducationProject/SmartEducation?ref=badge_small" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/SmartEducationProject/SmartEducation.svg?size=small"/></a>
+</p>
+
 ## 分支开发
 
 - 禁止使用 master 分支开发！
