@@ -10,10 +10,10 @@ const items: MenuProps['items'] = [
     label: '图书馆',
     key: 'lib'
   },
-  {
-    label: '生活',
-    key: 'daily'
-  },
+  // {
+  //   label: '生活',
+  //   key: 'daily'
+  // },
   {
     label: '同水平同学考研方向及结果',
     key: 'same'
