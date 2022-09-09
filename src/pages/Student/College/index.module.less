@@ -10,8 +10,11 @@
   .college-header {
     display: flex;
     align-items: center;
+    position: fixed;
+    top: @header-height;
+    z-index: 2;
+    width: 1000px;
     height: @college-header-height;
-    width: 100%;
     background-color: @middle-green;
 
     .hat-img {
@@ -48,6 +51,7 @@
   }
 
   & > main {
+    margin-top: calc(@college-header-height + @header-height);
     min-height: calc(100vh - @header-height - @college-header-height - @footer-height);
   }
 

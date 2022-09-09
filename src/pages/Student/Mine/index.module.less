@@ -12,10 +12,15 @@
     color: rgb(33, 95, 51);
     display: flex;
     justify-content: center;
+    position: fixed;
+    top: calc(@mine-header-height + @header-height);
+    z-index: 2;
+    width: 1000px;
     height: @menu-height;
   }
 
   & > main {
+    margin-top: calc(@mine-header-height + @header-height + @menu-height + 30px);
     min-height: calc(100vh - @header-height - @mine-header-height - @menu-height - @footer-height);
   }
 
