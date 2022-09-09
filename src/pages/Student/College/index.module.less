@@ -89,66 +89,6 @@
       width: 30px;
     }
   }
-
-  main {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    & > div {
-      position: relative;
-      width: 80%;
-      margin-top: 30px;
-
-      img {
-        position: absolute;
-        bottom: 0;
-        z-index: 1;
-        width: 210px;
-
-        &.left-student {
-          left: -100px;
-        }
-
-        &.right-student {
-          right: -100px;
-        }
-      }
-
-      .left-dialog-box {
-        position: relative;
-        background-image: url('assets/pic/student/college-dialog-left.png');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        width: 100%;
-        overflow: auto;
-
-        article {
-          font-family: 'JinNanMaiYuan';
-          color: #121212;
-          margin: 30px 25px 30px 150px;
-        }
-      }
-
-      .right-dialog-box {
-        position: relative;
-        background-image: url('assets/pic/student/college-dialog-right.png');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        width: 100%;
-        overflow: auto;
-
-        article {
-          font-family: 'JinNanMaiYuan';
-          color: #121212;
-          margin: 30px 150px 30px 30px;
-        }
-      }
-
-      .orange-word {
-        color: rgb(243, 152, 0);
-      }
-    }
-  }
 }
 
 .college-time main {
@@ -167,18 +107,83 @@
 
   .sentence-box {
     background-image: url('assets/pic/student/college-process-sentence.png');
-    background-size: cover;
+    background-size: 100% 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    height: 169px;
     width: 70%;
     margin: 260px auto 40px auto;
     color: rgb(39, 133, 99);
+    font-family: 'JinNanMaiYuan';
+    font-size: 17px;
+    line-height: 25px;
 
     & > div {
       width: 90%;
+      margin: 35px 0;
+    }
+  }
+}
+
+.college-experience main {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  & > div {
+    position: relative;
+    width: 80%;
+    margin-top: 30px;
+
+    img {
+      position: absolute;
+      bottom: 0;
+      z-index: 1;
+      width: 210px;
+
+      &.left-student {
+        left: -100px;
+      }
+
+      &.right-student {
+        right: -100px;
+      }
+    }
+
+    article {
+      font-family: 'JinNanMaiYuan';
+      line-height: 25px;
+      color: #121212;
+    }
+
+    .left-dialog-box {
+      position: relative;
+      background-image: url('assets/pic/student/college-dialog-left.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 100%;
+      overflow: auto;
+
+      article {
+        margin: 30px 25px 30px 150px;
+      }
+    }
+
+    .right-dialog-box {
+      position: relative;
+      background-image: url('assets/pic/student/college-dialog-right.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: 100%;
+      overflow: auto;
+
+      article {
+        margin: 30px 150px 30px 30px;
+      }
+    }
+
+    .orange-word {
+      color: rgb(243, 152, 0);
     }
   }
 }

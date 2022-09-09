@@ -84,7 +84,10 @@ export const useCompare = () => {
  */
 export const useExperience = () => {
   const isCqupt = useCqupt();
-  return useQuery<IOtherCollegeExperience[] | ICquptExperience[]>('experience', () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list));
+  return useQuery<IOtherCollegeExperience[] | ICquptExperience[]>('experience', () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  });
 };
 
 /** @description 请求后的操作 */
