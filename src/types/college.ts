@@ -24,3 +24,20 @@ export interface IComparison {
   process: Process[];
   suggestion: string;
 }
+
+export interface IOtherCollegeExperience {
+  name: string;
+  college: string;
+  experience: string;
+  teacher: string[];
+  source: string[];
+}
+
+export interface ICquptExperience {
+  name: string;
+  college: string;
+  math: string;
+  english: string;
+  politics: string;
+  professional: string;
+}

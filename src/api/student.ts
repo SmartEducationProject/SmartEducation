@@ -5,7 +5,7 @@ import processData from 'utils/processData';
 import { ILogin, IResponse } from 'types/Request';
 import useCqupt from '@/utils/useCqupt';
 import { ISame, IDaily, ILib } from '@/types/mine';
-import { IComparison, IPredict } from '@/types/college';
+import { IComparison, ICquptExperience, IOtherCollegeExperience, IPredict } from '@/types/college';
 
 type Response = { data: unknown; info: string; status: number };
 
@@ -86,6 +86,14 @@ export const usePredict = () => useQuery<IPredict>('lib', () => axiosInstance.po
 export const useCompare = () => {
   const isCqupt = useCqupt();
   return useQuery<IComparison>('compare', () => axiosInstance.get(`/student/college/process/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data));
+};
+
+/**
+ * @description 获取经验详情
+ */
+export const useExperience = () => {
+  const isCqupt = useCqupt();
+  return useQuery<IOtherCollegeExperience[] | ICquptExperience[]>('experience', () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list));
 };
 
 /** @description 请求后的操作 */

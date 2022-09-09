@@ -4,26 +4,27 @@ import CollegeRank from './CollegeRank';
 import StudyExperience from './StudyExperience';
 import StudyProcess from './StudyProcess';
 import StudyTime from './StudyTime';
-import { useCompare, usePredict } from 'api/student';
+import { useCompare, useExperience, usePredict } from 'api/student';
 import type { IPredict } from 'types/college';
 import styles from './index.module.less';
 
 const College = () => {
   const { data: predictData } = usePredict();
   const { data: comparisonData } = useCompare();
+  const { data: experienceData } = useExperience();
 
   return (
     <div className={styles['container']}>
       <Header />
       <main>
-        {predictData && comparisonData && (
+        {predictData && <CollegeRank data={predictData} />}
+        {comparisonData && (
           <>
-            <CollegeRank data={predictData as IPredict} />
             <StudyTime data={comparisonData} />
             <StudyProcess data={comparisonData} />
           </>
         )}
-        {/* <StudyExperience /> */}
+        {experienceData && <StudyExperience data={experienceData} />}
       </main>
       <footer />
     </div>
