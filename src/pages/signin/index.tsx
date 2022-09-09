@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/pic/signin/person.png';
 import Signin from 'assets/pic/signin/signin.png';
@@ -10,6 +10,7 @@ import { message } from 'antd';
 
 const SignIn: FunctionComponent = () => {
   const navigate = useNavigate();
+  let { pathname } = useLocation();
   /**
    *  @description:对input的输入进行消抖处理
    */
@@ -24,9 +25,6 @@ const SignIn: FunctionComponent = () => {
    * @params {}
    * @return  {}
    */
-  let regEnUp = /[A-Z]+/; //大写字母
-
-  let regEnLow = /[a-z]+/; //小写字母
   const handleSignIn = async () => {
     if (signIhValue === '') {
       alert('请输入统一认证码');
@@ -34,7 +32,7 @@ const SignIn: FunctionComponent = () => {
     } else if (signIhValue?.startsWith('1')) {
       let result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
-        sessionStorage.setItem('studentInfo', JSON.stringify(result.data));
+        localStorage.setItem('studentInfo', JSON.stringify(result.data));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
         result.data.hasPredict
           ? navigate('/student/college', {
@@ -60,7 +58,13 @@ const SignIn: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    sessionStorage.clear();
+    if (localStorage.getItem('studentInfo')) {
+      let studentInfo = JSON.parse(localStorage.getItem('studentInfo')!);
+      studentInfo.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
+    }
+    if (localStorage.getItem('token')) {
+      navigate('/teacher/predictresult');
+    }
   });
 
   return (
@@ -70,7 +74,7 @@ const SignIn: FunctionComponent = () => {
           <div className={styles['signin-title']}>
             <div>开启你的</div>
             <div>考研预测吧</div>
-            <p>Wish you successs!</p>
+            <p>Wish you success!</p>
           </div>
           <div className={styles['signin-form']}>
             <input type="text" name="账号" id="" placeholder="统一认证码" onChange={(e) => inputChange(e)} />

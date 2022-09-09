@@ -20,7 +20,7 @@ const PredictResult: FunctionComponent = () => {
    */
   useEffect(() => {
     if (guard(pathname) === false) {
-      sessionStorage.clear();
+      localStorage.clear();
       navigator('/');
     }
   }, []);
