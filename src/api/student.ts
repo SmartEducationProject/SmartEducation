@@ -76,7 +76,7 @@ export const usePredict = () => useQuery<IPredict>('lib', () => axiosInstance.po
  */
 export const useCompare = () => {
   const isCqupt = useCqupt();
-  return useQuery<IComparison>('compare', () => axiosInstance.get(`/student/college/process/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data));
+  return useQuery<IComparison>(['compare', isCqupt], () => axiosInstance.get(`/student/college/process/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data));
 };
 
 /**
@@ -84,7 +84,7 @@ export const useCompare = () => {
  */
 export const useExperience = () => {
   const isCqupt = useCqupt();
-  return useQuery<IOtherCollegeExperience[] | ICquptExperience[]>('experience', () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
+  return useQuery<IOtherCollegeExperience[] | ICquptExperience[]>(['experience', isCqupt], () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
     staleTime: 1000 * 60 * 60, // 1小时
     cacheTime: 1000 * 60 * 60 * 2 // 2小时
   });
