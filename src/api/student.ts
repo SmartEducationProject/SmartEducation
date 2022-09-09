@@ -6,8 +6,9 @@ import { ILogin, IResponse } from 'types/Request';
 import useCqupt from '@/utils/useCqupt';
 import { ISame, IDaily, ILib } from '@/types/mine';
 import { IComparison, ICquptExperience, IOtherCollegeExperience, IPredict } from '@/types/college';
+import { AxiosResponse } from 'axios';
 
-type Response = { data: unknown; info: string; status: number };
+type Response = { data: unknown; info: string; code: number };
 
 /**
  * @description 学生登录接口
@@ -21,30 +22,20 @@ export const studentLogin = (params: any): Promise<IResponse> => {
 
 /**
  * @description 学生提交预测接口
- * @returns {Promise}
  */
-export const submit = (data: any) => {
-  return axiosInstance.post('/student/predict', processData(data)).then((res) => res.data);
-};
 export const useSubmit = () => {
   return useMutation(async (data) => {
-    console.log(data);
+    message.loading({ content: '提交中...', key: 'submit' });
     const result = await axiosInstance.post(`/student/predict`, processData(data));
-    console.log(result);
-
-    // afterRequest(
-    //   result,
-    //   () => {
-    //     message.success({ content: '删除成功' });
-    //     queryClient.invalidateQueries(['account-account-management-list']); // 重新获取账号列表
-    //   },
-    //   () => {
-    //     message.error({
-    //       title: '删除失败',
-    //       content: result.info
-    //     });
-    //   }
-    // );
+    afterRequest(
+      result,
+      () => {
+        message.success({ content: '问卷提交成功！！', key: 'submit' });
+      },
+      () => {
+        message.error({ content: `问卷提交失败: ${result.data.info}，请稍后重试！！`, key: 'submit' });
+      }
+    );
   });
 };
 
@@ -97,13 +88,15 @@ export const useExperience = () => {
 };
 
 /** @description 请求后的操作 */
-function afterRequest(result: Response, success?: () => void, error?: () => void) {
-  if (result.status === 10000) {
+function afterRequest(result: AxiosResponse<Response>, success?: () => void, error?: () => void) {
+  if (result.status === 200 && result.data.code == 20000) {
     if (success) success();
     else message.success({ content: '操作成功' });
   } else {
+    console.log('error');
+
     if (error) error();
-    else message.error(`操作失败:${result.info}`);
+    else message.error(`操作失败: ${result.data.info}`);
     throw new Error();
   }
 }

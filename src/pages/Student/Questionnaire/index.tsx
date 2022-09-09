@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Spin } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { useNavigate } from 'react-router-dom';
 import data from 'data/questionnaire';
 import SingleQuestion from 'components/SingleQuestion';
 import MultipleQuestion from 'components/MultipleQuestion';
-import useAsync from 'utils/useAsync';
-import { submit } from 'api/student';
+import { useSubmit } from 'api/student';
 import { ISubQuestion } from 'types/question';
 import styles from './index.module.less';
 import envelopeImg from 'assets/pic/student/envelope.png';
 
 const Welcome = () => {
+  const { mutateAsync } = useSubmit();
   const navigate = useNavigate();
-  const { run, isLoading } = useAsync();
   const [form] = useForm();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onChange = async () => {
-    await run(submit(form.getFieldsValue()));
-    navigate('/student/choice');
+    try {
+      setIsLoading(true);
+      await mutateAsync(form.getFieldsValue()); // 提交问卷
+      setIsLoading(false);
+      navigate('/student/choice');
+    } catch (error) {
+      setIsLoading(false);
+      navigate('/student/welcome');
+    }
   };
 
   return (
@@ -29,7 +36,7 @@ const Welcome = () => {
             <img src={envelopeImg} className={styles['envelope-img']} />
             <span>考研预测-调查问卷</span>
           </header>
-          <Form form={form} onFinish={onChange} className={styles['form-box']}>
+          <Form requiredMark={false} scrollToFirstError form={form} onFinish={onChange} className={styles['form-box']}>
             {data.map((question, index) =>
               question.composition ? (
                 <MultipleQuestion
