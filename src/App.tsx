@@ -12,8 +12,10 @@ import { useLocation } from 'react-router-dom';
 function App() {
   const elements = useRoutes(routes);
   const { pathname } = useLocation();
+  const greenPath = ['/', '/student', '/student/', '/student/welcome', '/student/welcome/'];
+
   return (
-    <div className={styles['app']}>
+    <div className={styles['app']} style={{ backgroundColor: greenPath.includes(pathname) ? 'rgb(126,189,71)' : 'white' }}>
       <Header />
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
         <Suspense fallback={<FullPageWithLoading />}>
