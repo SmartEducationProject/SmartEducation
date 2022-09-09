@@ -27,10 +27,20 @@ const colorList = () => {
 
 interface BarChartProp {
   data: number[];
+  title?: string;
 }
 
-const BarChart: React.FC<BarChartProp> = ({ data }) => {
+const BarChart: React.FC<BarChartProp> = ({ data, title }) => {
   const option = {
+    title: {
+      text: title,
+      left: 'center',
+      top: 'bottom',
+      textStyle: {
+        fontSize: 15,
+        color: '#363638'
+      }
+    },
     xAxis: {
       type: 'category',
       data: ['总体', '你的', '上岸'],
