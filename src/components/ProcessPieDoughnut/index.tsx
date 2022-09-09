@@ -21,8 +21,6 @@ interface PieDoughnutProps {
 }
 
 const PieDoughnut = ({ index, subject, month, children }: PieDoughnutProps) => {
-  console.log(children);
-
   const option = {
     // tooltip: {
     //   trigger: 'item'
