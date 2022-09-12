@@ -4,6 +4,7 @@ import PieDoughnut from '@/components/ProcessPieDoughnut';
 import { IComparison, Process } from 'types/college';
 import iconImg from 'assets/pic/student/college-study-process.png';
 import useCqupt from '@/utils/useCqupt';
+import PartHeader from '@/components/PartHeader';
 
 interface StudyProcessProps {
   data: IComparison;
@@ -20,10 +21,7 @@ const StudyProcess: React.FC<StudyProcessProps> = ({ data }) => {
 
   return (
     <div className={styles['college-process']}>
-      <header>
-        <h2>学习进度</h2>
-        <img src={iconImg} />
-      </header>
+      <PartHeader title="学习进度" icon={iconImg} />
 
       <main>
         <div className={styles['pie-box']}>
