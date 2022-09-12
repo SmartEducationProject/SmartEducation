@@ -14,9 +14,7 @@ axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (config.url?.startsWith('/teacher/login') || config.url?.startsWith('/student/login')) return config; // 登录不需要带token
 
-    let token;
-    if (config.url?.startsWith('/teacher')) token = sessionStorage.getItem('token');
-    else if (config.url?.startsWith('/student')) token = JSON.parse(sessionStorage.getItem(`studentInfo`) as string).token;
+    let token = sessionStorage.getItem('token') || JSON.parse(sessionStorage.getItem(`studentInfo`) as string).token;
     if (token) config.headers!.token = token;
 
     return config;
