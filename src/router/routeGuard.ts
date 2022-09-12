@@ -1,10 +1,10 @@
 function guard(pathname: string): boolean {
   if (pathname.startsWith('/student')) {
-    if (!sessionStorage.getItem('studentInfo')) {
+    if (!localStorage.getItem('studentInfo')) {
       return false;
     }
   } else if (pathname.startsWith('/teacher')) {
-    if (!sessionStorage.getItem('token')) {
+    if (!localStorage.getItem('token')) {
       return false;
     }
   }

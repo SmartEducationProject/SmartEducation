@@ -23,7 +23,7 @@ const Header = () => {
    * @return:void
    */
   const exitBtn = () => {
-    sessionStorage.clear();
+    localStorage.clear();
     navigator('/');
   };
 

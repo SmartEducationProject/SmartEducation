@@ -12,7 +12,7 @@ interface IInfo {
 
 const Header = memo(() => {
   /** @description 获取学生信息 */
-  const info: IInfo = JSON.parse(sessionStorage.getItem('studentInfo') as string);
+  const info: IInfo = JSON.parse(localStorage.getItem('studentInfo') as string);
   const { name, firstLogin, examTime } = info;
   const now = new Date();
 

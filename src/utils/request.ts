@@ -30,9 +30,9 @@ axiosInstance.interceptors.response.use(
     // console.log('AxiosResponse', response);
 
     if (response.data.data?.token && response.config.url?.startsWith('/teacher/login')) {
-      sessionStorage.setItem('token', response.data.data.token);
+      localStorage.setItem('token', response.data.data.token);
     } else if (response.data.data?.token && response.config.url?.startsWith('/student/login')) {
-      sessionStorage.setItem('studentInfo', response.data.data);
+      localStorage.setItem('studentInfo', response.data.data);
     }
 
     if (response.status === 200) {
