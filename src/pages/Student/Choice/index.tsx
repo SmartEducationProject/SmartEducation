@@ -10,9 +10,10 @@ const Welcome = () => {
       <main>
         <img src={peopleImg} className={styles['people-img']} />
         <div className={styles['dialog-box']}>
-          <h2>请选择你想要了解的大学吧~</h2>
+          <h2>请选择你想要了解的信息吧~</h2>
           <button onClick={() => navigate('/student/college/1')} />
           <button onClick={() => navigate('/student/college/2')} />
+          <button onClick={() => navigate('/student/previous')} />
         </div>
       </main>
     </div>
