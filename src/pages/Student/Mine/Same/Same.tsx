@@ -10,7 +10,7 @@ const Same = () => {
   return (
     <div className={styles['same-container']}>
       <main className={styles['sentence-box']}>
-        <p>去年同你水平相似的同学大概有{data?.total}人</p>
+        <p>去年与你复习进度相似的同学大概有{data?.total}人</p>
         <div>
           <p>其中</p>
           <div>
