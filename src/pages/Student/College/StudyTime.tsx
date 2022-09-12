@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.module.less';
-import iconImg from 'assets/pic/student/college-study-time.png';
+import iconImg from 'assets/pic/student/bar.png';
 import BarChart from 'components/BarChart';
 import { IComparison, Process } from 'types/college';
 

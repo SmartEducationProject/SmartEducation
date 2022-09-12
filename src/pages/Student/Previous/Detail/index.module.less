@@ -1,0 +1,30 @@
+@import '../index.module.less';
+
+.detail-container {
+  padding-top: 10px;
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('assets/pic/student/previous-detail-box.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 960px;
+    width: 90%;
+    margin: 30px auto 0 auto;
+
+    .table-container {
+      width: 88%;
+
+      & thead th {
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(194, 217, 173);
+      }
+
+      .antd-table-border-color(rgb(119, 150, 87)); // 设置antd表格边框的颜色
+    }
+  }
+}

@@ -5,13 +5,15 @@ import StudyExperience from './StudyExperience';
 import StudyProcess from './StudyProcess';
 import StudyTime from './StudyTime';
 import { useCompare, useExperience, usePredict } from 'api/student';
-import type { IPredict } from 'types/college';
 import styles from './index.module.less';
+import useCqupt from '@/utils/useCqupt';
+import { ICquptExperience, IOtherCollegeExperience } from '@/types/college';
 
 const College = () => {
+  const isCqupt = useCqupt();
   const { data: predictData } = usePredict();
-  const { data: comparisonData } = useCompare();
-  const { data: experienceData } = useExperience();
+  const { data: comparisonData } = useCompare(isCqupt);
+  const { data: experienceData } = useExperience<ICquptExperience[] | IOtherCollegeExperience[]>(isCqupt);
 
   return (
     <div className={styles['container']}>
