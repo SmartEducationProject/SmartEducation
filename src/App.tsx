@@ -8,10 +8,11 @@ import FullPageWithLoading from 'components/FullPageWithLoading';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import FullPageErrorFallback from 'components/FullPageErrorFallback';
 import { useLocation } from 'react-router-dom';
-
 function App() {
   const elements = useRoutes(routes);
+
   const { pathname } = useLocation();
+
   const greenPath = ['/', '/student', '/student/', '/student/welcome', '/student/welcome/'];
 
   return (

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
-import { Spin } from 'antd';
+import { Spin, Modal } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
@@ -10,7 +10,6 @@ import { useQuery } from 'react-query';
 import { SubmittedCond, Statistics, Search } from 'api/teacher';
 import useDebounceHook from 'utils/useDebounceFn';
 import guard from 'router/routeGuard';
-
 const PredictResult: FunctionComponent = () => {
   const navigator = useNavigate();
   const { pathname } = useLocation();
@@ -290,6 +289,11 @@ const PredictResult: FunctionComponent = () => {
 
   return (
     <div className={styles['predict']}>
+      {/* <Modal title="Basic Modal" visible={true} style={{zIndex:99}}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal> */}
       <div className={styles['predict-header']}>
         <div className={styles['header-content']}>
           <div className={styles['header-left']}>

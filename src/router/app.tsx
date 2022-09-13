@@ -74,7 +74,6 @@ const routes: RouteObject[] = [
   {
     path: '/teacher/*',
     element: <Teacher />,
-
     children: [
       {
         path: 'predictresult',
