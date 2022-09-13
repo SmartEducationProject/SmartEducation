@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import styles from './index.module.less';
 import { useLocation, useNavigate } from 'react-router-dom';
 const Header = () => {
-  let navigator = useNavigate();
-  let location = useLocation();
-  let headerRef = useRef<HTMLElement | null>(null);
-  let headerSpan = useRef<HTMLElement | null>(null);
-  let headerDiv = useRef<HTMLImageElement | null>(null);
+  const navigator = useNavigate();
+  const location = useLocation();
+  const headerRef = useRef<HTMLElement | null>(null);
+  const headerSpan = useRef<HTMLElement | null>(null);
+  const headerDiv = useRef<HTMLImageElement | null>(null);
   useEffect(() => {
     if (location.pathname === '/' || location.pathname === '/student' || location.pathname === '/student/questionnaire') {
       headerRef.current?.classList.remove(styles['header-white']);

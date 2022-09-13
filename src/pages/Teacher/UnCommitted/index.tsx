@@ -33,15 +33,16 @@ const columns: ColumnsType<DataType> = [
   }
 ];
 const UncommittedPage = () => {
-  let navigator = useNavigate();
-  let { pathname } = useLocation();
+  const navigator = useNavigate();
+  const { pathname } = useLocation();
   useEffect(() => {
     if (guard(pathname) === false) {
       localStorage.clear();
       navigator('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const { data, isLoading, isError } = useQuery('uncommitted', UnSubmitted);
+  const { data, isLoading } = useQuery('uncommitted', UnSubmitted);
   if (isLoading) {
     return <Spin />;
   }
@@ -50,7 +51,7 @@ const UncommittedPage = () => {
    * @params {data} 未提交学生名单
    */
   const exportUncommitted = () => {
-    let link = document.createElement('a');
+    const link = document.createElement('a');
     link.download = '未提交学生名单.xlsx';
     link.href = 'http://172.20.2.82:8080/teacher/unsubmitted/excel';
     link.click();

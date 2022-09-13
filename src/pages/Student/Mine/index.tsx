@@ -22,7 +22,7 @@ const items: MenuProps['items'] = [
 
 const Mine = () => {
   const navigate = useNavigate();
-  let location = useLocation();
+  const location = useLocation();
   const menuKey = location.pathname.match(/(?<=\/student\/mine\/)(lib|daily|same)(?=\/?)/)?.[0] || 'lib'; // 如果不是lib或者daily或者same，则为undefined，当为undefined时直接渲染lib
 
   /** @description 当要切换到不同页面才会切换路由 */

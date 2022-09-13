@@ -1,5 +1,5 @@
 import ReactECharts from 'echarts-for-react';
-
+import React from 'react';
 /**
  * @description 实现不同柱状有不同的渐变色
  */

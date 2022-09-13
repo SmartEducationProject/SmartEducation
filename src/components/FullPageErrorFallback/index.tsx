@@ -1,4 +1,5 @@
-import { Button, Result } from 'antd';
+import React from 'react';
+import { Result } from 'antd';
 import styles from './index.module.less';
 
 const FullPageErrorFallback = ({ error }: { error: Error | null }) => {

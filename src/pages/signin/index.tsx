@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/pic/signin/person.png';
 import Signin from 'assets/pic/signin/signin.png';
@@ -10,13 +10,12 @@ import { message } from 'antd';
 
 const SignIn: FunctionComponent = () => {
   const navigate = useNavigate();
-  let { pathname } = useLocation();
   /**
    *  @description:对input的输入进行消抖处理
    */
   const [signIhValue, setSignIhValue] = useState<string | null>('');
-  const debounceText = useDebounceHook(signIhValue, 1000);
-  const inputChange = (e: any) => {
+  useDebounceHook(signIhValue, 1000);
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignIhValue(e.target.value);
   };
 
@@ -30,7 +29,7 @@ const SignIn: FunctionComponent = () => {
       alert('请输入统一认证码');
       return;
     } else if (signIhValue?.startsWith('1')) {
-      let result = await studentLogin({ sfrzh: signIhValue });
+      const result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
         localStorage.setItem('studentInfo', JSON.stringify(result.data));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
@@ -46,7 +45,7 @@ const SignIn: FunctionComponent = () => {
       }
       return;
     } else if (signIhValue?.startsWith('0')) {
-      let result = await teacherLogin({ sfrzh: signIhValue });
+      const result = await teacherLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
         navigate('/teacher/predictresult', {
           replace: true
@@ -59,7 +58,7 @@ const SignIn: FunctionComponent = () => {
 
   useEffect(() => {
     if (localStorage.getItem('studentInfo')) {
-      let studentInfo = JSON.parse(localStorage.getItem('studentInfo')!);
+      const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '');
       studentInfo.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
     }
     if (localStorage.getItem('token')) {

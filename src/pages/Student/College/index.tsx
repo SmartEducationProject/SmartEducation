@@ -5,7 +5,6 @@ import StudyExperience from './StudyExperience';
 import StudyProcess from './StudyProcess';
 import StudyTime from './StudyTime';
 import { useCompare, useExperience, usePredict } from 'api/student';
-import type { IPredict } from 'types/college';
 import styles from './index.module.less';
 
 const College = () => {

@@ -17,6 +17,7 @@ axiosInstance.interceptors.request.use(
     let token;
     if (config.url?.startsWith('/teacher')) token = localStorage.getItem('token');
     else if (config.url?.startsWith('/student')) token = JSON.parse(localStorage.getItem(`studentInfo`) as string).token;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (token) config.headers!.token = token;
 
     return config;
@@ -45,6 +46,7 @@ axiosInstance.interceptors.response.use(
     }
   },
   // 请求失败
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (error: any) => {
     const { response } = error;
     console.log(error);

@@ -3,8 +3,8 @@ import guard from 'router/routeGuard';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Students: FunctionComponent = () => {
-  let navigator = useNavigate();
-  let { pathname } = useLocation();
+  const navigator = useNavigate();
+  const { pathname } = useLocation();
 
   /**
    * @description 此处根据location.pathname来进行路由守卫，防止用户直接跳转到此页面
@@ -15,6 +15,7 @@ const Students: FunctionComponent = () => {
       localStorage.clear();
       navigator('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <Outlet />;
 };

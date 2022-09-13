@@ -3,14 +3,16 @@ import questionnaire from 'data/questionnaire';
 /**
  * @description 处理从表格获取的数据变为后端需要的格式，主要是处理多选那一块的数据，因为后端需要的数据过于奇怪，为了避免影响表格本身的操作，故把这一块的操作解耦到这里了
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default (rawData: any) => {
   const { options: mathTeacher } = questionnaire[14];
   const { options: englishTeacher } = questionnaire[15];
   const { options: politicsTeacher } = questionnaire[16];
   const changeQuestion = ['', 'linear', 'Probability', 'english', 'politics'];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newData: any = {};
 
-  for (let key in rawData) {
+  for (const key in rawData) {
     if (!changeQuestion.includes(key)) {
       newData[key] = rawData[key];
     }

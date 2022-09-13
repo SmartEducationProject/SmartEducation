@@ -2,7 +2,7 @@ import { useMutation, useQuery } from 'react-query';
 import { message } from 'antd';
 import { axiosInstance } from 'utils/request';
 import processData from 'utils/processData';
-import { ILogin, IResponse } from 'types/Request';
+import { IResponse } from 'types/Request';
 import useCqupt from '@/utils/useCqupt';
 import { ISame, IDaily, ILib } from '@/types/mine';
 import { IComparison, ICquptExperience, IOtherCollegeExperience, IPredict } from '@/types/college';
@@ -14,7 +14,7 @@ type Response = { data: unknown; info: string; code: number };
  * @description 学生登录接口
  * @returns {Promise}
  */
-export const studentLogin = (params: any): Promise<IResponse> => {
+export const studentLogin = (params: { sfrzh: string }): Promise<IResponse> => {
   return axiosInstance.get('/student/login', { params }).then((res) => {
     return res.data;
   });
