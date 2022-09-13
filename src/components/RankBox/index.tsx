@@ -1,6 +1,13 @@
 import React from 'react';
 import { ICollege } from 'types/college';
 import styles from './index.module.less';
+import rank1Img from 'assets/pic/student/college-rank-1.png';
+import rank2Img from 'assets/pic/student/college-rank-2.png';
+import rank3Img from 'assets/pic/student/college-rank-3.png';
+import rank4Img from 'assets/pic/student/college-rank-4.png';
+import rank5Img from 'assets/pic/student/college-rank-5.png';
+
+const rankImgs = [rank1Img, rank2Img, rank3Img, rank4Img, rank5Img];
 
 interface RankBoxProps extends Omit<Omit<ICollege, 'rate'>, 'rank'> {
   count: number;
@@ -58,7 +65,7 @@ const RankBox: React.FC<RankBoxProps> = ({ englishName, rate, name, rank, descri
     return (
       <div className={styles['rank-box']}>
         <div className={styles['pic']}>
-          <div style={{ backgroundImage: `url('/src/assets/pic/student/college-rank-${index}.png')` }} />
+          <div style={{ backgroundImage: `url(${rankImgs[(index as number) - 1]})` }} />
           <img src={logo} />
         </div>
         <div className={styles['desc']}>
