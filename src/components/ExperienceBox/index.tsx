@@ -18,8 +18,8 @@ const ExperienceBox: React.FC<ExperienceBoxProps> = ({ student, isRight }) => {
           <h3 className={styles['orange-word']}>
             {student.name}（{student.college}）
           </h3>
-          {student.experience.map((paragraph) => (
-            <p>{paragraph}</p>
+          {student.experience.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
           ))}
           {student.teacher.length > 0 && (
             <p>
