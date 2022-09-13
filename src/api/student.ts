@@ -4,7 +4,7 @@ import { axiosInstance } from 'utils/request';
 import processData from 'utils/processData';
 import { IResponse } from 'types/Request';
 import { ISame, IDaily, ILib } from 'types/mine';
-import { IComparison, IPredict } from 'types/college';
+import { IComparison, IPredict, IOtherCollegeExperience } from 'types/college';
 import { AxiosResponse } from 'axios';
 import type { IPreviousDetail, IPreviousOverall } from 'types/previous';
 
@@ -81,8 +81,8 @@ export const useCompare = (isCqupt: boolean) => {
 /**
  * @description 获取经验详情
  */
-export const useExperience = <T>(isCqupt: boolean) => {
-  return useQuery<T>(['experience', isCqupt], () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
+export const useExperience = (isCqupt: boolean) => {
+  return useQuery<IOtherCollegeExperience[]>(['experience', isCqupt], () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
     staleTime: 1000 * 60 * 60, // 1小时
     cacheTime: 1000 * 60 * 60 * 2 // 2小时
   });
