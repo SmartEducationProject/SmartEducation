@@ -3,10 +3,10 @@ import { message } from 'antd';
 import { axiosInstance } from 'utils/request';
 import processData from 'utils/processData';
 import { IResponse } from 'types/Request';
-import useCqupt from '@/utils/useCqupt';
-import { ISame, IDaily, ILib } from '@/types/mine';
-import { IComparison, ICquptExperience, IOtherCollegeExperience, IPredict } from '@/types/college';
+import { ISame, IDaily, ILib } from 'types/mine';
+import { IComparison, IPredict, IOtherCollegeExperience } from 'types/college';
 import { AxiosResponse } from 'axios';
+import type { IPreviousDetail, IPreviousOverall } from 'types/previous';
 
 type Response = { data: unknown; info: string; code: number };
 
@@ -69,22 +69,40 @@ export const useLib = () =>
 /**
  * @description 获取上岸概率详情
  */
-export const usePredict = () => useQuery<IPredict>('lib', () => axiosInstance.post(`/student/hasPredict`).then((res) => res.data.data));
+export const usePredict = () => useQuery<IPredict>('predict', () => axiosInstance.post(`/student/hasPredict`).then((res) => res.data.data));
 
 /**
  * @description 获取比较详情
  */
-export const useCompare = () => {
-  const isCqupt = useCqupt();
+export const useCompare = (isCqupt: boolean) => {
   return useQuery<IComparison>(['compare', isCqupt], () => axiosInstance.get(`/student/college/process/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data));
 };
 
 /**
  * @description 获取经验详情
  */
-export const useExperience = () => {
-  const isCqupt = useCqupt();
-  return useQuery<IOtherCollegeExperience[] | ICquptExperience[]>(['experience', isCqupt], () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
+export const useExperience = (isCqupt: boolean) => {
+  return useQuery<IOtherCollegeExperience[]>(['experience', isCqupt], () => axiosInstance.get(`/student/experience/${isCqupt ? 'cy' : 'wx'}`).then((res) => res.data.data.list), {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  });
+};
+
+/**
+ * @description 获取升学考取外校具体情况
+ */
+export const usePreviousOtherDetail = () => {
+  return useQuery<IPreviousDetail>(['previous-other-detail'], () => axiosInstance.get(`/college/detail`).then((res) => res.data.data), {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  });
+};
+
+/**
+ * @description 获取升学总体情况
+ */
+export const usePreviousOverall = () => {
+  return useQuery<IPreviousOverall>(['previous-overall'], () => axiosInstance.get(`/college/overrall`).then((res) => res.data.data), {
     staleTime: 1000 * 60 * 60, // 1小时
     cacheTime: 1000 * 60 * 60 * 2 // 2小时
   });

@@ -1,0 +1,25 @@
+@import '../../../assets/style/common.less';
+
+@college-header-height: 100px;
+@footer-height: 20px;
+
+.container {
+  position: relative;
+  min-height: 100%;
+
+  & > main {
+    margin-top: calc(@college-header-height + @header-height);
+    min-height: calc(100vh - @header-height - @college-header-height - @footer-height);
+  }
+
+  & > footer {
+    height: 20px;
+    background-color: rgb(121, 180, 74);
+  }
+}
+
+.college-time,
+.college-process,
+.college-experience {
+  margin-bottom: 30px;
+}

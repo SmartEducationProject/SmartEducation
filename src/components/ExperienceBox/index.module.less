@@ -1,0 +1,56 @@
+.experience-box-container {
+  position: relative;
+  width: 80%;
+  margin-top: 30px;
+
+  img {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    width: 210px;
+
+    &.left-student {
+      left: -100px;
+    }
+
+    &.right-student {
+      right: -100px;
+    }
+  }
+
+  article {
+    font-family: 'JinNanMaiYuan';
+    line-height: 25px;
+    color: #121212;
+  }
+
+  .left-dialog-box {
+    position: relative;
+    background-image: url('assets/pic/student/college-dialog-left.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    overflow: auto;
+
+    article {
+      margin: 30px 25px 30px 150px;
+    }
+  }
+
+  .right-dialog-box {
+    position: relative;
+    background-image: url('assets/pic/student/college-dialog-right.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    overflow: auto;
+
+    article {
+      margin: 30px 150px 30px 30px;
+    }
+  }
+
+  .orange-word {
+    color: rgb(243, 152, 0);
+  }
+}
