@@ -43,7 +43,7 @@ const BarChart: React.FC<BarChartProp> = ({ data, title }) => {
     },
     xAxis: {
       type: 'category',
-      data: ['总体', '你的', '上岸'],
+      data: ['未上岸', '你的', '上岸'],
       axisLine: { show: false } // 不展示x轴
     },
     yAxis: {
@@ -69,7 +69,7 @@ const BarChart: React.FC<BarChartProp> = ({ data, title }) => {
     ]
   };
 
-  return <ReactECharts option={option} style={{ width: '15%', height: '100%' }} />;
+  return <ReactECharts option={option} style={{ width: '18%', height: '100%' }} />;
 };
 
 export default BarChart;

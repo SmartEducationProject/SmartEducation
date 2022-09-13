@@ -17,6 +17,7 @@ export interface Process {
   all: number;
   student: number;
   success: number;
+  failed: number;
   content: string;
 }
 
