@@ -19,17 +19,23 @@ const columns: ColumnsType<DataType> = [
     title: '学生',
     dataIndex: 'name',
     key: 'name',
+    width: 200,
+    align: 'center',
     render: (text) => <a>{text}</a>
   },
   {
     title: '学号',
     dataIndex: 'stdId',
-    key: 'stdId'
+    key: 'stdId',
+    width: 200,
+    align: 'center'
   },
   {
     title: '班级',
     dataIndex: 'class',
-    key: 'class'
+    key: 'class',
+    width: 200,
+    align: 'center'
   }
 ];
 const UncommittedPage = () => {

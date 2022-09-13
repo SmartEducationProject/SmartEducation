@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
-import { Spin, Modal } from 'antd';
+import { Spin } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
@@ -159,7 +159,8 @@ const PredictResult: FunctionComponent = () => {
       children: [
         {
           title: '姓名',
-          dataIndex: 'name'
+          dataIndex: 'name',
+          width: 60
         },
         {
           title: '学号',
@@ -289,11 +290,6 @@ const PredictResult: FunctionComponent = () => {
 
   return (
     <div className={styles['predict']}>
-      {/* <Modal title="Basic Modal" visible={true} style={{zIndex:99}}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal> */}
       <div className={styles['predict-header']}>
         <div className={styles['header-content']}>
           <div className={styles['header-left']}>
