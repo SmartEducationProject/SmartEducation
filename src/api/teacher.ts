@@ -1,5 +1,4 @@
-import qs from 'qs';
-import { ILogin, IResponse, ISearch } from 'types/Request';
+import { IResponse, ISearch } from 'types/Request';
 import { axiosInstance } from 'utils/request';
 
 //获取老师端未提交学生名单
@@ -42,7 +41,7 @@ export const exportData = (params: { order: number; method: number }): Promise<I
 };
 
 //老师登录接口
-export const teacherLogin = (params: any): Promise<IResponse> => {
+export const teacherLogin = (params: { sfrzh: string }): Promise<IResponse> => {
   return axiosInstance.get('/teacher/login', { params }).then((res) => {
     return res.data;
   });

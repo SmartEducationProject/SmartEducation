@@ -12,7 +12,6 @@ const Message = lazy(() => import('pages/Teacher/PredictResult'));
 const UncommittedPage = lazy(() => import('pages/Teacher/UnCommitted'));
 const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
-const Daily = lazy(() => import('pages/Student/Mine/Daily/Daily'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
 
 const routes: RouteObject[] = [

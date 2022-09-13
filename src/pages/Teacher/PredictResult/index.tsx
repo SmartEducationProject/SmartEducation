@@ -1,21 +1,21 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { Spin } from 'antd';
-import type { ColumnsType, TableProps } from 'antd/es/table';
+import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
 import contact from 'assets/pic/teacher/contact.jpg';
 import search from 'assets/pic/teacher/search.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { SubmittedCond, Statistics, Search, exportData } from 'api/teacher';
+import { SubmittedCond, Statistics, Search } from 'api/teacher';
 import useDebounceHook from 'utils/useDebounceFn';
 import guard from 'router/routeGuard';
 
 const PredictResult: FunctionComponent = () => {
-  let navigator = useNavigate();
-  let { pathname } = useLocation();
+  const navigator = useNavigate();
+  const { pathname } = useLocation();
   /**
-   * 此处根据loccation.pathname来进行路由守卫，防止用户直接跳转到此页面
+   * 此处根据location.pathname来进行路由守卫，防止用户直接跳转到此页面
    * 如果用户直接跳转道老师页面，首先会判断有没有token，如果没有，则会跳转到首页
    */
   useEffect(() => {
@@ -23,6 +23,7 @@ const PredictResult: FunctionComponent = () => {
       localStorage.clear();
       navigator('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   interface collegeType {
@@ -56,7 +57,7 @@ const PredictResult: FunctionComponent = () => {
   const sortFunc = useCallback((index: number) => {
     const compare: CompareFn<DataType> = (...args) => {
       //排序方法：升序和降序
-      let method = args[2] === 'ascend' ? 1 : 0;
+      const method = args[2] === 'ascend' ? 1 : 0;
       setOrderDirection(method);
       setOrder(index);
       return (args[0] as DataType).college[index].rate - (args[1] as DataType).college[index].rate;
@@ -69,17 +70,17 @@ const PredictResult: FunctionComponent = () => {
    * @params {columns} Table的配置项：columns
    * @return  {}
    */
-  const clearClassName = (columns: ColumnsType<DataType>) => {
-    columns.forEach((item: any) => {
-      for (const key in item) {
-        if (key == 'children') {
-          clearClassName(item[key]);
-        } else if (key == 'className') {
-          item['className'] = '';
-        }
-      }
-    });
-  };
+  // const clearClassName = (columns: ColumnsType<DataType>) => {
+  //   columns.forEach((item: any) => {
+  //     for (const key in item) {
+  //       if (key == 'children') {
+  //         clearClassName(item[key]);
+  //       } else if (key == 'className') {
+  //         item['className'] = '';
+  //       }
+  //     }
+  //   });
+  // };
 
   /**
    * @description:点击按钮，点击跳转到未提交学生名单页面
@@ -98,7 +99,7 @@ const PredictResult: FunctionComponent = () => {
    */
   type keyValue = 'rate' | 'rank';
   const renderColumns = useCallback((index: number, key: keyValue) => {
-    return (...args: any) => {
+    return (...args: (DataType | number)[]) => {
       if (key === 'rate') {
         return <span>{(Number((args[1] as DataType).college[index].rate.toFixed(7)) * 100).toFixed(2) + '%'}</span>;
       } else {
@@ -117,9 +118,10 @@ const PredictResult: FunctionComponent = () => {
     if (debounceText === '') {
       setTableData(StatisticsData?.data.list);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounceText]);
 
-  const inputChange = (e: any) => {
+  const inputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
@@ -129,7 +131,7 @@ const PredictResult: FunctionComponent = () => {
    * @return  {}
    */
   const searchBtn = async () => {
-    let result = await Search({ name: searchValue });
+    const result = await Search({ name: searchValue });
     setTableData(result.data.list);
   };
 
@@ -140,20 +142,12 @@ const PredictResult: FunctionComponent = () => {
    */
 
   const exportExcel = async () => {
-    let result = await exportData({
-      order: order!,
-      method: orderDirection!
-    });
-    console.log('order', order);
-    console.log('orderDirection', orderDirection);
-
-    let link = document.createElement('a');
+    const link = document.createElement('a');
     link.download = 'aa.xlsx';
     link.href = `http://172.20.2.82:8080/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
     link.click();
   };
-
-  //tabel属性列
+  //table属性列
   const columns: ColumnsType<DataType> = [
     {
       key: 'id',
@@ -185,21 +179,24 @@ const PredictResult: FunctionComponent = () => {
           title: '学硕概率',
           sorter: sortFunc(5),
           sortDirections: ['ascend', 'descend', 'ascend'],
-          render: renderColumns(5, 'rate')
+          // render: renderColumns(5, 'rate')
+          render: (...args) => {
+            return renderColumns(5, 'rate')(...args);
+          }
         },
         {
           title: '排名',
-          render: renderColumns(5, 'rank')
+          render: (...args) => renderColumns(5, 'rank')(...args)
         },
         {
           title: '专硕概率',
           sorter: sortFunc(4),
           sortDirections: ['ascend', 'descend', 'ascend'],
-          render: renderColumns(4, 'rate')
+          render: (...args) => renderColumns(4, 'rate')(...args)
         },
         {
           title: '排名',
-          render: renderColumns(4, 'rank')
+          render: (...args) => renderColumns(4, 'rank')(...args)
         }
       ]
     },
@@ -210,12 +207,11 @@ const PredictResult: FunctionComponent = () => {
       children: [
         {
           title: '概率',
-          className: '',
-          render: renderColumns(1, 'rate')
+          render: (...args) => renderColumns(1, 'rate')(...args)
         },
         {
           title: '排名',
-          render: renderColumns(1, 'rank')
+          render: (...args) => renderColumns(1, 'rank')(...args)
         }
       ]
     },
@@ -226,11 +222,11 @@ const PredictResult: FunctionComponent = () => {
       children: [
         {
           title: '概率',
-          render: renderColumns(3, 'rate')
+          render: (...args) => renderColumns(3, 'rate')(...args)
         },
         {
           title: '排名',
-          render: renderColumns(3, 'rank')
+          render: (...args) => renderColumns(3, 'rank')(...args)
         }
       ]
     },
@@ -241,11 +237,11 @@ const PredictResult: FunctionComponent = () => {
       children: [
         {
           title: '概率',
-          render: renderColumns(2, 'rate')
+          render: (...args) => renderColumns(2, 'rate')(...args)
         },
         {
           title: '排名',
-          render: renderColumns(2, 'rank')
+          render: (...args) => renderColumns(2, 'rank')(...args)
         }
       ]
     },
@@ -256,17 +252,17 @@ const PredictResult: FunctionComponent = () => {
       children: [
         {
           title: '概率',
-          render: renderColumns(0, 'rate')
+          render: (...args) => renderColumns(0, 'rate')(...args)
         },
         {
           title: '排名',
-          render: renderColumns(0, 'rank')
+          render: (...args) => renderColumns(0, 'rank')(...args)
         }
       ]
     },
     {
       title: '提交时间',
-      render: (_, record) => {
+      render: (_: unknown, record: { submitTime: string }) => {
         return <span>{record.submitTime.slice(0, 10).split('-').join('/')}</span>;
       }
     }
@@ -279,12 +275,11 @@ const PredictResult: FunctionComponent = () => {
   };
 
   //获取老师端学生提交情况
-  const { data, isLoading, isError } = useQuery('submit', SubmittedCond);
+  const { data, isLoading } = useQuery('submit', SubmittedCond);
   const { total, submitted, unsubmitted } = data?.data || { total: 0, submitted: 0, unsubmitted: 0 };
 
   //获取老师端考研概率统计情况
   const { data: StatisticsData, isLoading: StatisticsIsLoading } = useQuery('Statistics', Statistics);
-  console.log('StatisticsData', StatisticsData);
   useEffect(() => {
     setTableData(StatisticsData?.data.list);
   }, [StatisticsData]);

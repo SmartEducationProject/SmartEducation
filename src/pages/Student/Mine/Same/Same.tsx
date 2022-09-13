@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import { useSame } from 'api/student';
 import styles from './index.module.less';
 

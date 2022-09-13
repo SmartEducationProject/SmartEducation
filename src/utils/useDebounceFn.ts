@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useDebounceHook(value: any, delay: number | undefined) {
   const [debounceValue, setDebounceValue] = useState(value);
   useEffect(() => {
-    let timer = setTimeout(() => setDebounceValue(value), delay);
+    const timer = setTimeout(() => setDebounceValue(value), delay);
     return () => clearTimeout(timer);
   }, [value, delay]);
   return debounceValue;

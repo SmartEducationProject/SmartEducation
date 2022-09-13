@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { Radio, Form, Input } from 'antd';
+import React, { useRef } from 'react';
+import { Radio, Form } from 'antd';
 import Checkbox from './CheckBox';
 import { IOption, ISubQuestion } from 'types/question';
 

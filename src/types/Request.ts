@@ -8,6 +8,7 @@ export interface ILogin {
 
 export interface IResponse {
   code: number | string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
   info: string;
 }

@@ -43,6 +43,7 @@ axiosInstance.interceptors.response.use(
     }
   },
   // 请求失败
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (error: any) => {
     const { response } = error;
     console.log(error);

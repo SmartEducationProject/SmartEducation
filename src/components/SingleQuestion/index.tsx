@@ -1,7 +1,7 @@
 import { IOption } from 'types/question';
 import type { RadioChangeEvent } from 'antd';
 import { Radio, Form, Space } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './index.module.less';
 
 const { Item } = Form;
@@ -17,7 +17,8 @@ export interface SingleQuestionProps {
 const App: React.FC<SingleQuestionProps> = ({ index, question, options, itemProps, name }) => {
   // const [value, setValue] = useState(1);
 
-  const onChange = (e: RadioChangeEvent) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onChange = (_e: RadioChangeEvent) => {
     // console.log('radio checked', e.target.value);
     // setValue(e.target.value);
   };

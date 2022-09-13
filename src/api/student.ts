@@ -14,7 +14,7 @@ type Response = { data: unknown; info: string; code: number };
  * @description 学生登录接口
  * @returns {Promise}
  */
-export const studentLogin = (params: any): Promise<IResponse> => {
+export const studentLogin = (params: { sfrzh: string }): Promise<IResponse> => {
   return axiosInstance.get('/student/login', { params }).then((res) => {
     return res.data;
   });
