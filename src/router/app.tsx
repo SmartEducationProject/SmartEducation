@@ -51,10 +51,6 @@ const routes: RouteObject[] = [
             path: 'lib',
             element: <Lib />
           },
-          // {
-          //   path: 'daily',
-          //   element: <Daily />
-          // },
           {
             path: 'Same',
             element: <Same />
