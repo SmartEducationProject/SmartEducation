@@ -7,7 +7,6 @@ import useDebounceHook from 'utils/useDebounceFn';
 import { studentLogin } from 'api/student';
 import { teacherLogin } from 'api/teacher';
 import { message } from 'antd';
-
 const SignIn: FunctionComponent = () => {
   const navigate = useNavigate();
   /**
@@ -31,10 +30,13 @@ const SignIn: FunctionComponent = () => {
     } else if (signIhValue?.startsWith('1')) {
       const result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
-        localStorage.setItem('studentInfo', JSON.stringify(result.data));
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        JSON.parse(localStorage.getItem('studentInfo')!).hasPredict
+          ? localStorage.setItem('useRole', JSON.stringify(['predict']))
+          : localStorage.setItem('useRole', JSON.stringify(['unPredict', 'predict']));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
         result.data.hasPredict
-          ? navigate('/student/college', {
+          ? navigate('/student', {
               replace: true
             })
           : navigate('/student/welcome', {
@@ -47,6 +49,7 @@ const SignIn: FunctionComponent = () => {
     } else if (signIhValue?.startsWith('0')) {
       const result = await teacherLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
+        localStorage.setItem('useRole', JSON.stringify(['teacher']));
         navigate('/teacher/predictresult', {
           replace: true
         });
@@ -64,7 +67,8 @@ const SignIn: FunctionComponent = () => {
     if (localStorage.getItem('token')) {
       navigate('/teacher/predictresult');
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles['signin']}>

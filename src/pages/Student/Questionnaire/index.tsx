@@ -21,7 +21,10 @@ const Welcome = () => {
       setIsLoading(true);
       await mutateAsync(form.getFieldsValue()); // 提交问卷
       setIsLoading(false);
-      navigate('/student/choice');
+      localStorage.setItem('useRole', JSON.stringify(['predict']));
+      navigate('/student/choice', {
+        replace: true
+      });
     } catch (error) {
       setIsLoading(false);
       navigate('/student/welcome');

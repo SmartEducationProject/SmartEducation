@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import React, { FunctionComponent, useCallback, useEffect, useState, Profiler } from 'react';
 import { Spin } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
@@ -287,48 +287,57 @@ const PredictResult: FunctionComponent = () => {
   if (isLoading || StatisticsIsLoading) {
     return <Spin />;
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const callback = (id: any, phase: any, actualTime: any, baseTime: any, startTime: any, commitTime: any) => {
+    console.log(`${id}'s ${phase} phase:`);
+    console.log(`Actual time: ${actualTime}`);
+    console.log(`Base time: ${baseTime}`);
+    console.log(`Start time: ${startTime}`);
+    console.log(`Commit time: ${commitTime}`);
+  };
   return (
-    <div className={styles['predict']}>
-      <div className={styles['predict-header']}>
-        <div className={styles['header-content']}>
-          <div className={styles['header-left']}>
-            <span>
-              应提交{total}人，已提交{submitted}人，未提交{unsubmitted}人
-            </span>
-            <span onClick={() => uncommittedPage()}>查看学生名单</span>
-          </div>
-          <div className={styles['header-right']}>
-            <div className={styles['search']}>
-              <input type="text" placeholder="请输入你想搜索的学生姓名" onChange={(e) => inputChange(e)}></input>
-              <img src={search} alt="" onClick={() => searchBtn()} />
+    <Profiler id="predictResult" onRender={callback}>
+      <div className={styles['predict']}>
+        <div className={styles['predict-header']}>
+          <div className={styles['header-content']}>
+            <div className={styles['header-left']}>
+              <span>
+                应提交{total}人，已提交{submitted}人，未提交{unsubmitted}人
+              </span>
+              <span onClick={() => uncommittedPage()}>查看学生名单</span>
             </div>
-            <img src={contact}></img>
-            <span onClick={() => exportExcel()}>以Excel表导出数据</span>
+            <div className={styles['header-right']}>
+              <div className={styles['search']}>
+                <input type="text" placeholder="请输入你想搜索的学生姓名" onChange={(e) => inputChange(e)}></input>
+                <img src={search} alt="" onClick={() => searchBtn()} />
+              </div>
+              <img src={contact}></img>
+              <span onClick={() => exportExcel()}>以Excel表导出数据</span>
+            </div>
+          </div>
+        </div>
+        <div className={styles['predict-content']}>
+          <div className={styles['predict-table']}>
+            <TableComponent
+              size="small"
+              locale={{
+                cancelSort: '',
+                triggerAsc: '',
+                triggerDesc: ''
+              }}
+              rowClassName={styles['table-rowClass']}
+              className={styles['table-class']}
+              bordered
+              columns={columns}
+              rowKey={'id'}
+              dataSource={tableData}
+              onChange={onChange}
+              pagination={false}
+            />
           </div>
         </div>
       </div>
-      <div className={styles['predict-content']}>
-        <div className={styles['predict-table']}>
-          <TableComponent
-            size="small"
-            locale={{
-              cancelSort: '',
-              triggerAsc: '',
-              triggerDesc: ''
-            }}
-            rowClassName={styles['table-rowClass']}
-            className={styles['table-class']}
-            bordered
-            columns={columns}
-            rowKey={'id'}
-            dataSource={tableData}
-            onChange={onChange}
-            pagination={false}
-          />
-        </div>
-      </div>
-    </div>
+    </Profiler>
   );
 };
 export default PredictResult;
