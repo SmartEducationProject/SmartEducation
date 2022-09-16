@@ -9,7 +9,7 @@ interface RankPieDoughnutProps {
   exceed: number;
 }
 
-const pieColorList = ['rgb(102,183,192)', 'rgb(242,186,75)'];
+const pieColorList = ['rgb(102,183,192)', 'rgb(238,137,78)'];
 const rankColorList = ['rgb(74,191,209)', 'rgb(243,162,73)'];
 const totalColorList = ['rgb(133,181,219)', 'rgb(244,169,137)'];
 
@@ -41,7 +41,7 @@ const RankPieDoughnut: React.FC<RankPieDoughnutProps> = ({ index, name, rank, ex
           { value: exceed, name: '超过了多少人' }
         ],
         itemStyle: {
-          color: ({ dataIndex }: { dataIndex: number }) => ['#e1dede', pieColorList[index % pieColorList.length]][dataIndex]
+          color: ({ dataIndex }: { dataIndex: number }) => ['#e6e6e6', pieColorList[index % pieColorList.length]][dataIndex]
         }
       }
     ]
