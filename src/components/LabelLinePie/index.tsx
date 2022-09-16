@@ -16,29 +16,28 @@ const LabelLinePie: React.FC<LabelLinePieProps> = ({ data }) => {
     .sort(function (a, b) {
       return a.value - b.value;
     });
-  console.log(newData);
 
   const option = {
-    visualMap: {
-      orient: 'horizontal',
-      left: 'center',
-      top: 'bottom',
-      min: -1,
-      max: newData[newData.length - 1]?.value || 0,
-      show: false,
-      dimension: 0,
-      inRange: {
-        color: ['rgb(234,87,87)', 'rgb(238,137,78)']
-      }
-    },
+    // visualMap: {
+    //   orient: 'horizontal',
+    //   left: 'center',
+    //   top: 'bottom',
+    //   min: 0,
+    //   max: newData[newData.length - 1]?.value || 0,
+    //   show: false,
+    //   dimension: 0,
+    //   inRange: {
+    //     color: ['#ff2d2d', '#d6db44', , '#2f5896', , '#4eee4e', 'rgb(238,137,78)']
+    //   }
+    // },
     series: {
       type: 'pie',
       radius: [50, 100],
+      // color: ['rgb(57,122,90)', 'pink', 'rgb(98,182,186)', '#48ba81', '#ff0015', '#fdc135', '#8e43b1', '#38cf36', '#f15c36', 'rgb(74,118,88)'],
       itemStyle: {
         borderColor: '#fff',
         borderWidth: 1,
-        borderRadius: 5,
-        color: '#16ff01'
+        borderRadius: 5
       },
       label: {
         alignTo: 'edge',
@@ -66,7 +65,7 @@ const LabelLinePie: React.FC<LabelLinePieProps> = ({ data }) => {
 
   return (
     <div>
-      <ReactECharts option={option} style={{ width: '98%', height: '250%' }} />
+      <ReactECharts option={option} style={{ width: '98%', height: '260%' }} />
     </div>
   );
 };
