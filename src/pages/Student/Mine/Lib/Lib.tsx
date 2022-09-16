@@ -13,10 +13,10 @@ const Lib = () => {
   return (
     <div className={styles['lib-container']}>
       <div className={styles['sentence-box']}>
-        <p>昨日在馆时间：{periodFormat}</p>
-        <p>昨日在馆总时长：{(data?.yesterday?.count as number)?.toFixed(2)}h</p>
-        <p>最近一周在馆总时长：{(data?.week?.count as number)?.toFixed(2)}h</p>
-        <p>最近一月在馆总时长：{(data?.month?.count as number)?.toFixed(2)}h</p>
+        <p>昨日在馆时间：{periodFormat || '无'}</p>
+        <p>昨日在馆总时长：{(data?.yesterday?.count as number)?.toFixed(1) || 0}h</p>
+        <p>最近一周在馆总时长：{(data?.week?.count as number)?.toFixed(1) || 0}h</p>
+        <p>最近一月在馆总时长：{(data?.month?.count as number)?.toFixed(1) || 0}h</p>
       </div>
 
       <div className={styles['pie-box']}>
