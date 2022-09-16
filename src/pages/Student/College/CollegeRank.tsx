@@ -22,9 +22,12 @@ const CollegeRank: React.FC<CollegeRankProps> = ({ data: { college, count } }) =
 
     return (
       <div className={styles['college-rank']}>
-        {college.map((item, index) => (
-          <RankBox count={count} {...item} index={index + 1} key={item.id} />
-        ))}
+        <main>
+          {college.map((item, index) => (
+            <RankBox count={count} {...item} index={index + 1} key={item.id} />
+          ))}
+        </main>
+        <p>（排名、概率为动态变化，仅供参考）</p>
       </div>
     );
   } else {
@@ -33,18 +36,21 @@ const CollegeRank: React.FC<CollegeRankProps> = ({ data: { college, count } }) =
 
     return (
       <div className={styles['college-rank']}>
-        <RankBox
-          id={academic.id}
-          name={'重庆邮电大学'}
-          englishName={academic.englishName}
-          description={academic.description}
-          count={count}
-          logo={academic.logo}
-          professionalRank={professional.rank}
-          professionalRate={professional.rate}
-          academicRank={academic.rank}
-          academicRate={academic.rate}
-        />
+        <main>
+          <RankBox
+            id={academic.id}
+            name={'重庆邮电大学'}
+            englishName={academic.englishName}
+            description={academic.description}
+            count={count}
+            logo={academic.logo}
+            professionalRank={professional.rank}
+            professionalRate={professional.rate}
+            academicRank={academic.rank}
+            academicRate={academic.rate}
+          />
+        </main>
+        <p>（排名、概率为动态变化，仅供参考）</p>
       </div>
     );
   }

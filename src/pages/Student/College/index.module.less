@@ -62,10 +62,18 @@
 }
 
 .college-rank {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
+  & > main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  & > p {
+    flex: 1;
+    text-align: right;
+    color: rgb(127, 125, 126);
+  }
 }
 
 .college-time,

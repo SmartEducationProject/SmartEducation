@@ -28,9 +28,11 @@ const colorList = () => {
 interface BarChartProp {
   data: number[];
   title?: string;
+  tooltipContents: string[];
 }
 
-const BarChart: React.FC<BarChartProp> = ({ data, title }) => {
+const BarChart: React.FC<BarChartProp> = ({ data, title, tooltipContents }) => {
+  let i = 0;
   const option = {
     title: {
       text: title,
@@ -39,6 +41,20 @@ const BarChart: React.FC<BarChartProp> = ({ data, title }) => {
       textStyle: {
         fontSize: 15,
         color: '#363638'
+      }
+    },
+    tooltip: {
+      formatter: (params: { name: string }) => {
+        switch (params.name) {
+          case '未上岸':
+            return tooltipContents[0];
+          case '你的':
+            return tooltipContents[1];
+          case '上岸':
+            return tooltipContents[2];
+          default:
+            return '';
+        }
       }
     },
     xAxis: {
