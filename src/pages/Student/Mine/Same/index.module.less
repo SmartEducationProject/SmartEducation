@@ -8,18 +8,26 @@
   font-size: 18px;
   margin-top: 40px;
 
-  .sentence-box {
+  & > main {
     background-image: url('assets/pic/student/mine-same-bg.png');
     background-size: 100% 100%;
     width: 600px;
-    padding: 80px 0px 100px 100px;
+    padding-bottom: 40px;
+
+    .sentence-box {
+      padding: 65px 0px 30px 85px;
+
+      & > div:nth-of-type(1) {
+        display: flex;
+      }
+    }
 
     p {
       color: @high-green;
     }
 
-    & > div:nth-of-type(1) {
-      display: flex;
+    & > div {
+      margin-bottom: 50px;
     }
   }
 

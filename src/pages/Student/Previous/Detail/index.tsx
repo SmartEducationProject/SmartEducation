@@ -11,14 +11,14 @@ interface DetailProps {
   year: number;
 }
 
-const getCountAndRate = (path: string[]): ColumnGroupType<IPreviousDetailCollege>['children'] => [
+const getCountAndRate = (path: string[], config?: { countTitle?: string; rateTitle?: string }): ColumnGroupType<IPreviousDetailCollege>['children'] => [
   {
-    title: '人数',
+    title: config?.countTitle || '人数',
     dataIndex: [...path, 'count'],
     align: 'center'
   },
   {
-    title: '比例',
+    title: config?.rateTitle || '比例',
     dataIndex: [...path, 'rate'],
     align: 'center',
     render: (record: number) => {
@@ -37,16 +37,17 @@ const columns: ColumnsType<IPreviousDetailCollege> = [
     title: '具体情况',
     children: [
       {
-        title: '报考',
-        children: getCountAndRate(['preliminary'])
+        title: '报考人数',
+        align: 'center',
+        dataIndex: ['preliminary', 'count']
       },
       {
         title: '上线',
-        children: getCountAndRate(['preliminarySuccess'])
+        children: getCountAndRate(['preliminarySuccess'], { countTitle: '人数', rateTitle: '上线率' })
       },
       {
         title: '录取',
-        children: getCountAndRate(['admit'])
+        children: getCountAndRate(['admit'], { rateTitle: '录取率' })
       }
     ]
   }
@@ -64,18 +65,15 @@ const Detail = ({ year }: DetailProps) => {
         {data.total.preliminary.count}
       </Table.Summary.Cell>
       <Table.Summary.Cell align="center" index={2}>
-        {(data.total.preliminary.rate * 100).toFixed(2) + '%'}
-      </Table.Summary.Cell>
-      <Table.Summary.Cell align="center" index={3}>
         {data.total.preliminarySuccess.count}
       </Table.Summary.Cell>
-      <Table.Summary.Cell align="center" index={4}>
+      <Table.Summary.Cell align="center" index={3}>
         {(data.total.preliminarySuccess.rate * 100).toFixed(2) + '%'}
       </Table.Summary.Cell>
-      <Table.Summary.Cell align="center" index={5}>
+      <Table.Summary.Cell align="center" index={4}>
         {data.total.admit.count}
       </Table.Summary.Cell>
-      <Table.Summary.Cell align="center" index={6}>
+      <Table.Summary.Cell align="center" index={5}>
         {(data.total.admit.rate * 100).toFixed(2) + '%'}
       </Table.Summary.Cell>
     </Table.Summary.Row>

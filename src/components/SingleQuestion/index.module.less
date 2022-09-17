@@ -2,8 +2,12 @@
   color: rgb(54, 117, 83);
 }
 
-.item > div > label {
-  font-size: 16px;
-  font-weight: bold;
-  color: rgb(54, 117, 83);
+.item {
+  :global {
+    .ant-form-item-label label {
+      font-size: 16px;
+      font-weight: bold;
+      color: rgb(54, 117, 83);
+    }
+  }
 }

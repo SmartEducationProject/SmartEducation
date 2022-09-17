@@ -5,7 +5,7 @@ import processData from 'utils/processData';
 import { IResponse } from 'types/Request';
 import { ISame, IDaily, ILib } from 'types/mine';
 import { IComparison, IPredict, IOtherCollegeExperience } from 'types/college';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import type { IPreviousDetail, IPreviousOverall } from 'types/previous';
 
 type Response = { data: unknown; info: string; code: number };
@@ -25,16 +25,14 @@ export const studentLogin = (params: { sfrzh: string }): Promise<IResponse> => {
  */
 export const useSubmit = () => {
   return useMutation(async (data) => {
-    message.loading({ content: '提交中...', key: 'submit' });
     const result = await axiosInstance.post(`/student/predict`, processData(data));
+
+    if (result instanceof AxiosError) throw new Error();
+
     afterRequest(
       result,
-      () => {
-        message.success({ content: '问卷提交成功！！', key: 'submit' });
-      },
-      () => {
-        message.error({ content: `问卷提交失败: ${result.data.info}，请稍后重试！！`, key: 'submit' });
-      }
+      () => message.success({ content: '问卷提交成功！！' }),
+      () => message.error({ content: `问卷提交失败: ${result?.data?.info || 'unknown error'}，请稍后重试！！` })
     );
   });
 };
@@ -117,7 +115,7 @@ function afterRequest(result: AxiosResponse<Response>, success?: () => void, err
     console.log('error');
 
     if (error) error();
-    else message.error(`操作失败: ${result.data.info}`);
+    else message.error(`操作失败: ${result?.data?.info || 'unknown error'}`);
     throw new Error();
   }
 }
