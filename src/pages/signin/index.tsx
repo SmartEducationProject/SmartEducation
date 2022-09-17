@@ -1,13 +1,16 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/pic/signin/person.png';
 import Signin from 'assets/pic/signin/signin.png';
 import useDebounceHook from 'utils/useDebounceFn';
 import { studentLogin } from 'api/student';
-import { teacherLogin } from 'api/teacher';
-import { message } from 'antd';
+import { addApplication, teacherLogin } from 'api/teacher';
+import { message, Modal, Input, InputRef } from 'antd';
 const SignIn: FunctionComponent = () => {
+  //输入框
+  const InputRef = useRef<InputRef | null>(null);
+
   const navigate = useNavigate();
   /**
    *  @description:对input的输入进行消抖处理
@@ -48,11 +51,18 @@ const SignIn: FunctionComponent = () => {
       return;
     } else if (signIhValue?.startsWith('0')) {
       const result = await teacherLogin({ sfrzh: signIhValue });
+      console.log('result', result);
+
       if (result.code === 20000) {
-        localStorage.setItem('useRole', JSON.stringify(['teacher']));
-        navigate('/teacher/predictresult', {
-          replace: true
-        });
+        if (result.data.state === 0) {
+          setIsModalOpen(true);
+        } else {
+          localStorage.setItem('useRole', JSON.stringify(['teacher']));
+          localStorage.setItem('authority', result.data.state);
+          navigate('/teacher/predictresult', {
+            replace: true
+          });
+        }
       } else {
         message.error('统一认证码输入错误');
       }
@@ -70,8 +80,29 @@ const SignIn: FunctionComponent = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOk = async () => {
+    const result = await addApplication({ description: InputRef.current?.input?.value as string });
+    result.info == 'success' ? message.success('申请成功，请等待审批通过') : message.error('由于网络原因，申请失败');
+    if (InputRef.current && InputRef.current.input) {
+      InputRef.current.input.value = ' ';
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    if (InputRef.current && InputRef.current.input) {
+      InputRef.current.input.value = '';
+    }
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles['signin']}>
+      <Modal title="提示" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okText="提交申请" cancelText="取消申请">
+        <p>为保证学生隐私，当前您没有权限访问，若要访问请联系计算机学院负责教学及学生工作的相关负责人！</p>
+        <Input placeholder="若要申请,请输入理由" ref={InputRef}></Input>
+      </Modal>
       <div className={styles['signin-content']}>
         <div className={styles['signin-left']}>
           <div className={styles['signin-title']}>
