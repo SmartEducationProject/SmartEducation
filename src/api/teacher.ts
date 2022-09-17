@@ -1,4 +1,4 @@
-import { IResponse, ISearch } from 'types/Request';
+import { IResponse, isAgreeType, ISearch } from 'types/Request';
 import { axiosInstance } from 'utils/request';
 
 //获取老师端未提交学生名单
@@ -47,9 +47,23 @@ export const teacherLogin = (params: { sfrzh: string }): Promise<IResponse> => {
   });
 };
 
-//将未提交学生名单导出Excel
-// export const exportUnSubmitted = (): Promise<IResponse> => {
-//   return axiosInstance.get('/teacher/unsubmitted/excel').then((res) => {
-//     return res.data;
-//   });
-// }
+//获取所有需审批的申请
+export const getAllApply = (): Promise<IResponse> => {
+  return axiosInstance.get('/teacher/getAll').then((res) => {
+    return res.data;
+  });
+};
+
+//是否同意审批
+export const isAgreeApply = (params: isAgreeType): Promise<IResponse> => {
+  return axiosInstance.get('/teacher/isAgree', { params }).then((res) => {
+    return res.data;
+  });
+};
+
+//增加申请
+export const addApplication = (params: { description: string }): Promise<IResponse> => {
+  return axiosInstance.get('/teacher/application', { params }).then((res) => {
+    return res.data;
+  });
+};

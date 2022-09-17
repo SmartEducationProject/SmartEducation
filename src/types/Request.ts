@@ -16,3 +16,8 @@ export interface IResponse {
 export interface ISearch {
   name: string | null;
 }
+
+export interface isAgreeType {
+  sfrzh: string;
+  isAgree: number;
+}

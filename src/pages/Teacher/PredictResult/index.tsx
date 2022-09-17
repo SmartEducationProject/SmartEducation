@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback, useEffect, useState, Profiler } from 'react';
-import { Spin } from 'antd';
+import { Spin, Button } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
@@ -10,6 +10,7 @@ import { useQuery } from 'react-query';
 import { SubmittedCond, Statistics, Search } from 'api/teacher';
 import useDebounceHook from 'utils/useDebounceFn';
 import guard from 'router/routeGuard';
+import { RightSquareOutlined } from '@ant-design/icons';
 const PredictResult: FunctionComponent = () => {
   const navigator = useNavigate();
   const { pathname } = useLocation();
@@ -287,57 +288,70 @@ const PredictResult: FunctionComponent = () => {
   if (isLoading || StatisticsIsLoading) {
     return <Spin />;
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const callback = (id: any, phase: any, actualTime: any, baseTime: any, startTime: any, commitTime: any) => {
-    console.log(`${id}'s ${phase} phase:`);
-    console.log(`Actual time: ${actualTime}`);
-    console.log(`Base time: ${baseTime}`);
-    console.log(`Start time: ${startTime}`);
-    console.log(`Commit time: ${commitTime}`);
+
+  /**
+   * @description:点击前往审批页面
+   * @params {null}
+   * @return  {null}
+   */
+  const toApprove = () => {
+    console.log('mdc');
+
+    navigator('/teacher/approve');
   };
+
   return (
-    <Profiler id="predictResult" onRender={callback}>
-      <div className={styles['predict']}>
-        <div className={styles['predict-header']}>
-          <div className={styles['header-content']}>
-            <div className={styles['header-left']}>
-              <span>
-                应提交{total}人，已提交{submitted}人，未提交{unsubmitted}人
-              </span>
-              <span onClick={() => uncommittedPage()}>查看学生名单</span>
-            </div>
-            <div className={styles['header-right']}>
-              <div className={styles['search']}>
-                <input type="text" placeholder="请输入你想搜索的学生姓名" onChange={(e) => inputChange(e)}></input>
-                <img src={search} alt="" onClick={() => searchBtn()} />
-              </div>
-              <img src={contact}></img>
-              <span onClick={() => exportExcel()}>以Excel表导出数据</span>
-            </div>
+    <div className={styles['predict']}>
+      <div className={styles['predict-header']}>
+        <div className={styles['header-content']}>
+          <div className={styles['header-left']}>
+            <span>
+              应提交{total}人，已提交{submitted}人，未提交{unsubmitted}人
+            </span>
+            <span onClick={() => uncommittedPage()}>查看学生名单</span>
           </div>
-        </div>
-        <div className={styles['predict-content']}>
-          <div className={styles['predict-table']}>
-            <TableComponent
-              size="small"
-              locale={{
-                cancelSort: '',
-                triggerAsc: '',
-                triggerDesc: ''
-              }}
-              rowClassName={styles['table-rowClass']}
-              className={styles['table-class']}
-              bordered
-              columns={columns}
-              rowKey={'id'}
-              dataSource={tableData}
-              onChange={onChange}
-              pagination={false}
-            />
+          <div className={styles['header-right']}>
+            <div className={styles['search']}>
+              <input type="text" placeholder="请输入你想搜索的学生姓名" onChange={(e) => inputChange(e)}></input>
+              <img src={search} alt="" onClick={() => searchBtn()} />
+            </div>
+            <div className={styles['header-right-bottom']}>
+              <div className={styles['apply']}>
+                {localStorage.getItem('authority') == '2' ? (
+                  <Button type="primary" shape="round" onClick={toApprove} icon={<RightSquareOutlined />}>
+                    前往审批页面
+                  </Button>
+                ) : null}
+              </div>
+              <div className={styles['export']}>
+                <img src={contact}></img>
+                <span onClick={() => exportExcel()}>以Excel表导出数据</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </Profiler>
+      <div className={styles['predict-content']}>
+        <div className={styles['predict-table']}>
+          <TableComponent
+            size="small"
+            locale={{
+              cancelSort: '',
+              triggerAsc: '',
+              triggerDesc: ''
+            }}
+            rowClassName={styles['table-rowClass']}
+            className={styles['table-class']}
+            bordered
+            columns={columns}
+            rowKey={'id'}
+            dataSource={tableData}
+            onChange={onChange}
+            pagination={false}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 export default PredictResult;
