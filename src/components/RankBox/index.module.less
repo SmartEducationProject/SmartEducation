@@ -25,6 +25,7 @@
     h3 {
       margin: 0 0 0 10px;
       color: rgb(54, 54, 56);
+      font-weight: bold;
     }
 
     h4 {
@@ -40,12 +41,13 @@
     margin: 0 0 0 auto;
 
     & > div {
-      width: 265px;
+      width: 270px;
       display: flex;
 
       h4 {
+        color: inherit; // 避免被antd默认的h4样式修改
         font-weight: normal;
-        font-size: 15px;
+        font-size: 17px;
         margin: 10px 0 0 25px;
       }
     }
@@ -56,6 +58,7 @@
     width: 110px;
 
     h4 {
+      color: inherit; // 避免被antd默认的h4样式修改
       font-weight: normal;
       font-size: 17px;
       margin: 10px 0 0 10px;
