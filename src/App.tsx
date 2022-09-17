@@ -1,16 +1,17 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from 'components/Header';
-import styles from './app.module.less';
-import './assets/style/font.less';
-import FullPageWithLoading from 'components/FullPageWithLoading';
-import { ErrorBoundary } from 'components/ErrorBoundary';
-import FullPageErrorFallback from 'components/FullPageErrorFallback';
-import { useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import SignIn from './pages/signin';
 import AuthRoute from './router/AuthRoute';
 import { teacherRoutes } from './router/teacherRoutes';
 import { isPredictRoutes } from './router/isPredictRoutes';
+import Header from 'components/Header';
+import FullPageWithLoading from 'components/FullPageWithLoading';
+import { ErrorBoundary } from 'components/ErrorBoundary';
+import FullPageErrorFallback from 'components/FullPageErrorFallback';
+import styles from './app.module.less';
+import './assets/style/font.less';
+import './app.less';
+
 const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
 
