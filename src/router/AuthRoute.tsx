@@ -28,10 +28,10 @@ import { Navigate } from 'react-router-dom';
 const AuthRoute = (props: RouteTypes) => {
   const useRole = localStorage.getItem('useRole');
   const { role, backUrl, element: Element } = props;
-  if (useRole && useRole.includes(role)) {
+  if ((useRole && useRole.includes(role)) || role == '') {
     return <Element />;
   } else {
-    return <Navigate to={backUrl}></Navigate>;
+    return <Navigate replace to={backUrl}></Navigate>;
   }
 };
 export default AuthRoute;

@@ -17,7 +17,7 @@ const Teacher = lazy(() => import('pages/Teacher'));
 
 function App() {
   const { pathname } = useLocation();
-  const greenPath = ['/', '/student', '/student/', '/student/welcome', '/student/welcome/'];
+  const greenPath = ['/', '/student', '/student/', '/student/choice', '/student/welcome', '/student/welcome/'];
   return (
     <div className={styles['app']} style={{ backgroundColor: greenPath.includes(pathname) ? 'rgb(126,189,71)' : 'white' }}>
       <Header />
@@ -34,7 +34,7 @@ function App() {
                       key={key}
                       path={path}
                       element={
-                        <AuthRoute key={key} path={path} {...otherProps}>
+                        <AuthRoute key={key} {...otherProps}>
                           {route.element}
                         </AuthRoute>
                       }

@@ -7,56 +7,56 @@ const Previous = lazy(() => import('pages/Student/Previous'));
 const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
-
+const hasPredict = localStorage.getItem('useRole')?.includes('predict') ? true : false;
 export const isPredictRoutes = [
   {
     key: 'studentIndex',
-    path: '',
+    path: 'choice',
     role: 'predict',
     element: Choice,
-    backUrl: '/'
+    backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
   {
     key: 'college',
     path: 'college/:isCqupt',
     role: 'predict',
     element: College,
-    backUrl: '/'
+    backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
   {
     key: 'previous',
     path: 'previous',
-    role: 'predict',
+    role: '',
     element: Previous,
-    backUrl: '/'
+    backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
   {
     key: 'mine',
     path: 'mine/*',
     element: Mine,
     role: 'predict',
-    backUrl: '/',
+    backUrl: hasPredict ? '/student/choice' : '/student/welcome',
     children: [
       {
         key: 'mineLib',
         path: 'lib',
         role: 'predict',
         element: Lib,
-        backUrl: '/'
+        backUrl: hasPredict ? '/student/choice' : '/student/welcome'
       },
       {
         key: 'mineSame',
         path: 'Same',
         role: 'predict',
         element: Same,
-        backUrl: '/'
+        backUrl: hasPredict ? '/student/choice' : '/student/welcome'
       },
       {
         key: 'mineIndex',
         path: '*',
         role: 'predict',
         element: Lib,
-        backUrl: '/'
+        backUrl: hasPredict ? '/student/choice' : '/student/welcome'
       }
     ]
   },
@@ -65,13 +65,13 @@ export const isPredictRoutes = [
     path: 'welcome',
     element: Welcome,
     role: 'unPredict',
-    backUrl: '/student'
+    backUrl: '/student/choice'
   },
   {
     key: 'questionnaire',
     path: 'questionnaire',
     element: Questionnaire,
     role: 'unPredict',
-    backUrl: '/student'
+    backUrl: '/student/choice'
   }
 ];

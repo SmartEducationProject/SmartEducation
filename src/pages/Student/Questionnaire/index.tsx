@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, message, Modal, Spin } from 'antd';
+import React from 'react';
+import { Form, Modal } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import { useNavigate } from 'react-router-dom';
 import data from 'data/questionnaire';

@@ -34,9 +34,7 @@ const SignIn: FunctionComponent = () => {
       const result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        JSON.parse(localStorage.getItem('studentInfo')!).hasPredict
-          ? localStorage.setItem('useRole', JSON.stringify(['predict']))
-          : localStorage.setItem('useRole', JSON.stringify(['unPredict', 'predict']));
+        JSON.parse(localStorage.getItem('studentInfo')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
         result.data.hasPredict
           ? navigate('/student', {
@@ -70,10 +68,10 @@ const SignIn: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('studentInfo')) {
-      const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '');
-      studentInfo.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
-    }
+    // if (localStorage.getItem('studentInfo')) {
+    //   const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '');
+    //   // studentInfo.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
+    // }
     if (localStorage.getItem('token')) {
       navigate('/teacher/predictresult');
     }
