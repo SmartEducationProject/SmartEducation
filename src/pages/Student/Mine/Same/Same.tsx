@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSame } from 'api/student';
 import styles from './index.module.less';
-import LabelLinePie from '@/components/LabelLinePie';
+import LabelLinePie from 'components/LabelLinePie';
 
 const Same = () => {
   /** @description 接口调用 */
