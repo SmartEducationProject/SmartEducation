@@ -9,7 +9,6 @@ import FullPageWithLoading from 'components/FullPageWithLoading';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import FullPageErrorFallback from 'components/FullPageErrorFallback';
 import styles from './app.module.less';
-import './assets/style/font.less';
 import './app.less';
 
 const Student = lazy(() => import('pages/Student'));
