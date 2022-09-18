@@ -1,7 +1,21 @@
 import React from 'react';
+import { Affix, Button } from 'antd';
 import RankPieDoughnut from 'components/RankPieDoughnut';
 import { useLib } from 'api/student';
+import useHtml2Canvas from 'utils/useHtml2Canvas';
+import getDays from 'utils/getDays';
 import styles from './index.module.less';
+import sharePeopleImg from 'assets/pic/student/people.png';
+import effortImg from 'assets/pic/student/student-mine-share-effort.png';
+import shareUrlImg from 'assets/pic/student/student-mine-share-url.png';
+import studentIcon from 'assets/pic/student/student.png';
+import upIcon from 'assets/pic/student/student-mine-share-up.png';
+
+interface IInfo {
+  name: string;
+  firstLogin: string;
+  examTime: string;
+}
 
 const Lib = () => {
   /** @description 接口调用 */
@@ -10,9 +24,36 @@ const Lib = () => {
   /** @description 获得在馆时间段展示字符串 */
   const periodFormat = data?.yesterday?.period?.map((period) => `${period.from.split(' ')[1]}-${period.to.split(' ')[1]}`)?.join(', ');
 
+  const now = new Date();
+  /** @description 获取学生信息 */
+  const info: IInfo = JSON.parse(localStorage.getItem('studentInfo') as string);
+  const { name, firstLogin, examTime } = info;
+  /** @description 截图 */
+  const [_, createSaveImg] = useHtml2Canvas('lib-container', true, {
+    useCORS: true,
+    scale: 4,
+    width: document.querySelector(`#lib-container`)?.scrollWidth as number,
+    height: document.querySelector(`#lib-container`)?.scrollHeight as number,
+    onclone: (document: Document) => {
+      (document.querySelector(`.${styles['share-box']}`) as HTMLDivElement).style.display = 'flex';
+      (document.querySelector(`.${styles['sentence-box']}`) as HTMLDivElement).style.display = 'none';
+      (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.position = 'absolute';
+      (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.top = '580px';
+      (document.querySelector(`.${styles['affix-box']}`) as HTMLDivElement).style.display = 'none';
+    }
+  });
+
   return (
-    <div className={styles['lib-container']}>
-      <div className={styles['sentence-box']}>
+    <div id="lib-container" className={styles['lib-container']}>
+      <div className={styles['affix-box']}>
+        <Affix offsetTop={220}>
+          <Button shape="round" type="dashed" onClick={() => createSaveImg()}>
+            截图分享
+          </Button>
+        </Affix>
+      </div>
+
+      <div id="sentence-box" className={styles['sentence-box']}>
         <p>昨日在馆时间：{periodFormat || '无'}</p>
         <p>昨日在馆总时长：{(data?.yesterday?.count as number)?.toFixed(1) || 0}h</p>
         <p>最近一周在馆总时长：{(data?.week?.count as number)?.toFixed(1) || 0}h</p>
@@ -44,6 +85,39 @@ const Lib = () => {
           rank={data?.month?.countRank as number}
           exceed={((data?.yesterday?.totalStudent as number) - (data?.month?.countRank as number)) as number}
         />
+      </div>
+
+      <div className={styles['share-box']}>
+        <header>
+          <img src={studentIcon} className={styles['student-img']} />
+          <div className={styles['info-box']}>
+            <h3>Hello,{name}!</h3>
+            <h4>美好的一天从看看我的考研情况开始~</h4>
+            <h5>
+              今天是{now.getFullYear()}年{now.getMonth() + 1}月{now.getDate()}日，距离考研上岸还有{getDays(examTime)}天
+            </h5>
+            <h5>距离初次登录，你已努力了{getDays(firstLogin)}天</h5>
+          </div>
+          <img src={upIcon} className={styles['up-img']} />
+        </header>
+
+        <main>
+          <div className={styles['top-box']}>
+            <img className={styles['people-img']} src={sharePeopleImg}></img>
+
+            <div className={styles['top-right-box']}>
+              <img className={styles['effort-img']} src={effortImg} />
+              <div className={styles['share-sentence-box']}>
+                <p>昨日在馆时间：{periodFormat || '无'}</p>
+                <p>昨日在馆总时长：{(data?.yesterday?.count as number)?.toFixed(1) || 0}h</p>
+                <p>最近一周在馆总时长：{(data?.week?.count as number)?.toFixed(1) || 0}h</p>
+                <p>最近一月在馆总时长：{(data?.month?.count as number)?.toFixed(1) || 0}h</p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <img className={styles['url-img']} src={shareUrlImg} />
       </div>
     </div>
   );
