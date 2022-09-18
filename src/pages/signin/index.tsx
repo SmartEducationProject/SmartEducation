@@ -37,7 +37,7 @@ const SignIn: FunctionComponent = () => {
         JSON.parse(localStorage.getItem('studentInfo')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
         result.data.hasPredict
-          ? navigate('/student', {
+          ? navigate('/student/choice', {
               replace: true
             })
           : navigate('/student/welcome', {
