@@ -10,12 +10,7 @@ import effortImg from 'assets/pic/student/student-mine-share-effort.png';
 import shareUrlImg from 'assets/pic/student/student-mine-share-url.png';
 import studentIcon from 'assets/pic/student/student.png';
 import upIcon from 'assets/pic/student/student-mine-share-up.png';
-
-interface IInfo {
-  name: string;
-  firstLogin: string;
-  examTime: string;
-}
+import { useUser } from 'context/userContext';
 
 const Lib = () => {
   /** @description 接口调用 */
@@ -26,8 +21,7 @@ const Lib = () => {
 
   const now = new Date();
   /** @description 获取学生信息 */
-  const info: IInfo = JSON.parse(localStorage.getItem('studentInfo') as string);
-  const { name, firstLogin, examTime } = info;
+  const { user } = useUser();
   /** @description 截图 */
   const [_, createSaveImg] = useHtml2Canvas('lib-container', true, {
     useCORS: true,
@@ -40,6 +34,10 @@ const Lib = () => {
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.position = 'absolute';
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.top = '580px';
       (document.querySelector(`.${styles['affix-box']}`) as HTMLDivElement).style.display = 'none';
+      // document.querySelectorAll(`.${styles['pie-box']} > div`).forEach((div) => {
+      //   (div as HTMLDivElement).style.width = '40%';
+      // });
+      // document.querySelectorAll(`.${styles['pie-box']} > div + div`).forEach((div) => ((div as HTMLDivElement).style.left = '170px'));
     }
   });
 
@@ -91,12 +89,12 @@ const Lib = () => {
         <header>
           <img src={studentIcon} className={styles['student-img']} />
           <div className={styles['info-box']}>
-            <h3>Hello,{name}!</h3>
+            <h3>Hello,{user?.name}!</h3>
             <h4>美好的一天从看看我的考研情况开始~</h4>
             <h5>
-              今天是{now.getFullYear()}年{now.getMonth() + 1}月{now.getDate()}日，距离考研上岸还有{getDays(examTime)}天
+              今天是{now.getFullYear()}年{now.getMonth() + 1}月{now.getDate()}日，距离考研上岸还有{getDays(user?.examTime as string)}天
             </h5>
-            <h5>距离初次登录，你已努力了{getDays(firstLogin)}天</h5>
+            <h5>距离初次登录，你已努力了{getDays(user?.firstLogin as string)}天</h5>
           </div>
           <img src={upIcon} className={styles['up-img']} />
         </header>

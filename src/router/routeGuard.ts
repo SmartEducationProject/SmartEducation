@@ -1,6 +1,6 @@
 function guard(pathname: string): boolean {
   if (pathname.startsWith('/student')) {
-    if (!localStorage.getItem('studentInfo')) {
+    if (!localStorage.getItem('info')) {
       return false;
     }
   } else if (pathname.startsWith('/teacher')) {

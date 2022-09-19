@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (config.url?.startsWith('/teacher/login') || config.url?.startsWith('/student/login')) return config; // 登录不需要带token
 
-    const token = localStorage.getItem('token') || JSON.parse(localStorage.getItem(`studentInfo`) as string).token;
+    const token = localStorage.getItem('token') || JSON.parse(localStorage.getItem(`info`) as string).token;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (token) config.headers!.token = token;
 
@@ -32,8 +32,9 @@ axiosInstance.interceptors.response.use(
 
     if (response.data.data?.token && response.config.url?.startsWith('/teacher/login')) {
       localStorage.setItem('token', response.data.data.token);
+      localStorage.setItem('info', JSON.stringify(response.data.data));
     } else if (response.data.data?.token && response.config.url?.startsWith('/student/login')) {
-      localStorage.setItem('studentInfo', JSON.stringify(response.data.data));
+      localStorage.setItem('info', JSON.stringify(response.data.data));
     }
 
     if (response.status === 200) {
