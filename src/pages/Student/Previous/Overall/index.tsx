@@ -11,14 +11,14 @@ interface OverallProps {
   year: number;
 }
 
-const getCountAndRate = (path: string[]): ColumnGroupType<IPreviousOverall>['children'] => [
+const getCountAndRate = (path: string[], config?: { countTitle?: string; rateTitle?: string }): ColumnGroupType<IPreviousOverall>['children'] => [
   {
-    title: '人数',
+    title: config?.countTitle || '人数',
     dataIndex: [...path, 'count'],
     align: 'center'
   },
   {
-    title: '比例',
+    title: config?.rateTitle || '比例',
     dataIndex: [...path, 'rate'],
     align: 'center',
     render: (record: number) => {
@@ -46,16 +46,17 @@ const columns: ColumnsType<IPreviousOverall> = [
         title: '专硕(327)',
         children: [
           {
-            title: '报考',
-            children: getCountAndRate(['cqupt', 'professional', 'preliminary'])
+            title: '报考人数',
+            align: 'center',
+            dataIndex: ['cqupt', 'professional', 'preliminary', 'count']
           },
           {
             title: '上线',
-            children: getCountAndRate(['cqupt', 'professional', 'preliminarySuccess'])
+            children: getCountAndRate(['cqupt', 'professional', 'preliminarySuccess'], { rateTitle: '上线率' })
           },
           {
             title: '录取',
-            children: getCountAndRate(['cqupt', 'professional', 'admit'])
+            children: getCountAndRate(['cqupt', 'professional', 'admit'], { rateTitle: '录取率' })
           }
         ]
       },
@@ -63,22 +64,23 @@ const columns: ColumnsType<IPreviousOverall> = [
         title: '学硕(311)',
         children: [
           {
-            title: '报考',
-            children: getCountAndRate(['cqupt', 'academic', 'preliminary'])
+            title: '报考人数',
+            align: 'center',
+            dataIndex: ['cqupt', 'academic', 'preliminary', 'count']
           },
           {
             title: '上线',
-            children: getCountAndRate(['cqupt', 'academic', 'preliminarySuccess'])
+            children: getCountAndRate(['cqupt', 'academic', 'preliminarySuccess'], { rateTitle: '上线率' })
           },
           {
             title: '录取',
-            children: getCountAndRate(['cqupt', 'academic', 'admit'])
+            children: getCountAndRate(['cqupt', 'academic', 'admit'], { rateTitle: '录取率' })
           }
         ]
       },
       {
         title: '录取(合计)',
-        children: getCountAndRate(['cqupt', 'total', 'admit'])
+        children: getCountAndRate(['cqupt', 'total', 'admit'], { rateTitle: '录取率' })
       }
     ]
   },
@@ -87,16 +89,17 @@ const columns: ColumnsType<IPreviousOverall> = [
     dataIndex: 'cqupt',
     children: [
       {
-        title: '报考',
-        children: getCountAndRate(['other', 'preliminary'])
+        title: '报考人数',
+        align: 'center',
+        dataIndex: ['other', 'preliminary', 'count']
       },
       {
         title: '上线',
-        children: getCountAndRate(['other', 'preliminarySuccess'])
+        children: getCountAndRate(['other', 'preliminarySuccess'], { rateTitle: '上线率' })
       },
       {
         title: '录取',
-        children: getCountAndRate(['other', 'admit'])
+        children: getCountAndRate(['other', 'admit'], { rateTitle: '录取率' })
       }
     ]
   }
