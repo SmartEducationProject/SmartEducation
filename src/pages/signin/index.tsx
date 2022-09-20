@@ -7,7 +7,10 @@ import useDebounceHook from 'utils/useDebounceFn';
 import { studentLogin } from 'api/student';
 import { addApplication, teacherLogin } from 'api/teacher';
 import { message, Modal, Input, InputRef } from 'antd';
+import { useUser } from 'context/userContext';
+
 const SignIn: FunctionComponent = () => {
+  const { setUser } = useUser(); // 修改UserContext的值
   //输入框
   const InputRef = useRef<InputRef | null>(null);
 
@@ -33,8 +36,9 @@ const SignIn: FunctionComponent = () => {
     } else if (signIhValue?.startsWith('1')) {
       const result = await studentLogin({ sfrzh: signIhValue });
       if (result.code === 20000) {
+        setUser(result.data); // 修改UserContext的值
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        JSON.parse(localStorage.getItem('studentInfo')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
+        JSON.parse(localStorage.getItem('info')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
         /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
         result.data.hasPredict
           ? navigate('/student/choice', {
@@ -49,7 +53,7 @@ const SignIn: FunctionComponent = () => {
       return;
     } else if (signIhValue?.startsWith('0')) {
       const result = await teacherLogin({ sfrzh: signIhValue });
-      console.log('result', result);
+      setUser(result.data); // 修改UserContext的值
 
       if (result.code === 20000) {
         if (result.data.state === 0) {
@@ -68,9 +72,9 @@ const SignIn: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    // if (localStorage.getItem('studentInfo')) {
-    //   const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '');
-    //   // studentInfo.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
+    // if (localStorage.getItem('info')) {
+    //   const info = JSON.parse(localStorage.getItem('info') || '');
+    //   // info.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
     // }
     if (localStorage.getItem('token')) {
       navigate('/teacher/predictresult');

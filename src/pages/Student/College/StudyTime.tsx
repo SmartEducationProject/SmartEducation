@@ -26,7 +26,7 @@ const StudyTime: React.FC<StudyTimeProps> = ({ data }) => {
           <BarChart
             title="当前所花时间(h)"
             data={[prepare?.failed, prepare?.student, prepare?.success]}
-            tooltipContents={['未上岸同学复习总共花费时间', '你目前花费时间', '上岸同学复习总共花费时间']}
+            tooltipContents={['上一届未上岸同学人均复习总时间', '你目前花费时间', '上一届上岸同学人均复习总时间 ']}
           />
           <BarChart
             title="复习进度(%)"

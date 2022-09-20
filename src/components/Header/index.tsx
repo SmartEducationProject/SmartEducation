@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './index.module.less';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useUser } from 'context/userContext';
+import styles from './index.module.less';
+
 const Header = () => {
   const navigator = useNavigate();
   const location = useLocation();
+  const { user, setUser } = useUser();
   const headerRef = useRef<HTMLElement | null>(null);
   const headerSpan = useRef<HTMLElement | null>(null);
   const headerDiv = useRef<HTMLImageElement | null>(null);
+
   useEffect(() => {
     if (location.pathname === '/' || location.pathname === '/student' || location.pathname === '/student/questionnaire') {
       headerRef.current?.classList.remove(styles['header-white']);
@@ -24,6 +28,7 @@ const Header = () => {
    */
   const exitBtn = () => {
     localStorage.clear();
+    setUser(null);
     navigator('/');
   };
 
@@ -32,7 +37,11 @@ const Header = () => {
       <span ref={headerSpan} onClick={() => exitBtn()}>
         CQUPT2022考研预测
       </span>
-      <div className={styles['exit-btn']} ref={headerDiv} onClick={() => exitBtn()}></div>
+
+      <div className={styles['user-box']} style={{ display: location.pathname === '/' ? 'none' : 'flex' }}>
+        <span>{user?.name}</span>
+        <div className={styles['exit-btn']} ref={headerDiv} onClick={() => exitBtn()}></div>
+      </div>
     </header>
   );
 };

@@ -9,27 +9,9 @@ interface LabelLinePieProps {
 }
 
 const LabelLinePie: React.FC<LabelLinePieProps> = ({ data }) => {
-  const newData = (data || [])
-    .map((item) => {
-      return { name: item.name, value: item.total };
-    })
-    .sort(function (a, b) {
-      return a.value - b.value;
-    });
+  const newData = (data || []).map((item) => ({ name: item.name, value: item.total })).sort((a, b) => a.value - b.value);
 
   const option = {
-    // visualMap: {
-    //   orient: 'horizontal',
-    //   left: 'center',
-    //   top: 'bottom',
-    //   min: 0,
-    //   max: newData[newData.length - 1]?.value || 0,
-    //   show: false,
-    //   dimension: 0,
-    //   inRange: {
-    //     color: ['#ff2d2d', '#d6db44', , '#2f5896', , '#4eee4e', 'rgb(238,137,78)']
-    //   }
-    // },
     series: {
       type: 'pie',
       radius: [50, 100],

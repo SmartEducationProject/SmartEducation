@@ -26,7 +26,7 @@ const RankBox: React.FC<RankBoxProps> = ({ englishName, rate, name, rank, descri
       case rate < 0.3:
         return 'rgb(242,65,19)';
       case rate < 0.4:
-        return 'rgb(255,237,0)';
+        return '#06e8e8';
       default:
         return 'rgb(127,125,126)';
     }

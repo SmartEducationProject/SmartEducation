@@ -1,0 +1,42 @@
+@import '../index.module.less';
+
+.college-header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: @header-height;
+  z-index: 2;
+  width: 1000px;
+  height: @college-header-height;
+  background-color: @middle-green;
+
+  .hat-img {
+    width: 30px;
+    margin-left: 40px;
+  }
+
+  h5 {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    color: @font-green;
+    font-weight: normal;
+  }
+
+  .my-detail-btn {
+    margin: 0 20px 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      width: 30px;
+    }
+
+    h5 {
+      margin: 10px 0 0 0;
+      color: rgb(233, 84, 18);
+      text-decoration: underline;
+    }
+  }
+}
