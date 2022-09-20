@@ -8,6 +8,7 @@ import styles from './index.module.less';
 import sharePeopleImg from 'assets/pic/student/people.png';
 import effortImg from 'assets/pic/student/student-mine-share-effort.png';
 import shareUrlImg from 'assets/pic/student/student-mine-share-url.png';
+import shareQrCodeImg from 'assets/pic/student/student-mine-share-qr-code.png';
 import studentIcon from 'assets/pic/student/student.png';
 import upIcon from 'assets/pic/student/student-mine-share-up.png';
 import { useUser } from 'context/userContext';
@@ -115,7 +116,10 @@ const Lib = () => {
           </div>
         </main>
 
-        <img className={styles['url-img']} src={shareUrlImg} />
+        <footer>
+          <img className={styles['url-img']} src={shareUrlImg} />
+          <img className={styles['qr-code-img']} src={shareQrCodeImg} />
+        </footer>
       </div>
     </div>
   );
