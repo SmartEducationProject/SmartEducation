@@ -29,24 +29,24 @@ const useHtml2Canvas: UseHtml2Canvas = (domId, isDownLoad, options = defaultOpti
       setImgUrl(canvas.toDataURL('image/jpeg'));
 
       if (isDownLoad) {
-        // if (isMobile()) {
-        Modal.info({
-          title: '可以长按照片来保存哦~',
-          width: '25%',
-          content: (
-            <div style={{ width: '100%', height: '118%', margin: '7% 0 0 13%' }}>
-              <img src={canvas.toDataURL('image/jpeg')} alt="" style={{ width: '60%' }} />
-            </div>
-          ),
-          onOk() {}
-        });
-        // } else {
-        //   /** @description 下载图片 */
-        //   let aLink = document.createElement('a');
-        //   aLink.download = 'picture.jpeg';
-        //   aLink.href = canvas.toDataURL('image/jpeg');
-        //   aLink.click();
-        // }
+        if (isMobile()) {
+          Modal.info({
+            title: '可以长按照片来保存哦~',
+            width: '90vw',
+            content: (
+              <div style={{ width: '100%', height: '118%' }}>
+                <img src={canvas.toDataURL('image/jpeg')} alt="" style={{ width: '95%' }} />
+              </div>
+            ),
+            onOk() {}
+          });
+        } else {
+          /** @description 下载图片 */
+          let aLink = document.createElement('a');
+          aLink.download = 'picture.jpeg';
+          aLink.href = canvas.toDataURL('image/jpeg');
+          aLink.click();
+        }
       }
     });
   }, []);
