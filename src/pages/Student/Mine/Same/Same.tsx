@@ -6,7 +6,6 @@ import LabelLinePie from '@/components/LabelLinePie';
 const Same = () => {
   /** @description 接口调用 */
   const { data } = useSame();
-
   return (
     <div className={styles['same-container']}>
       <main>
