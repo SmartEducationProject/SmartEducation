@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
 import peopleImg from 'assets/pic/student/welcome-people.png';
 
 const Welcome = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    console.log('welcome');
+  }, []);
   return (
     <div className={styles['container']}>
       <main>
