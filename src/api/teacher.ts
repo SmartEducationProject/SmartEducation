@@ -67,3 +67,10 @@ export const addApplication = (params: { description: string }): Promise<IRespon
     return res.data;
   });
 };
+
+//获取已授权老师信息接口
+export const approvedTeacher = (): Promise<IResponse> => {
+  return axiosInstance.get('/teacher/getHasAgree').then((res) => {
+    return res.data;
+  });
+};
