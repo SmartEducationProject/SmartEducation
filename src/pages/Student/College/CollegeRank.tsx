@@ -3,6 +3,8 @@ import RankBox from 'components/RankBox';
 import styles from './index.module.less';
 import { ICollege, IPredict } from 'types/college';
 import useCqupt from 'utils/useCqupt';
+import { Tooltip } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 interface CollegeRankProps {
   data: IPredict;
@@ -27,7 +29,17 @@ const CollegeRank: React.FC<CollegeRankProps> = ({ data: { college, count } }) =
             <RankBox count={count} {...item} index={index + 1} key={item.id} />
           ))}
         </main>
-        <p>（排名、概率为动态变化，仅供参考）</p>
+
+        <p>
+          <Tooltip
+            arrowPointAtCenter
+            // color="#676767"
+            title="该模型从学业成绩（如必修、选修绩点等），行为习惯（如图书馆出入记录等），考研期间准备情况等多方位数据入手提取特征，运用轻量级梯度提升树方法构建具体算法，该排序为模型输出概率排序，考研期间准备情况对模型输出具有主要的、决定性的作用。结果仅供参考，请结合实际情况具体判断。"
+          >
+            <QuestionCircleOutlined />
+            （排名、概率为动态变化，仅供参考）
+          </Tooltip>
+        </p>
       </div>
     );
   } else {
