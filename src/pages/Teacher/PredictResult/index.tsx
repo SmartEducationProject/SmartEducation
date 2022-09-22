@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useEffect, useState, Profiler } from 'react';
+import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
 import { Spin, Button } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
@@ -144,7 +144,7 @@ const PredictResult: FunctionComponent = () => {
   const exportExcel = async () => {
     const link = document.createElement('a');
     link.download = 'aa.xlsx';
-    link.href = `http://172.20.2.82:8080/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
+    link.href = `http://172.20.2.82:8081/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
     link.click();
   };
   //table属性列

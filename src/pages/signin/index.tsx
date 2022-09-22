@@ -1,9 +1,8 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, { FunctionComponent, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/pic/signin/person.png';
 import Signin from 'assets/pic/signin/signin.png';
-import useDebounceHook from 'utils/useDebounceFn';
 import { studentLogin } from 'api/student';
 import { addApplication, teacherLogin } from 'api/teacher';
 import { message, Modal, Input, InputRef } from 'antd';
@@ -42,10 +41,12 @@ const SignIn: FunctionComponent = () => {
       if (currentUrl.split('?')[1]?.startsWith('token')) {
         localStorage.setItem('token', currentUrl.split('?')[1].split('=')[1]);
         const loginResult = await Login();
+        console.log('loginResult', loginResult);
 
         if (loginResult.code == 20000) {
           if (loginResult.data.SFRZH.startsWith('1')) {
             const result = await studentLogin({ sfrzh: loginResult.data.SFRZH });
+
             if (result.code == 20000) {
               setUser(result.data); // 修改UserContext的值
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -62,9 +63,12 @@ const SignIn: FunctionComponent = () => {
                 : navigate('/student/welcome', {
                     replace: true
                   });
+            } else {
+              message.error('你目前没有权限访问');
             }
           } else if (loginResult.data.SFRZH.startsWith('0') || loginResult.data.SFRZH.startsWith('7')) {
             const result = await teacherLogin({ sfrzh: loginResult.data.SFRZH });
+            console.log('result', result);
             setUser(result.data); // 修改UserContext的值
             if (result.code === 20000) {
               if (result.data.state === 0) {
@@ -77,6 +81,8 @@ const SignIn: FunctionComponent = () => {
                   replace: true
                 });
               }
+            } else {
+              message.error('你目前没有权限访问');
             }
           }
         }

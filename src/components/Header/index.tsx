@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from 'context/userContext';
 import styles from './index.module.less';
+import { SwapOutlined } from '@ant-design/icons';
 
 const Header = () => {
   const navigator = useNavigate();
@@ -31,13 +32,23 @@ const Header = () => {
     setUser(null);
     navigator('/');
   };
-
+  const changeBtn = () => {
+    const a = document.createElement('a');
+    a.setAttribute('referrerpolicy', 'no-referrer');
+    a.setAttribute('href', 'http://172.20.2.82:8080/tyrzm/logoutCustom');
+    a.click();
+  };
   return (
     <header className={styles['header']} ref={headerRef}>
       <span ref={headerSpan} onClick={() => exitBtn()}>
         CQUPT2022考研预测
       </span>
-
+      {location.pathname === '/' ? (
+        <div className={styles['change-btn']} onClick={() => changeBtn()}>
+          切换账号
+          <SwapOutlined />
+        </div>
+      ) : null}
       <div className={styles['user-box']} style={{ display: location.pathname === '/' ? 'none' : 'flex' }}>
         <span>{user?.name}</span>
         <div className={styles['exit-btn']} ref={headerDiv} onClick={() => exitBtn()}></div>

@@ -14,6 +14,8 @@ const CollegeRank: React.FC<CollegeRankProps> = ({ data: { college, count } }) =
   const isCqupt = useCqupt();
 
   /** @description 对概率四舍五入保留两位 */
+  console.log('college', college);
+
   college.forEach((item) => (item.rate = Number(item.rate.toFixed(2))));
 
   /** @description 展示其他院校 */
