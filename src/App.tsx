@@ -33,7 +33,7 @@ function App() {
                       {route.children
                         ? route.children.map((item) => {
                             const { key, path, ...otherProps } = item;
-                            return <Route key={key} path={path} element={<AuthRoute {...route}>{item.element}</AuthRoute>} />;
+                            return <Route key={key} path={path} element={<AuthRoute {...item}>{route.element}</AuthRoute>} />;
                           })
                         : null}
                     </Route>
