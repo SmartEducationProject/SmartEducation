@@ -59,7 +59,7 @@ const UncommittedPage = () => {
   const exportUncommitted = () => {
     const link = document.createElement('a');
     link.download = '未提交学生名单.xlsx';
-    link.href = 'http://172.20.2.82:8081/teacher/unsubmitted/excel';
+    link.href = 'http://172.20.2.82:8989/teacher/unsubmitted/excel';
     link.click();
   };
 

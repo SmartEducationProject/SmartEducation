@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://172.20.2.82:8081/',
+  baseURL: 'http://172.20.2.82:8989/',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
