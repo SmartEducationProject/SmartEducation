@@ -29,29 +29,11 @@ function App() {
                 {isPredictRoutes.map((route) => {
                   const { key, path, ...otherProps } = route;
                   return (
-                    <Route
-                      key={key}
-                      path={path}
-                      element={
-                        <AuthRoute key={key} {...otherProps}>
-                          {route.element}
-                        </AuthRoute>
-                      }
-                    >
+                    <Route key={key} path={path} element={<AuthRoute {...route}>{route.element}</AuthRoute>}>
                       {route.children
                         ? route.children.map((item) => {
                             const { key, path, ...otherProps } = item;
-                            return (
-                              <Route
-                                key={key}
-                                path={path}
-                                element={
-                                  <AuthRoute key={key} path={path} {...otherProps}>
-                                    {item.element}
-                                  </AuthRoute>
-                                }
-                              />
-                            );
+                            return <Route key={key} path={path} element={<AuthRoute {...route}>{item.element}</AuthRoute>} />;
                           })
                         : null}
                     </Route>
