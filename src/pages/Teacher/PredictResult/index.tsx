@@ -144,7 +144,7 @@ const PredictResult: FunctionComponent = () => {
   const exportExcel = async () => {
     const link = document.createElement('a');
     link.download = 'aa.xlsx';
-    link.href = `http://172.20.2.82:8081/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
+    link.href = `http://172.20.2.82:8989/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
     link.click();
   };
   //table属性列
