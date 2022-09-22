@@ -5,9 +5,6 @@ import peopleImg from 'assets/pic/student/welcome-people.png';
 
 const Welcome = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log('welcome');
-  }, []);
   return (
     <div className={styles['container']}>
       <main>

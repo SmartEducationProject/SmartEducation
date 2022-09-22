@@ -25,8 +25,7 @@ export const studentLogin = (params: { sfrzh: string }): Promise<IResponse> => {
  */
 export const useSubmit = () => {
   return useMutation(async (data) => {
-    const result = await axiosInstance.post(`/student/predict`, processData(data));
-
+    const result = await axiosInstance.post(`/student/predict`, { ...processData(data) });
     if (result instanceof AxiosError) throw new Error();
 
     afterRequest(

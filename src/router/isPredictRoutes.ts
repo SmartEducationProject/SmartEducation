@@ -8,8 +8,6 @@ const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
 const hasPredict = localStorage.getItem('useRole')?.includes('predict') ? true : false;
-console.log('hasPredict', hasPredict);
-
 export const isPredictRoutes = [
   {
     key: 'studentIndex',

@@ -25,8 +25,8 @@ export default (rawData: any) => {
   politicsTeacher.forEach((teacher, index) => (newData['politics_' + teacher.value] = rawData['politics'].includes(index) ? 1 : 0));
 
   /** @description 填写XH(学号)和SFRZH（身份认证码）字段 因为算法那边要求有这两个字段 但其实这两个字段后端是会重新赋值的 所以后期上线这里传空字符串即可 */
-  newData['XH'] = '';
-  newData['SFRZH'] = 'AAA';
+  // newData['XH'] = '';
+  // newData['SFRZH'] = 'AAA';
 
   return newData;
 };

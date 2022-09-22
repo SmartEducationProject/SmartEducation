@@ -42,13 +42,10 @@ const SignIn: FunctionComponent = () => {
       if (currentUrl.split('?')[1]?.startsWith('token')) {
         localStorage.setItem('token', currentUrl.split('?')[1].split('=')[1]);
         const loginResult = await Login();
-        console.log('loginResult', loginResult);
 
         if (loginResult.code == 20000) {
           if (loginResult.data.SFRZH.startsWith('1')) {
             const result = await studentLogin({ sfrzh: loginResult.data.SFRZH });
-            console.log('result', result);
-
             if (result.code == 20000) {
               setUser(result.data); // 修改UserContext的值
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -57,7 +54,6 @@ const SignIn: FunctionComponent = () => {
                 : localStorage.setItem('useRole', JSON.stringify(['predict', 'unPredict']));
               /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
               history.replaceState(null, '', currentUrl.split('?')[0]);
-              console.log('window.location', window.location.href);
 
               result.data.hasPredict
                 ? navigate('/student/choice', {
@@ -67,7 +63,7 @@ const SignIn: FunctionComponent = () => {
                     replace: true
                   });
             }
-          } else if (loginResult.data.SFRZH.startsWith('0')) {
+          } else if (loginResult.data.SFRZH.startsWith('0') || loginResult.data.SFRZH.startsWith('7')) {
             const result = await teacherLogin({ sfrzh: loginResult.data.SFRZH });
             setUser(result.data); // 修改UserContext的值
             if (result.code === 20000) {
@@ -84,68 +80,9 @@ const SignIn: FunctionComponent = () => {
             }
           }
         }
-        // console.log('result',result);
-        // return
       }
     }
-
-    // const a = document.createElement('a');
-    // a.setAttribute('referrerpolicy','no-referrer')
-    // a.setAttribute('href', "http://172.20.2.82:8080/tyrzm/login/");
-    // a.click();
-    // window.open("http://172.20.2.82:8080/tyrzm/login/")
-    // navigate("http://172.20.2.82:8080/tyrzm/login");
-    // window.location.href='http://172.20.2.82:8080/tyrzm/login/'
-    // else if (signIhValue?.startsWith('1')) {
-    //   const result = await studentLogin({ sfrzh: signIhValue });
-    //   if (result.code === 20000) {
-    //     setUser(result.data); // 修改UserContext的值
-    //     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    //     JSON.parse(localStorage.getItem('info')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
-    //     /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
-    //     result.data.hasPredict
-    //       ? navigate('/student/choice', {
-    //           replace: true
-    //         })
-    //       : navigate('/student/welcome', {
-    //           replace: true
-    //         });
-    //   } else {
-    //     message.error('统一认证码输入错误');
-    //   }
-    //   return;
-    // } else if (signIhValue?.startsWith('0')) {
-    //   const result = await teacherLogin({ sfrzh: signIhValue });
-    //   setUser(result.data); // 修改UserContext的值
-
-    //   if (result.code === 20000) {
-    //     if (result.data.state === 0) {
-    //       setIsModalOpen(true);
-    //     } else {
-    //       localStorage.setItem('useRole', JSON.stringify(['teacher']));
-    //       localStorage.setItem('authority', result.data.state);
-    //       navigate('/teacher/predictresult', {
-    //         replace: true
-    //       });
-    //     }
-    //   } else {
-    //     message.error('统一认证码输入错误');
-    //   }
-    // }
   };
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('info')) {
-  //     const info = JSON.parse(localStorage.getItem('info') || '');
-  //     // info.hasPredict == 1 ? navigate('/student') : navigate('/student/questionnaire');
-  //   }
-  //   // console.log('执行力');
-
-  //   if (localStorage.getItem('token')) {
-  //     navigate('/teacher/predictresult');
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOk = async () => {

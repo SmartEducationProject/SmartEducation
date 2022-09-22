@@ -18,7 +18,6 @@ const Approve: FunctionComponent = () => {
   });
   //获取已授权教师信息
   const { data: approvedData, isLoading: approvedLoading } = useQuery('approvedTeacher', approvedTeacher);
-  console.log('approvedData', approvedData);
 
   interface RecordType {
     description: string;

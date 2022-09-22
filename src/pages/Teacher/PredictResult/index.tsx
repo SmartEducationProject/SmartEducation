@@ -295,8 +295,6 @@ const PredictResult: FunctionComponent = () => {
    * @return  {null}
    */
   const toApprove = () => {
-    console.log('mdc');
-
     navigator('/teacher/approve');
   };
 

@@ -28,8 +28,6 @@ axiosInstance.interceptors.request.use(
 // axios实例拦截响应
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log('AxiosResponse', response);
-
     if (response.data.data?.token && response.config.url?.startsWith('/teacher/login')) {
       localStorage.setItem('token', response.data.data.token);
       localStorage.setItem('info', JSON.stringify(response.data.data));
