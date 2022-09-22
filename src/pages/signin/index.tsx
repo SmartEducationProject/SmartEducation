@@ -41,7 +41,6 @@ const SignIn: FunctionComponent = () => {
       if (currentUrl.split('?')[1]?.startsWith('token')) {
         localStorage.setItem('token', currentUrl.split('?')[1].split('=')[1]);
         const loginResult = await Login();
-        console.log('loginResult', loginResult);
 
         if (loginResult.code == 20000) {
           if (loginResult.data.SFRZH.startsWith('1')) {
