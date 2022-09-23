@@ -27,34 +27,13 @@ function App() {
               <Route path="/*" element={<SignIn />}></Route>
               <Route path="/student" element={<Student />}>
                 {isPredictRoutes.map((route) => {
-                  const { key, path, ...otherProps } = route;
+                  const { key, path } = route;
                   return (
-                    <Route
-                      key={key}
-                      path={path}
-                      element={
-                        <AuthRoute key={key} {...otherProps}>
-                          {route.element}
-                        </AuthRoute>
-                      }
-                    >
+                    <Route key={key} path={path} element={<AuthRoute {...route}>{route.element}</AuthRoute>}>
                       {route.children
                         ? route.children.map((item) => {
-                            const { key, path, ...otherProps } = item;
-                            return (
-                              <Route
-                                key={key}
-                                path={path}
-                                element={
-                                  <AuthRoute key={key} path={path} {...otherProps}>
-                                    {item.element}
-                                  </AuthRoute>
-                                  //   <AuthRoute key={key} {...otherProps}>
-                                  //   {item.element}
-                                  // </AuthRoute>
-                                }
-                              />
-                            );
+                            const { key, path } = item;
+                            return <Route key={key} path={path} element={<AuthRoute {...item}>{route.element}</AuthRoute>} />;
                           })
                         : null}
                     </Route>

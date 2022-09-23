@@ -8,6 +8,8 @@ interface User {
   firstLogin?: string;
   hasPredict?: number;
   sfrzh?: string;
+  startTime?: string;
+  endTime?: string;
 }
 
 const UserContext = createContext<
