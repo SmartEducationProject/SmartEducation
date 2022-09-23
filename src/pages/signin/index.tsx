@@ -49,9 +49,7 @@ const SignIn: FunctionComponent = () => {
             if (result.code == 20000) {
               setUser(result.data); // 修改UserContext的值
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              JSON.parse(localStorage.getItem('info')!).hasPredict
-                ? localStorage.setItem('useRole', JSON.stringify(['predict']))
-                : localStorage.setItem('useRole', JSON.stringify(['predict', 'unPredict']));
+              JSON.parse(localStorage.getItem('info')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
               /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
               history.replaceState(null, '', currentUrl.split('?')[0]);
 

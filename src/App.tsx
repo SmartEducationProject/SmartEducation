@@ -49,6 +49,9 @@ function App() {
                                   <AuthRoute key={key} path={path} {...otherProps}>
                                     {item.element}
                                   </AuthRoute>
+                                  //   <AuthRoute key={key} {...otherProps}>
+                                  //   {item.element}
+                                  // </AuthRoute>
                                 }
                               />
                             );
