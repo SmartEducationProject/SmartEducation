@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './index.module.less';
-import PieDoughnut from '@/components/ProcessPieDoughnut';
+import PieDoughnut from 'components/ProcessPieDoughnut';
+import PartHeader from 'components/PartHeader';
+import useCqupt from 'utils/useCqupt';
 import { IComparison, Process } from 'types/college';
+import styles from './index.module.less';
 import iconImg from 'assets/pic/student/college-study-process.png';
-import useCqupt from '@/utils/useCqupt';
-import PartHeader from '@/components/PartHeader';
 
 interface StudyProcessProps {
   data: IComparison;
@@ -29,12 +29,12 @@ const StudyProcess: React.FC<StudyProcessProps> = ({ data }) => {
           <PieDoughnut index={1} subject="英语" month={english.student} />
           {/* <PieDoughnut index={2} subject="政治" month={math.student}  /> */}
           <PieDoughnut index={2} subject="专业课">
-            <p>数据结构开始复习的月份:{dataStructure.student}</p>
-            <p>计网开始复习的月份:{network.student}</p>
+            <p>数据结构开始复习的月份:{dataStructure.student || '无'}</p>
+            <p>计网开始复习的月份:{network.student || '无'}</p>
             {!isCqupt && (
               <>
-                <p>操作系统开始复习的月份:{system?.student}</p>
-                <p>计组开始复习的月份:{composition?.student}</p>
+                <p>操作系统开始复习的月份:{system?.student || '无'}</p>
+                <p>计组开始复习的月份:{composition?.student || '无'}</p>
               </>
             )}
           </PieDoughnut>
