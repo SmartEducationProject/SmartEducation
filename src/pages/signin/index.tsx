@@ -7,7 +7,7 @@ import { studentLogin } from 'api/student';
 import { addApplication, teacherLogin } from 'api/teacher';
 import { message, Modal, Input, InputRef } from 'antd';
 import { useUser } from 'context/userContext';
-import { Login } from '@/api/api';
+import { Login } from 'api/api';
 
 const SignIn: FunctionComponent = () => {
   const { setUser } = useUser(); // 修改UserContext的值
