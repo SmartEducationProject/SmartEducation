@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from 'context/userContext';
 import styles from './index.module.less';
-import { SwapOutlined } from '@ant-design/icons';
+import { SwapOutlined, LeftOutlined, RightOutlined, UserOutlined } from '@ant-design/icons';
 
 const Header = () => {
   const navigator = useNavigate();
@@ -40,9 +40,30 @@ const Header = () => {
   };
   return (
     <header className={styles['header']} ref={headerRef}>
-      <span ref={headerSpan} onClick={() => exitBtn()}>
-        CQUPT2022考研预测
-      </span>
+      <div className={styles['header-left']}>
+        <div
+          className={styles['back']}
+          onClick={() => {
+            navigator(-1);
+          }}
+        >
+          <LeftOutlined />
+        </div>
+
+        <div
+          className={styles['next']}
+          onClick={() => {
+            navigator(+1);
+          }}
+        >
+          <RightOutlined />
+        </div>
+
+        <span className={styles['header-title']} ref={headerSpan} onClick={() => exitBtn()}>
+          CQUPT2022 考研预测
+        </span>
+      </div>
+
       {location.pathname === '/' ? (
         <div className={styles['change-btn']} onClick={() => changeBtn()}>
           切换账号
@@ -50,6 +71,12 @@ const Header = () => {
         </div>
       ) : null}
       <div className={styles['user-box']} style={{ display: location.pathname === '/' ? 'none' : 'flex' }}>
+        <div className={styles['my-info']} onClick={() => navigator('/student/mine')}>
+          <span style={{ color: '#fff' }}>
+            {' '}
+            <UserOutlined /> 我的实时详情
+          </span>
+        </div>
         <span>{user?.name}</span>
         <div className={styles['exit-btn']} ref={headerDiv} onClick={() => exitBtn()}></div>
       </div>

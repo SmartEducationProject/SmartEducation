@@ -35,6 +35,7 @@ const Lib = () => {
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.position = 'absolute';
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.top = '580px';
       (document.querySelector(`.${styles['affix-box']}`) as HTMLDivElement).style.display = 'none';
+      (document.querySelector(`.${styles['back_college']}`) as HTMLDivElement).style.display = 'none;';
       // document.querySelectorAll(`.${styles['pie-box']} > div`).forEach((div) => {
       //   (div as HTMLDivElement).style.width = '40%';
       // });
@@ -44,6 +45,10 @@ const Lib = () => {
 
   return (
     <div id="lib-container" className={styles['lib-container']}>
+      {/* <Button className={styles['back_college']} shape="round" type="dashed" onClick={() => {}}>
+          返回重邮院校详情
+      </Button> */}
+
       <div className={styles['affix-box']}>
         <Affix offsetTop={220}>
           <Button shape="round" type="dashed" onClick={() => createSaveImg()}>

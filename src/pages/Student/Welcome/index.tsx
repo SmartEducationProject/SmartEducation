@@ -12,15 +12,16 @@ const Welcome = () => {
   const endTime = new Date(user?.endTime || 0);
 
   const goto = () => {
-    const now = new Date();
-    console.log(user?.startTime, user?.endTime);
-    if (startTime < now && now < endTime) {
-      navigate('/student/questionnaire');
-    } else if (now < startTime) {
-      message.error('填写问卷调查还没开始~');
-    } else {
-      message.error('填写问卷调查时间已过了~');
-    }
+    // const now = new Date();
+    // console.log(user?.startTime, user?.endTime);
+    // if (startTime < now && now < endTime) {
+    //   navigate('/student/questionnaire');
+    // } else if (now < startTime) {
+    //   message.error('填写问卷调查还没开始~');
+    // } else {
+    //   message.error('填写问卷调查时间已过了~');
+    // }
+    navigate('/student/questionnaire');
   };
 
   return (

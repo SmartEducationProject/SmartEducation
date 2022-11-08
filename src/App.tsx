@@ -25,7 +25,7 @@ function App() {
         <Suspense fallback={<FullPageWithLoading />}>
           <main className={styles['main']}>
             <Routes>
-              {/* <Route path="/*" element={<SignIn />}></Route> */}
+              <Route path="/*" element={<SignIn />}></Route>
               <Route path="/student" element={<Student />}>
                 {isPredictRoutes.map((route) => {
                   const { key, path, ...otherProps } = route;
