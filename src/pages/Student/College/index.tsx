@@ -1,5 +1,7 @@
 import React from 'react';
-import Header from './Header';
+import hatImg from 'assets/pic/student/college-hat.png';
+
+import { useNavigate } from 'react-router-dom';
 import CollegeRank from './CollegeRank';
 import StudyExperience from './StudyExperience';
 import StudyProcess from './StudyProcess';
@@ -11,13 +13,21 @@ import { IOtherCollegeExperience } from '@/types/college';
 
 const College = () => {
   const isCqupt = useCqupt();
+  const navigate = useNavigate();
+
   const { data: predictData } = usePredict();
   const { data: comparisonData } = useCompare(isCqupt);
   const { data: experienceData } = useExperience(isCqupt);
 
   return (
     <div className={styles['container']}>
-      <Header />
+      <header className={styles['college-header']}>
+        <img src={hatImg} className={styles['hat-img']} />
+        <h5>
+          以下是<span>{isCqupt ? '重庆邮电大学' : '其他院校'}</span>的考研数据，请查收！
+        </h5>
+      </header>
+
       <main>
         {predictData && <CollegeRank data={predictData} />}
         {comparisonData && (

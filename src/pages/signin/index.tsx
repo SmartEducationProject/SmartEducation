@@ -7,7 +7,7 @@ import { studentLogin } from 'api/student';
 import { addApplication, teacherLogin } from 'api/teacher';
 import { message, Modal, Input, InputRef } from 'antd';
 import { useUser } from 'context/userContext';
-import { Login } from '@/api/api';
+import { Login } from 'api/api';
 
 const SignIn: FunctionComponent = () => {
   const { setUser } = useUser(); // 修改UserContext的值
@@ -49,6 +49,7 @@ const SignIn: FunctionComponent = () => {
             if (result.code == 20000) {
               setUser(result.data); // 修改UserContext的值
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              console.log(JSON.parse(localStorage.getItem('info')!));
               JSON.parse(localStorage.getItem('info')!).hasPredict ? localStorage.setItem('useRole', JSON.stringify(['predict'])) : localStorage.setItem('useRole', JSON.stringify(['unPredict']));
               /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
               history.replaceState(null, '', currentUrl.split('?')[0]);
@@ -57,7 +58,7 @@ const SignIn: FunctionComponent = () => {
                 ? navigate('/student/choice', {
                     replace: true
                   })
-                : navigate('/student/welcome', {
+                : navigate('/student/choice', {
                     replace: true
                   });
             } else {
