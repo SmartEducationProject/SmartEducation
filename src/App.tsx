@@ -11,6 +11,7 @@ import FullPageErrorFallback from 'components/FullPageErrorFallback';
 import styles from './app.module.less';
 import './app.less';
 
+import useMulRoute from './utils/useMulRoute';
 const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
 
@@ -30,12 +31,13 @@ function App() {
                   const { key, path, ...otherProps } = route;
                   return (
                     <Route key={key} path={path} element={<AuthRoute {...route}>{route.element}</AuthRoute>}>
-                      {route.children
+                      {/* {route.children
                         ? route.children.map((item) => {
                             const { key, path, ...otherProps } = item;
                             return <Route key={key} path={path} element={<AuthRoute {...item}>{route.element}</AuthRoute>} />;
                           })
-                        : null}
+                        : null} */}
+                      {route.children ? useMulRoute(route) : null}
                     </Route>
                   );
                 })}

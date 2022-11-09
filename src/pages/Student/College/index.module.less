@@ -8,13 +8,34 @@
   min-height: 100%;
 
   & > main {
-    margin-top: calc(@college-header-height + @header-height);
+    // margin-top: calc(@college-header-height);
     min-height: calc(100vh - @header-height - @college-header-height - @footer-height);
   }
 
   & > footer {
     height: 20px;
     background-color: rgb(121, 180, 74);
+  }
+
+  .college-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    line-height: @college-header-height;
+    font-size: 20px;
+    border-bottom: 2px solid rgb(121, 180, 74);
+    .hat-img {
+      width: 30px;
+      margin-left: 40px;
+    }
+
+    h5 {
+      display: inline-block;
+      margin: 0 0 0 10px;
+      color: @font-green;
+      font-weight: normal;
+    }
   }
 }
 
