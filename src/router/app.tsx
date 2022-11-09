@@ -1,8 +1,12 @@
 import React, { lazy } from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
 import SignIn from 'pages/signin';
+
 const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
+const HotCollege = lazy(() => import('pages/Student/HotCollege'));
+const Share = lazy(() => import('pages/Student/Share'));
+const Leader = lazy(() => import('pages/Student/Leader'));
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
@@ -40,8 +44,20 @@ const routes: RouteObject[] = [
         element: <College />
       },
       {
+        path: 'hotCollege',
+        element: <HotCollege />
+      },
+      {
         path: 'previous',
         element: <Previous />
+      },
+      {
+        path: 'share',
+        element: <Share />
+      },
+      {
+        path: 'leader',
+        element: <Leader />
       },
       {
         path: 'mine/*',
