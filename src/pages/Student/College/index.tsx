@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import hatImg from 'assets/pic/student/college-hat.png';
 
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,8 @@ import styles from './index.module.less';
 import useCqupt from '@/utils/useCqupt';
 import { IOtherCollegeExperience } from '@/types/college';
 
+import Loading from '@/components/Loading';
+
 const College = () => {
   const isCqupt = useCqupt();
   const navigate = useNavigate();
@@ -18,6 +20,13 @@ const College = () => {
   const { data: predictData } = usePredict();
   const { data: comparisonData } = useCompare(isCqupt);
   const { data: experienceData } = useExperience(isCqupt);
+  let [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <div className={styles['container']}>
@@ -28,16 +37,22 @@ const College = () => {
         </h5>
       </header>
 
-      <main>
-        {predictData && <CollegeRank data={predictData} />}
-        {comparisonData && (
-          <>
-            <StudyTime data={comparisonData} />
-            <StudyProcess data={comparisonData} />
-          </>
-        )}
-        {experienceData && <StudyExperience data={experienceData} />}
-      </main>
+      {loading ? (
+        <main>
+          <Loading></Loading>
+        </main>
+      ) : (
+        <main>
+          {predictData && <CollegeRank data={predictData} />}
+          {comparisonData && (
+            <>
+              <StudyTime data={comparisonData} />
+              <StudyProcess data={comparisonData} />
+            </>
+          )}
+          {experienceData && <StudyExperience data={experienceData} />}
+        </main>
+      )}
       <footer />
     </div>
   );
