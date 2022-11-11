@@ -37,7 +37,7 @@ const College = () => {
         </h5>
       </header>
 
-      {loading ? (
+      {loading || !(predictData || comparisonData || experienceData) ? (
         <main>
           <Loading></Loading>
         </main>
