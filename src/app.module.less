@@ -2,9 +2,9 @@
 
 .app {
   font-family: 'Microsoft YaHei';
-  min-height: calc(100vh - @header-height);
+  height: calc(100vh - @header-line-height);
   line-height: 1.15;
-
+  position: relative;
   p {
     font-size: 16px;
   }
@@ -28,7 +28,7 @@
     // width: 100vw;
     margin: 0 auto;
     // min-height: 500px;
-    height: calc(100vh - @header-height);
-    margin-top: 40px;
+    height: calc(100vh - @header-line-height);
+    margin-top: @header-line-height;
   }
 }

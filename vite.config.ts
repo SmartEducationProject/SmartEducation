@@ -16,6 +16,7 @@ export default defineConfig({
       ]
     })
   ],
+
   server: {
     cors: true,
     proxy: {
@@ -26,6 +27,7 @@ export default defineConfig({
       }
     }
   },
+
   css: {
     preprocessorOptions: {
       less: {
@@ -37,6 +39,7 @@ export default defineConfig({
       }
     }
   },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

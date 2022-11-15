@@ -6,7 +6,7 @@
   background-color: @middle-green;
   // width: 100%;
   width: 1000px;
-  height: calc(100vh - @header-height);
+  height: calc(100vh - @header-line-height);
 
   & > main {
     position: relative;
@@ -39,21 +39,46 @@
         width: 80%;
         margin: 55px 0 0 80px;
       }
+      .btns {
+        color: @high-green;
+        width: 80%;
+        margin: 55px 0 0 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-      button:nth-of-type(1) {
-        .btn-with-bg(url('assets/pic/student/choice-cqupt.png'), 200px, 38px);
-        margin: 60px 0 0 145px;
+        button {
+          width: 50%;
+          display: block;
+          border: 1px solid @high-green;
+          background-color: rgba(0, 0, 0, 0.1);
+          line-height: 30px;
+          margin: 10px;
+          border-radius: 5px;
+          font-size: 18px;
+          font-weight: 444;
+          transition: all 0.2s ease-in;
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+          }
+        }
       }
 
-      button:nth-of-type(2) {
-        .btn-with-bg(url('assets/pic/student/choice-other.png'), 200px, 38px);
-        margin: 60px 0 0 145px;
-      }
+      // button:nth-of-type(1) {
+      //   .btn-with-bg(url('assets/pic/student/choice-cqupt.png'), 200px, 38px);
+      //   margin: 60px 0 0 145px;
+      // }
 
-      button:nth-of-type(3) {
-        .btn-with-bg(url('assets/pic/student/previous-btn.png'), 199px, 37px);
-        margin: 60px 0 0 145px;
-      }
+      // button:nth-of-type(2) {
+      //   .btn-with-bg(url('assets/pic/student/choice-other.png'), 200px, 38px);
+      //   margin: 60px 0 0 145px;
+      // }
+
+      // button:nth-of-type(3) {
+      //   .btn-with-bg(url('assets/pic/student/previous-btn.png'), 199px, 37px);
+      //   margin: 60px 0 0 145px;
+      // }
     }
   }
 }
