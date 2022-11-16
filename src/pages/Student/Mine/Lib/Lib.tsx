@@ -35,7 +35,6 @@ const Lib = () => {
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.position = 'absolute';
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.top = '580px';
       (document.querySelector(`.${styles['affix-box']}`) as HTMLDivElement).style.display = 'none';
-      (document.querySelector(`.${styles['back_college']}`) as HTMLDivElement).style.display = 'none;';
       // document.querySelectorAll(`.${styles['pie-box']} > div`).forEach((div) => {
       //   (div as HTMLDivElement).style.width = '40%';
       // });
