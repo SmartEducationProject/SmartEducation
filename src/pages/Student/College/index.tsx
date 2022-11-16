@@ -17,9 +17,10 @@ const College = () => {
   const isCqupt = useCqupt();
   const navigate = useNavigate();
 
-  const { data: predictData } = usePredict();
-  const { data: comparisonData } = useCompare(isCqupt);
-  const { data: experienceData } = useExperience(isCqupt);
+  const { data: predictData, isFetching: prdFetching } = usePredict();
+  const { data: comparisonData, isFetching: cmpFetching } = useCompare(isCqupt);
+  const { data: experienceData, isFetching: expFetching } = useExperience(isCqupt);
+
   let [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -36,8 +37,9 @@ const College = () => {
           以下是<span>{isCqupt ? '重庆邮电大学' : '其他院校'}</span>的考研数据，请查收！
         </h5>
       </header>
-
-      {loading || !(predictData || comparisonData || experienceData) ? (
+      {/* loading优先--固定不少于2s； 其次，只有三个数据全部拿到了的情况下展示 (注意loading是true->false) */}
+      {/* loading || !(predictData && comparisonData && experienceData) */}
+      {loading || (prdFetching && cmpFetching && expFetching) ? (
         <main>
           <Loading></Loading>
         </main>
