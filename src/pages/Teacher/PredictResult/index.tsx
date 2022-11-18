@@ -37,7 +37,7 @@ const PredictResult: FunctionComponent = () => {
     id: number;
     class: string;
     name: string;
-    stdId: string;
+    stuId: string;
     submitTime: string;
     college: collegeType[];
   }
@@ -161,7 +161,19 @@ const PredictResult: FunctionComponent = () => {
         {
           title: '姓名',
           dataIndex: 'name',
-          width: 60
+          width: 60,
+          render: (...args) => {
+            return (
+              <span
+                onClick={() => {
+                  navigator(`/teacher/studentInfo?stuId=${args[1].stuId}`);
+                }}
+                style={{ cursor: 'pointer', display: 'block' }}
+              >
+                {args[1].name}
+              </span>
+            );
+          }
         },
         {
           title: '学号',
@@ -307,6 +319,9 @@ const PredictResult: FunctionComponent = () => {
               应提交{total}人，已提交{submitted}人，未提交{unsubmitted}人
             </span>
             <span onClick={() => uncommittedPage()}>查看学生名单</span>
+            <div>
+              小提示: &nbsp; <span style={{ color: '#fff' }}>点击学生姓名可查看学生相关信息</span>
+            </div>
           </div>
           <div className={styles['header-right']}>
             <div className={styles['search']}>

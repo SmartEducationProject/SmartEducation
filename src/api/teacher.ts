@@ -1,5 +1,6 @@
 import { IResponse, isAgreeType, ISearch } from 'types/Request';
 import { axiosInstance } from 'utils/request';
+import { useQuery } from 'react-query';
 
 //获取老师端未提交学生名单
 export const UnSubmitted = (): Promise<IResponse> => {
@@ -72,5 +73,36 @@ export const addApplication = (params: { description: string }): Promise<IRespon
 export const approvedTeacher = (): Promise<IResponse> => {
   return axiosInstance.get('/teacher/getHasAgree').then((res) => {
     return res.data;
+  });
+};
+
+type combinType = string | number;
+export interface infoType {
+  motivation: combinType;
+  solo: combinType;
+  startTime: combinType;
+  dailyStartTime: combinType;
+  dailyEndTime: combinType;
+  place: combinType;
+  mathStartTime: combinType;
+  mathFirstRoundTime: combinType;
+  mathSecondRoundTim: combinType;
+  englishStartTime: combinType;
+  politicsStartTime: combinType;
+  specializedCoursesStartTim: combinType;
+  computerNetworks: combinType;
+  noonTime: combinType;
+  exerciseTime: combinType;
+
+  [key: string]: combinType;
+}
+interface resType {
+  questionnaire: infoType;
+}
+// 获取学生信息
+export const useStudentInfo = (stuId: string | number) => {
+  return useQuery<resType>(['stuInfo', stuId], () => axiosInstance.post('/teacher/getQuestionnaire', { XH: stuId }).then((res) => res.data.data), {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
   });
 };

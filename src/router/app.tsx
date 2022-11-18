@@ -14,10 +14,11 @@ const College = lazy(() => import('pages/Student/College'));
 const Previous = lazy(() => import('pages/Student/Previous'));
 const Message = lazy(() => import('pages/Teacher/PredictResult'));
 const UncommittedPage = lazy(() => import('pages/Teacher/UnCommitted'));
+const StudentInfo = lazy(() => import('pages/Teacher/StudentInfo'));
+
 const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
-
 const routes: RouteObject[] = [
   {
     path: '/',
@@ -94,6 +95,10 @@ const routes: RouteObject[] = [
       {
         path: 'uncommitted',
         element: <UncommittedPage />
+      },
+      {
+        path: 'studentInfo',
+        element: <StudentInfo />
       }
     ]
   },
