@@ -76,32 +76,40 @@ export const approvedTeacher = (): Promise<IResponse> => {
   });
 };
 
-type combinType = string | number;
 export interface infoType {
-  motivation: combinType;
-  solo: combinType;
-  startTime: combinType;
-  dailyStartTime: combinType;
-  dailyEndTime: combinType;
-  place: combinType;
-  mathStartTime: combinType;
-  mathFirstRoundTime: combinType;
-  mathSecondRoundTim: combinType;
-  englishStartTime: combinType;
-  politicsStartTime: combinType;
-  specializedCoursesStartTim: combinType;
-  computerNetworks: combinType;
-  noonTime: combinType;
-  exerciseTime: combinType;
+  motivation: number;
+  solo: number;
 
-  [key: string]: combinType;
+  startTime: number;
+  dailyStartTime: number;
+  dailyEndTime: number;
+
+  place: number;
+
+  mathStartTime: number;
+  mathFirstRoundTime: number;
+  mathSecondRoundTime: number;
+
+  englishStartTime: number;
+
+  politicsStartTime: number;
+
+  specializedCoursesStartTime: number;
+  computerNetworks: number;
+  operatingSystems: number;
+  computerComposition: number;
+
+  noonTime: number;
+  exerciseTime: number;
+  [key: string]: string | number;
 }
+
 interface resType {
   questionnaire: infoType;
 }
 // 获取学生信息
-export const useStudentInfo = (stuId: string | number) => {
-  return useQuery<resType>(['stuInfo', stuId], () => axiosInstance.post('/teacher/getQuestionnaire', { XH: stuId }).then((res) => res.data.data), {
+export const useStudentInfo = (stuId: number) => {
+  return useQuery<resType>(['stuInfo', stuId], () => axiosInstance.get(`/teacher/getQuestionnaire?XH=${stuId}`).then((res) => res.data.data), {
     staleTime: 1000 * 60 * 60, // 1小时
     cacheTime: 1000 * 60 * 60 * 2 // 2小时
   });

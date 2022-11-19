@@ -297,9 +297,10 @@ const PredictResult: FunctionComponent = () => {
     setTableData(StatisticsData?.data.list);
   }, [StatisticsData]);
 
-  if (isLoading || StatisticsIsLoading) {
-    return <Spin />;
-  }
+  // Table展示loading
+  // if (isLoading || StatisticsIsLoading) {
+  //   return <Spin />;
+  // }
 
   /**
    * @description:点击前往审批页面
@@ -361,6 +362,7 @@ const PredictResult: FunctionComponent = () => {
             dataSource={tableData}
             onChange={onChange}
             pagination={false}
+            loading={isLoading || StatisticsIsLoading}
           />
         </div>
       </div>
