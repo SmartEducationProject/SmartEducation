@@ -1,6 +1,9 @@
 import { lazy } from 'react';
 const HotCollege = lazy(() => import('pages/Student/HotCollege'));
 const Share = lazy(() => import('pages/Student/Share'));
+const ShareTopic = lazy(() => import('pages/Student/Share/Topic'));
+const ShareWall = lazy(() => import('pages/Student/Share/Wall'));
+const ShareDetail = lazy(() => import('pages/Student/Share/Detail'));
 const Leader = lazy(() => import('pages/Student/Leader'));
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
@@ -42,9 +45,32 @@ export const isPredictRoutes = [
   },
   {
     key: 'share',
-    path: 'share',
+    path: 'share/*',
     role: '',
     element: Share,
+    children: [
+      {
+        key: 'topic',
+        path: '',
+        role: '',
+        element: ShareTopic,
+        backUrl: hasPredict ? '/student/share' : '/student/welcome'
+      },
+      {
+        key: 'wall',
+        path: 'wall',
+        role: '',
+        element: ShareWall,
+        backUrl: hasPredict ? '/student/share' : '/student/welcome'
+      },
+      {
+        key: 'detail',
+        path: 'detail',
+        role: '',
+        element: ShareDetail,
+        backUrl: hasPredict ? '/student/share' : '/student/welcome'
+      }
+    ],
     backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
   {
