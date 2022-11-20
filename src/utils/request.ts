@@ -12,15 +12,20 @@ export const axiosInstance: AxiosInstance = axios.create({
 // axios实例拦截请求
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    console.log('url', config.url);
     // if (config.url?.startsWith('/teacher/login') || config.url?.startsWith('/student/login')) return config; // 登录不需要带token
-
+    if (config.url?.startsWith('/college')) {
+      return config;
+    }
     const token = localStorage.getItem('token') || JSON.parse(localStorage.getItem(`info`) as string).token;
+    console.log('token', token);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     if (token) config.headers!.token = token;
 
     return config;
   },
   (error: unknown) => {
+    console.log('error');
     return Promise.reject(error);
   }
 );
@@ -46,8 +51,7 @@ axiosInstance.interceptors.response.use(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (error: any) => {
     // const { response } = error;
-    console.log(error);
-    message.error('网络连接异常,请检查是否使用校园网或稍后再试!');
+    message.error('网络连接异常,请检查是否使用校园网或稍后再试');
     return error;
   }
 );

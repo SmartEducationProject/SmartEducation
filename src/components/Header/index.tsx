@@ -62,6 +62,20 @@ const Header = () => {
         <span className={styles['header-title']} ref={headerSpan} onClick={() => exitBtn()}>
           CQUPT2022 考研预测
         </span>
+        <button
+          onClick={() => {
+            navigator('/leader');
+          }}
+        >
+          去导师
+        </button>
+        <button
+          onClick={() => {
+            navigator('/leader/leaderInfo');
+          }}
+        >
+          去导师详情
+        </button>
       </div>
 
       {location.pathname === '/' ? (
@@ -74,7 +88,7 @@ const Header = () => {
         <div className={styles['my-info']} onClick={() => navigator('/student/mine')}>
           {
             // 老师页面没有'我的详情'选择，否则跳转到了学生页面产生bug
-            location.pathname === '/student' && (
+            location.pathname.split('/')[1] === 'student' && (
               <span style={{ color: '#fff' }}>
                 {' '}
                 <UserOutlined /> 我的实时详情

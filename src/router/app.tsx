@@ -6,7 +6,7 @@ const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
 const HotCollege = lazy(() => import('pages/Student/HotCollege'));
 const Share = lazy(() => import('pages/Student/Share'));
-const Leader = lazy(() => import('pages/Student/Leader'));
+
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
@@ -19,10 +19,24 @@ const StudentInfo = lazy(() => import('pages/Teacher/StudentInfo'));
 const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
+
+const Leader = lazy(() => import('pages/leader/Leader'));
+const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
+
 const routes: RouteObject[] = [
   {
     path: '/',
     element: <SignIn />
+  },
+  {
+    path: '/leader/*',
+    element: <Leader />,
+    children: [
+      {
+        path: 'leaderInfo',
+        element: <LeaderInfo />
+      }
+    ]
   },
   {
     path: '/student/*',
@@ -59,6 +73,10 @@ const routes: RouteObject[] = [
       {
         path: 'leader',
         element: <Leader />
+      },
+      {
+        path: 'leader/leaderinfo',
+        element: <LeaderInfo />
       },
       {
         path: 'mine/*',
@@ -102,6 +120,7 @@ const routes: RouteObject[] = [
       }
     ]
   },
+
   {
     path: '*',
     element: <Navigate to="/" replace={true} />

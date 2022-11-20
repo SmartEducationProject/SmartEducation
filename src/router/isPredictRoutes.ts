@@ -1,7 +1,10 @@
 import { lazy } from 'react';
 const HotCollege = lazy(() => import('pages/Student/HotCollege'));
 const Share = lazy(() => import('pages/Student/Share'));
-const Leader = lazy(() => import('pages/Student/Leader'));
+
+// const Leader = lazy(() => import('pages/leader/Leader'));
+// const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
+
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
@@ -36,24 +39,31 @@ export const isPredictRoutes = [
   {
     key: 'previous',
     path: 'previous',
-    role: '',
+    role: 'predict',
     element: Previous,
     backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
   {
     key: 'share',
     path: 'share',
-    role: '',
+    role: 'predict',
     element: Share,
     backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
-  {
-    key: 'leader',
-    path: 'leader',
-    role: '',
-    element: Leader,
-    backUrl: hasPredict ? '/student/choice' : '/student/welcome'
-  },
+  // {
+  //   key: 'leader',
+  //   path: 'leader',
+  //   role: 'unPredict',
+  //   element: Leader,
+  //   backUrl: '/student/choice'
+  // },
+  // {
+  //   key: 'leaderinfo',
+  //   path: 'leaderinfo',
+  //   role: 'unPredict',
+  //   element: LeaderInfo,
+  //   backUrl: '/student/choice'
+  // },
   {
     key: 'mine',
     path: 'mine/*',
