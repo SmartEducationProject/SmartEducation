@@ -3,6 +3,7 @@ import { Person } from 'types/Share';
 import studentPng from '../../../../assets/pic/student/college-student-right.png';
 import styles from './index.module.less';
 import studentPic from '../../../../assets/pic/student/student.png';
+import { useNavigate } from 'react-router-dom';
 
 const mock: Person = {
   key: 0,
@@ -20,13 +21,15 @@ const mock: Person = {
 export default function () {
   const [person, setPerson] = useState<Person>();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setPerson(mock);
   }, []);
 
   return (
     <>
-      <header className={styles['bar']}>
+      <header className={styles['bar']} onClick={() => navigate(-1)}>
         <img src={studentPic} alt={'student picture'} />
         <div>
           <h2>{person?.name}</h2>
