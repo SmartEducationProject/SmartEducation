@@ -1,54 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { Person } from 'types/Share';
+import React from 'react';
 import studentPng from '../../../../assets/pic/student/college-student-right.png';
 import styles from './index.module.less';
 import studentPic from '../../../../assets/pic/student/student.png';
-import { useNavigate } from 'react-router-dom';
-
-const mock: Person = {
-  key: 0,
-  name: '周星',
-  applyCollege: '重庆邮电大学',
-  originalMajor: '计算机科学与技术',
-  type: '学硕',
-  word: 'xxxxxxx',
-  applyMajor: '计算机系',
-  exam: ['政治', '英语', '理论基础', '专业基础'],
-  score: 380,
-  theoryScore: 129
-};
+import { useLocation, useNavigate } from 'react-router-dom';
+import { IOtherCollegeExperience } from 'types/college';
 
 export default function () {
-  const [person, setPerson] = useState<Person>();
-
+  const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setPerson(mock);
-  }, []);
+  const experience: IOtherCollegeExperience = location.state.experience;
 
   return (
     <>
       <header className={styles['bar']} onClick={() => navigate(-1)}>
-        <img src={studentPic} alt={'student picture'} />
+        <section>
+          <img src={studentPic} alt={'student picture'} />
+          <h2>{experience.name}</h2>&nbsp;
+        </section>
         <div>
-          <h2>{person?.name}</h2>
           <p>
-            <b>{person?.type}</b>&nbsp;
-            <b>本科专业：</b>
-            {person?.originalMajor}&nbsp;
-            <b>报考专业：</b>
-            {person?.applyMajor}
+            <b>{experience.college}</b>&nbsp;
+          </p>
+          <p>
+            <b>推荐资源:</b>
+            {experience.source.map((item) => ` ${item}`)}&nbsp;
+          </p>
+          <p>
+            <b>推荐老师:</b>
+            {experience.teacher.map((item) => ` ${item}`)}
           </p>
         </div>
         <img src={studentPng} alt={'student png'} />
       </header>
 
       <main>
-        <p>考试科目：{person?.exam.map((subject) => subject)}</p>
-        <p>总分：{person?.score}</p>
-        <p>理论基础分数：{person?.theoryScore}</p>
-        <p>{person?.word}</p>
+        <p className={styles['experience']}>{experience.experience}</p>
       </main>
     </>
   );
