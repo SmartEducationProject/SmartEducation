@@ -17,7 +17,8 @@ const mock1 = [
     college: '重庆大学'
   }
 ];
-const mock2 = [
+const mock2: any[] = [];
+const mock3 = [
   {
     key: 1,
     subject: '政治'
@@ -53,6 +54,19 @@ export default function () {
         <h2>高校自主命题分享墙</h2>
         <ul>
           {mock2.map((item) => (
+            <li key={item.key}>
+              <Link to={'/student/share/wall'}>
+                <span>{item.subject}</span>
+                经验分享墙
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles['wall']}>
+        <h2>各科目分享标题</h2>
+        <ul>
+          {mock3.map((item) => (
             <li key={item.key}>
               <Link to={'/student/share/wall'}>
                 <span>{item.subject}</span>
