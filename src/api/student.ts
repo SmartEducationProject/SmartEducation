@@ -86,16 +86,6 @@ export const useExperience = (isCqupt: boolean) => {
 };
 
 /**
- * @description 获取升学考取外校具体情况
- */
-export const usePreviousOtherDetail = () => {
-  return useQuery<IPreviousDetail>(['previous-other-detail'], () => axiosInstance.get(`/college/detail`).then((res) => res.data.data), {
-    staleTime: 1000 * 60 * 60, // 1小时
-    cacheTime: 1000 * 60 * 60 * 2 // 2小时
-  });
-};
-
-/**
  * @description 获取升学总体情况
  */
 export const usePreviousOverall = () => {

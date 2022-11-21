@@ -12,11 +12,8 @@ export const axiosInstance: AxiosInstance = axios.create({
 // axios实例拦截请求
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log('url', config.url);
     // if (config.url?.startsWith('/teacher/login') || config.url?.startsWith('/student/login')) return config; // 登录不需要带token
-    if (config.url?.startsWith('/college')) {
-      return config;
-    }
+
     const token = localStorage.getItem('token') || JSON.parse(localStorage.getItem(`info`) as string).token;
     console.log('token', token);
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

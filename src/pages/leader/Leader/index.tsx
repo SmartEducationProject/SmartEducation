@@ -5,9 +5,6 @@ import PartHeader from '@/components/PartHeader';
 import iconImg from 'assets/pic/student/bar.png';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
-import { ColumnGroupType, ColumnsType } from 'antd/lib/table';
-import { usePreviousOtherDetail } from '@/api/student';
-import { IPreviousDetailCollege } from '@/types/previous';
 import type { PaginationProps } from 'antd';
 import { Pagination } from 'antd';
 import { useState } from 'react';
@@ -57,7 +54,6 @@ const Paginations: React.FC<selfProps> = (props) => {
 
 const Leader = () => {
   const navigate = useNavigate();
-  const { data, isFetching } = usePreviousOtherDetail();
   const [currentpage, setcurrentpage] = useState<number>(1);
 
   const getCurrentPage = (val: number) => {

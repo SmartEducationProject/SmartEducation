@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import styles from './index.module.less';
 import { Badge, Descriptions } from 'antd';
-
+import img from 'assets/pic/leader/1.jpg';
 const Description: React.FC = () => (
   <Descriptions title="" layout="vertical" bordered size="default">
     <Descriptions.Item label="">
-      <img src="src/assets/pic/leader/1.jpg" className={styles['img-container']}></img>
+      <img src={img} className={styles['img-container']}></img>
     </Descriptions.Item>
     <Descriptions.Item label="联系方式">chenqs@cqupt.edu.cn</Descriptions.Item>
     <Descriptions.Item label="主要研究方向">图像处理、大数据分析和区块链技术</Descriptions.Item>
