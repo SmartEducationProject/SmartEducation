@@ -14,7 +14,7 @@ import './app.less';
 import useMulRoute from './utils/useMulRoute';
 const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
-const Leader = lazy(() => import('pages/leader/Leader'));
+const Leader = lazy(() => import('@/pages/leader/Leader'));
 const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
 
 function App() {

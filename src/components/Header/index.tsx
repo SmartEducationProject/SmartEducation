@@ -67,14 +67,7 @@ const Header = () => {
             navigator('/leader');
           }}
         >
-          去导师
-        </button>
-        <button
-          onClick={() => {
-            navigator('/leader/leaderInfo');
-          }}
-        >
-          去导师详情
+          查看导师信息
         </button>
       </div>
 

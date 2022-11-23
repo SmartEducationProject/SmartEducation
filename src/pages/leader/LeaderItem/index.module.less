@@ -1,0 +1,62 @@
+.teacher-container {
+  // background-color: rgb(163, 60, 60);
+  padding: 0;
+  li {
+    list-style: none;
+    width: 200px;
+    height: 320px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: all 0.2s linear;
+    &:hover {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    }
+    img {
+      position: relative;
+      height: 200px;
+      width: 100%;
+    }
+
+    .name {
+      text-align: center;
+      line-height: 30px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .title {
+      position: relative;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 16px;
+      letter-spacing: 2px;
+      overflow: hidden;
+    }
+
+    .redirection {
+      height: calc(100% - 200px - 70px);
+      width: 100%;
+      font-size: 13px;
+      font-weight: 555;
+      letter-spacing: 1px;
+      padding: 10px 10px;
+      line-height: 20px;
+
+      -webkit-line-clamp: 2; //（用来限制在一个块元素显示的文本的行数，2 表示最多显示 2 行。为了实现该效果，它需要组合其他的 WebKit 属性）
+      display: -webkit-box; //（和 1 结合使用，将对象作为弹性伸缩盒子模型显示 ）
+      -webkit-box-orient: vertical; //（和 1 结合使用 ，设置或检索伸缩盒对象的子元素的排列方式 ）
+      overflow: hidden; //（文本溢出限定的宽度就隐藏内容）
+      text-overflow: ellipsis; //（多行文本的情况下，用省略号 “…” 隐藏溢出范围的文本)
+    }
+    .views {
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0px 20px;
+      align-items: center;
+    }
+  }
+}

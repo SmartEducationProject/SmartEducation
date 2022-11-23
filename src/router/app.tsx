@@ -20,7 +20,7 @@ const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
 
-const Leader = lazy(() => import('pages/leader/Leader'));
+const Leader = lazy(() => import('@/pages/leader/Leader'));
 const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
 
 const routes: RouteObject[] = [

@@ -1,141 +1,70 @@
-import React, { Component } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './index.module.less';
-import { useNavigate } from 'react-router-dom';
-import PartHeader from '@/components/PartHeader';
-import iconImg from 'assets/pic/student/bar.png';
-import { AudioOutlined } from '@ant-design/icons';
-import { Input, Space } from 'antd';
-import type { PaginationProps } from 'antd';
+import { LeaderItem as LeaderItemType, LeaderPageInfo } from '@/types/leader';
+
 import { Pagination } from 'antd';
-import { useState } from 'react';
-import teachers from '@/pages/leader/Leader/teachers';
-import { List } from 'echarts';
 
-type selfProps = {
-  getCurrent: Function;
-};
-// interface LeaderProps {
-//   year: number;
-//   teachers: List;
-//   start: number;
-//   end: number;
-// }
-const { Search } = Input;
-const suffix = (
-  <AudioOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff'
-    }}
-  />
-);
-const onSearch = (value: string) => console.log(value);
-const Searchs: React.FC = () => (
-  <Space direction="vertical">
-    <Search placeholder="输入导师相关信息以查找" allowClear enterButton size="large" onSearch={onSearch} />
-  </Space>
-);
+import { getLeaderList, searchLeaderList } from '@/api/leader';
 
-const Paginations: React.FC<selfProps> = (props) => {
-  const { getCurrent } = props;
+import LeaderItem from '../LeaderItem/Index';
+import Searchs from '../Search';
+
+const Leaders = () => {
   const [currentpage, setcurrentpage] = useState<number>(1);
+  const [totalPg, setTotalPg] = useState<number>(1);
 
-  const [current, setCurrent] = useState(1);
+  const [leaderList, setLeaderList] = useState<LeaderItemType[]>([]);
 
-  const onChange: PaginationProps['onChange'] = (page) => {
-    setcurrentpage(page);
-    getCurrent(page);
-    // console.log(page);
-    setCurrent(page);
+  let setLeader = useCallback(setLeaderList, []);
+
+  let newPageInfo: LeaderPageInfo;
+
+  const getLeaderListFun = async () => {
+    if (localStorage.getItem('currentPage')) {
+      let localIndex = +localStorage.getItem('currentPage')!;
+      newPageInfo = await getLeaderList({ page: localIndex.toString() });
+      setcurrentpage(localIndex);
+    } else {
+      localStorage.setItem('currentPage', `${currentpage}`);
+      newPageInfo = await getLeaderList({ page: currentpage.toString() });
+    }
+
+    let { current, items, total } = newPageInfo;
+    setTotalPg(total); //设置页面总数
+    setLeaderList(items); // 设置leaderList总数
   };
 
-  return <Pagination current={current} onChange={onChange} total={30} />;
-};
+  const onChange = (index: number) => {
+    setcurrentpage(index);
+    localStorage.setItem('currentPage', `${index}`);
+  };
 
-const Leader = () => {
-  const navigate = useNavigate();
-  const [currentpage, setcurrentpage] = useState<number>(1);
+  useEffect(() => {
+    getLeaderListFun();
 
-  const getCurrentPage = (val: number) => {
-    setcurrentpage(val);
-
-    const handleClick = () => {
-      console.log(1);
+    return () => {
+      // 卸载组件清除数据，避免再次进去出现bug
+      localStorage.getItem('currentPage') && localStorage.removeItem('currentPage');
+      // localStorage.getItem('item') && localStorage.removeItem('item')
     };
-  };
+  }, [currentpage]);
+
   return (
-    <div>
-      <div className={styles['detail-container']}>
-        {/* <PartHeader title={`我院${year}届学生升学考取外校具体情况`} icon={iconImg} /> */}
-        <div className={styles['search-container']}>
-          {' '}
-          <Searchs></Searchs>
-        </div>
-        <ul className={styles['teacher-container']}>
-          <li id="0" onClick={() => navigate('/leader/leaderInfo')}>
-            <img src={teachers[(currentpage - 1) * 8].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8].redirection}</div>
-          </li>
-          <li id="1" onClick={(e) => console.log(e)}>
-            <img src={teachers[(currentpage - 1) * 8 + 1].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 1].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 1].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8 + 1].redirection}</div>
-          </li>
-          <li>
-            <img src={teachers[(currentpage - 1) * 8 + 2].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 2].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 2].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8 + 2].redirection}</div>
-          </li>
-          <li>
-            <img src={teachers[(currentpage - 1) * 8 + 3].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 3].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 3].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8 + 3].redirection}</div>
-          </li>
-          <li>
-            <img src={teachers[(currentpage - 1) * 8 + 4].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 4].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 4].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8 + 4].redirection}</div>
-          </li>
-          <li>
-            <img src={teachers[(currentpage - 1) * 8 + 5].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 5].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 5].title}</div>
-            <div className={styles['redirection']}>{teachers[currentpage + 5].redirection}</div>
-          </li>
-          <li>
-            <img src={teachers[(currentpage - 1) * 8 + 6].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 6].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 6].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8 + 6].redirection}</div>
-          </li>
-          <li>
-            <img src={teachers[(currentpage - 1) * 8 + 7].path} alt="" />
-            <div className={styles['name']}>{teachers[(currentpage - 1) * 8 + 7].name}</div>
-            <div className={styles['title']}>{teachers[(currentpage - 1) * 8 + 7].title}</div>
-            <div className={styles['redirection']}>{teachers[(currentpage - 1) * 8 + 7].redirection}</div>
-          </li>
-        </ul>
-        {/* <ul className={styles['teacher-container']}>
-          {teachers.map(item => <li>
-            <img src="#" alt="" />
-            <div className={styles['name']}>{item.name}</div>
-            <div className={styles['title']}>{item.title}</div>
-            <div className={styles['redirection']}>{item.redirection}</div>
-          </li>)}
-        </ul> */}
-        <div className={styles['pagination-container']}>
-          {' '}
-          <Paginations getCurrent={getCurrentPage}></Paginations>
-        </div>
+    <div className={styles['leader-container']}>
+      <div className={styles['search-container']}>
+        <Searchs setTotalPg={setTotalPg} setLeaderList={setLeader} setcurrentpage={setcurrentpage} />
+      </div>
+      <ul className={styles['teacher-container']}>
+        {leaderList.map((item: any) => {
+          return <LeaderItem item={item} key={item.sfrzm} />;
+        })}
+      </ul>
+
+      <div className={styles['pagination-container']}>
+        <Pagination pageSize={8} current={+currentpage} onChange={onChange} total={totalPg} />
       </div>
     </div>
   );
 };
 
-export default Leader;
+export default Leaders;
