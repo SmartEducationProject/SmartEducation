@@ -72,10 +72,15 @@ const Header = () => {
       ) : null}
       <div className={styles['user-box']} style={{ display: location.pathname === '/' ? 'none' : 'flex' }}>
         <div className={styles['my-info']} onClick={() => navigator('/student/mine')}>
-          <span style={{ color: '#fff' }}>
-            {' '}
-            <UserOutlined /> 我的实时详情
-          </span>
+          {
+            // 老师页面没有'我的详情'选择，否则跳转到了学生页面产生bug
+            location.pathname === '/student' && (
+              <span style={{ color: '#fff' }}>
+                {' '}
+                <UserOutlined /> 我的实时详情
+              </span>
+            )
+          }
         </div>
         <span>{user?.name}</span>
         <div className={styles['exit-btn']} ref={headerDiv} onClick={() => exitBtn()}></div>

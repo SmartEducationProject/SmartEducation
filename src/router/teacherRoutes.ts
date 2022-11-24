@@ -2,6 +2,7 @@ import Approve from '@/pages/Teacher/Approve';
 import { lazy } from 'react';
 const Message = lazy(() => import('pages/Teacher/PredictResult'));
 const UncommittedPage = lazy(() => import('pages/Teacher/UnCommitted'));
+const StudentInfo = lazy(() => import('pages/Teacher/StudentInfo'));
 export const teacherRoutes = [
   {
     key: 'predictresult',
@@ -21,6 +22,13 @@ export const teacherRoutes = [
     key: 'approve',
     path: 'approve',
     element: Approve,
+    role: 'teacher',
+    backUrl: '/'
+  },
+  {
+    key: 'studentInfo',
+    path: 'studentInfo',
+    element: StudentInfo,
     role: 'teacher',
     backUrl: '/'
   }
