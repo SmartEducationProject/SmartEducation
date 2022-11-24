@@ -15,7 +15,7 @@ const Welcome = () => {
             <button onClick={() => navigate('/student/hotCollege')}></button>
             <button onClick={() => navigate('/student/previous')}></button>
             <button onClick={() => navigate('/student/share')}></button>
-            <button onClick={() => navigate('/student/leader')}></button>
+            <button onClick={() => navigate('/leader')}></button>
           </div>
         </div>
       </main>

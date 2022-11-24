@@ -39,14 +39,14 @@ export const isPredictRoutes = [
   {
     key: 'previous',
     path: 'previous',
-    role: '',
+    role: 'predict',
     element: Previous,
     backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
   {
     key: 'share',
-    path: 'share/*',
-    role: '',
+    path: 'share',
+    role: 'predict',
     element: Share,
     children: [
       {
@@ -73,13 +73,20 @@ export const isPredictRoutes = [
     ],
     backUrl: hasPredict ? '/student/choice' : '/student/welcome'
   },
-  {
-    key: 'leader',
-    path: 'leader',
-    role: '',
-    element: Leader,
-    backUrl: hasPredict ? '/student/choice' : '/student/welcome'
-  },
+  // {
+  //   key: 'leader',
+  //   path: 'leader',
+  //   role: 'unPredict',
+  //   element: Leader,
+  //   backUrl: '/student/choice'
+  // },
+  // {
+  //   key: 'leaderinfo',
+  //   path: 'leaderinfo',
+  //   role: 'unPredict',
+  //   element: LeaderInfo,
+  //   backUrl: '/student/choice'
+  // },
   {
     key: 'mine',
     path: 'mine/*',

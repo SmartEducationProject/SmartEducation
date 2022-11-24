@@ -22,10 +22,24 @@ const StudentInfo = lazy(() => import('pages/Teacher/StudentInfo'));
 const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
+
+const Leader = lazy(() => import('@/pages/leader/Leader'));
+const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
+
 const routes: RouteObject[] = [
   {
     path: '/',
     element: <SignIn />
+  },
+  {
+    path: '/leader/*',
+    element: <Leader />,
+    children: [
+      {
+        path: 'leaderInfo',
+        element: <LeaderInfo />
+      }
+    ]
   },
   {
     path: '/student/*',
@@ -82,6 +96,10 @@ const routes: RouteObject[] = [
         element: <Leader />
       },
       {
+        path: 'leader/leaderinfo',
+        element: <LeaderInfo />
+      },
+      {
         path: 'mine/*',
         element: <Mine />,
         children: [
@@ -123,6 +141,7 @@ const routes: RouteObject[] = [
       }
     ]
   },
+
   {
     path: '*',
     element: <Navigate to="/" replace={true} />
