@@ -25,7 +25,7 @@ export default function LeaderItem({ item }: { item: LeaderItemType }) {
         </Popover>
 
         <div className={styles['views']}>
-          <ViewCount pv={item.pv || 88} />
+          <ViewCount pv={item.pv!} />
         </div>
       </li>
     </div>

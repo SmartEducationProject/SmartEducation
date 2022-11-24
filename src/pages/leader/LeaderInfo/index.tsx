@@ -36,10 +36,13 @@ const Description = ({ detail }: { detail: DetailInfo }) => (
       {detail.teamPro}
     </Descriptions.Item>
 
-    <Descriptions.Item label="毕业生成果"> {detail.graduation}</Descriptions.Item>
-    <Descriptions.Item label="科研团队设备" span={2}>
-      {detail.teamDevice}
-    </Descriptions.Item>
+    {detail.graduation && <Descriptions.Item label="毕业生成果"> {detail.graduation}</Descriptions.Item>}
+    {detail.teamDevice && (
+      <Descriptions.Item label="科研团队设备" span={2}>
+        {' '}
+        {detail.teamDevice}
+      </Descriptions.Item>
+    )}
 
     <Descriptions.Item label="同意放外出实习需要达到的要求" style={{ textAlign: 'center' }}>
       {' '}
@@ -62,7 +65,7 @@ export default function LeaderInfo() {
 
   function addPv() {
     timer = setTimeout(() => {
-      console.log('发起请求');
+      addLeaderPv({ sfrzm }); //在页面停留超过5s即可添加pv数量 ，这里的逻辑有待优化(主要是后端逻辑)
     }, 5000);
   }
 

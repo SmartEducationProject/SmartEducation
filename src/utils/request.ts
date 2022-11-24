@@ -14,6 +14,7 @@ export const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // if (config.url?.startsWith('/teacher/login') || config.url?.startsWith('/student/login')) return config; // 登录不需要带token
+    if (config.url?.startsWith('/leader') || config.url?.startsWith('/leader/leaderInfo')) return config;
 
     const token = localStorage.getItem('token') || JSON.parse(localStorage.getItem(`info`) as string).token;
     console.log('token', token);
