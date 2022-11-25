@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, useState } from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './index.module.less';
 import Person from 'assets/pic/signin/person.png';
@@ -104,6 +104,10 @@ const SignIn: FunctionComponent = () => {
     }
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    localStorage.removeItem('currentPage');
+  }, []);
 
   return (
     <div className={styles['signin']}>
