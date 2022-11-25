@@ -9,7 +9,6 @@ const Share = lazy(() => import('pages/Student/Share'));
 const ShareTopic = lazy(() => import('pages/Student/Share/Topic'));
 const ShareWall = lazy(() => import('pages/Student/Share/Wall'));
 const ShareDetail = lazy(() => import('pages/Student/Share/Detail'));
-const Leader = lazy(() => import('pages/Student/Leader'));
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
@@ -18,12 +17,10 @@ const Previous = lazy(() => import('pages/Student/Previous'));
 const Message = lazy(() => import('pages/Teacher/PredictResult'));
 const UncommittedPage = lazy(() => import('pages/Teacher/UnCommitted'));
 const StudentInfo = lazy(() => import('pages/Teacher/StudentInfo'));
-
 const Mine = lazy(() => import('pages/Student/Mine'));
 const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
-
-const Leader = lazy(() => import('@/pages/leader/Leader'));
+const Leader = lazy(() => import('pages/leader/Leader'));
 const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
 
 const routes: RouteObject[] = [

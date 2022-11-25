@@ -4,7 +4,6 @@ const Share = lazy(() => import('pages/Student/Share'));
 const ShareTopic = lazy(() => import('pages/Student/Share/Topic'));
 const ShareWall = lazy(() => import('pages/Student/Share/Wall'));
 const ShareDetail = lazy(() => import('pages/Student/Share/Detail'));
-const Leader = lazy(() => import('pages/Student/Leader'));
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
