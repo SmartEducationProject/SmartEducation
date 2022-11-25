@@ -1,0 +1,33 @@
+@import '../../../assets/style/common.less';
+@minHeight: 800px;
+.leader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('assets/pic/student/LeaderBackground.png');
+  background-size: 100% 99%;
+  background-repeat: no-repeat;
+  height: calc(100vh - @header-line-height);
+  min-height: @minHeight;
+  position: relative;
+  overflow: hidden;
+  .search-container {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+
+  .teacher-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 10px 0px;
+    height: 85%;
+  }
+
+  .pagination-container {
+    position: absolute;
+    bottom: 20px;
+  }
+}

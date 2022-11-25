@@ -10,13 +10,16 @@
     "prepare": "husky install",
     "test": "test",
     "eslint": "eslint src/ --ext .ts,.tsx,.js,.jsx --fix --cache",
-    "mock": "json-server --watch __json_server_mock__/db.json --routes __json_server_mock__/routes.json --port 3000"
+    "mock": "json-server --watch __json_server_mock__/db.json --routes __json_server_mock__/routes.json --port 3000",
+    "deploy:dev": "pnpm run build && node deploy/deploy-dev.mjs",
+    "deploy:prod": "pnpm run build && node deploy/deploy-prod.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@types/qs": "^6.9.7",
     "antd": "4.23.1",
     "axios": "^0.27.2",
+    "countup.js": "^2.3.2",
     "echarts": "^5.3.3",
     "echarts-for-react": "^3.0.2",
     "html2canvas": "^1.4.1",
@@ -45,6 +48,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
     "json-server": "^0.17.0",
+    "node-ssh": "^13.0.0",
     "postcss": "^8.4.14",
     "postcss-preset-env": "^7.7.2",
     "postcss-px-to-viewport": "^1.1.1",

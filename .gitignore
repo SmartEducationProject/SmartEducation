@@ -13,6 +13,7 @@ dist
 dist-ssr
 *.local
 .eslintcache
+deploy/config.mjs
 
 # Editor directories and files
 .vscode/*
