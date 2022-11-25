@@ -6,7 +6,10 @@ const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
 const HotCollege = lazy(() => import('pages/Student/HotCollege'));
 const Share = lazy(() => import('pages/Student/Share'));
-
+const ShareTopic = lazy(() => import('pages/Student/Share/Topic'));
+const ShareWall = lazy(() => import('pages/Student/Share/Wall'));
+const ShareDetail = lazy(() => import('pages/Student/Share/Detail'));
+const Leader = lazy(() => import('pages/Student/Leader'));
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
@@ -67,7 +70,25 @@ const routes: RouteObject[] = [
         element: <Previous />
       },
       {
-        path: 'share',
+        path: 'share/*',
+        children: [
+          {
+            path: '',
+            element: <ShareTopic />
+          },
+          {
+            path: 'wall',
+            element: <ShareWall />
+          },
+          {
+            path: 'detail',
+            element: <ShareDetail />
+          },
+          {
+            path: '*',
+            element: <Navigate to="/" replace={true} />
+          }
+        ],
         element: <Share />
       },
       {
