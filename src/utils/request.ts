@@ -2,8 +2,8 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { message } from 'antd';
 
 export const axiosInstance: AxiosInstance = axios.create({
-  // baseURL: 'http://172.20.2.82:8989',
-  baseURL: '/api', //这里如果想用前端代理，不能写完整路径
+  baseURL: 'http://172.20.2.82:8989',
+  // baseURL: '/api', //这里如果想用前端代理，不能写完整路径
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json'
