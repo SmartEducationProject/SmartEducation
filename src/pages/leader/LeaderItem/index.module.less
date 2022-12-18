@@ -12,17 +12,23 @@
     width: 200px;
     height: @liHeight;
     border-radius: 15px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     transition: all 0.2s linear;
     margin: @liMargin;
     &:hover {
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+      box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
     }
-    img {
-      position: relative;
-      height: @imgHeight;
+    .imgOuter {
       width: 100%;
+      height: @imgHeight;
+      display: flex;
+      justify-content: center;
+      .img {
+        position: relative;
+        height: @imgHeight;
+        width: 100%;
+      }
     }
 
     .name {
