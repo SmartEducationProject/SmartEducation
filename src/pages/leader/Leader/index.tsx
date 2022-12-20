@@ -61,7 +61,10 @@ const Leaders = () => {
   };
 
   useEffect(() => {
-    onChange(+localStorage.getItem('currentPage')!);
+    if (!localStorage.getItem('currentPage')) {
+      onChange(1);
+      localStorage.setItem('currentPage', '1');
+    } else onChange(+localStorage.getItem('currentPage')!);
 
     return () => {
       // 如果退出/leader 或者 /leaderInfo 页面，清除

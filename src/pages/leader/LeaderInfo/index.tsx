@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './index.module.less';
-import { Descriptions } from 'antd';
+import { Descriptions, Image, Space } from 'antd';
 import { addLeaderPv, getLeaderDetail } from '@/api/leader';
 import { DetailInfo } from '@/types/leader';
 import Loading from '@/components/Loading';
@@ -9,7 +9,9 @@ import Loading from '@/components/Loading';
 const Description = ({ detail }: { detail: DetailInfo }) => (
   <Descriptions title="" layout="vertical" bordered size="default">
     <Descriptions.Item label="头像" style={{ textAlign: 'center' }}>
-      <img src={detail.avatar} className={styles['img-container']}></img>
+      <Space size={12}>
+        <Image width={200} src={detail.avatar} placeholder={<Image preview={false} src={detail.avatar} width={200} />} />
+      </Space>
     </Descriptions.Item>
 
     <Descriptions.Item label="联系方式">
@@ -36,13 +38,12 @@ const Description = ({ detail }: { detail: DetailInfo }) => (
       {detail.teamPro}
     </Descriptions.Item>
 
-    {detail.graduation && <Descriptions.Item label="毕业生成果"> {detail.graduation}</Descriptions.Item>}
-    {detail.teamDevice && (
-      <Descriptions.Item label="科研团队设备" span={2}>
-        {' '}
-        {detail.teamDevice}
-      </Descriptions.Item>
-    )}
+    <Descriptions.Item label="毕业生成果"> {detail.graduation}</Descriptions.Item>
+
+    <Descriptions.Item label="科研团队设备" span={2}>
+      {' '}
+      {detail.teamDevice}
+    </Descriptions.Item>
 
     <Descriptions.Item label="同意放外出实习需要达到的要求" style={{ textAlign: 'center' }}>
       {' '}

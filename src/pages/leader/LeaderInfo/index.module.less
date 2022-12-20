@@ -1,19 +1,23 @@
+@desTop: 100px;
 .detail-container {
   background-image: url('assets/pic/student/LeaderBackground.png');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  overflow-y: scroll;
-}
-
-.ant-descriptions {
-  width: 1000px !important;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .des-container {
-  margin: 120px auto 0px;
-  width: 960px !important;
+  margin: 0px auto 0px;
+  height: calc(100% - @desTop);
+  width: 990px !important;
   background-color: #f1f1f1;
+  overflow-y: scroll;
+  position: absolute;
+  top: @desTop;
 }
 
 .img-container {

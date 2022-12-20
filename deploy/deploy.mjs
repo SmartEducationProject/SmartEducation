@@ -75,13 +75,13 @@ export default async (_config) => {
 
         const _containerName = `${containerName}-v${imageTag.split(".").join("-")}`;
 
-        const result = await runCommand(`docker run -d --name ${_containerName} -p 8003:8080 --restart=always ${imageName}:${imageTag}`);
+        const result = await runCommand(`docker run -d --name ${_containerName} -p ${port}:8080 --restart=always ${imageName}:${imageTag}`);
 
         if (result.stderr.includes("port is already allocated")) {
             // 端口被占用
             console.log('🛠️  stop and remove the old container...');
             const psResult = await runCommand("docker ps -a", { isStdout: false });
-            const oldContainerName = psResult.stdout.match(/(?<=0\.0\.0\.0:8003->8080\/tcp)(.*)/g)[0].trim();
+            const oldContainerName = psResult.stdout.match(/(?<=0\.0\.0\.0:[0-9]*->8080\/tcp)(.*)/g)[0].trim();
             await runCommand(`docker stop ${oldContainerName}`);
             await runCommand(`docker rm ${oldContainerName}`);
             await runCommand(`docker start ${_containerName}`);
