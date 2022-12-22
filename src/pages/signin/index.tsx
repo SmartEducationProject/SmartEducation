@@ -54,6 +54,7 @@ const SignIn: FunctionComponent = () => {
               /** @description 判断是否已填写过问卷，若填写过直接跳转到college，若未填写跳转为welcome */
               history.replaceState(null, '', currentUrl.split('?')[0]);
 
+              console.log(result.data.hasPredict);
               result.data.hasPredict
                 ? navigate('/student/choice', {
                     replace: true
