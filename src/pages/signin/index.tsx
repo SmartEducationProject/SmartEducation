@@ -108,6 +108,7 @@ const SignIn: FunctionComponent = () => {
 
   useEffect(() => {
     localStorage.removeItem('currentPage');
+    sessionStorage.clear();
   }, []);
 
   return (

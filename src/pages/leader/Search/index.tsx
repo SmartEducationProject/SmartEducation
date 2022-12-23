@@ -33,9 +33,12 @@ const Searchs = (props: searchProps) => {
       // sessionStorage.setItem('isSearching' ,"true") // 有内容，进入搜索逻辑
       sessionKey('set', 'isSearching', 'true');
     }
-    sessionKey('set', 'key', value);
+    sessionKey('set', 'key', value.trim());
 
-    let result: LeaderPageInfo = await searchLeaderList({ inquire: value, page: 1 });
+    if (value.trim() == '') {
+      value = '';
+    }
+    let result: LeaderPageInfo = await searchLeaderList({ inquire: value.trim(), page: 1 });
 
     let { total, items, current } = result;
     setLeaderList(items);
