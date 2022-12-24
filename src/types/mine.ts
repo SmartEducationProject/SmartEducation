@@ -7,6 +7,10 @@ export interface ISame {
   }[];
 }
 
+export interface IShow {
+  item: string;
+}
+
 export interface IDaily {
   yesterday: {
     leave_room: string;

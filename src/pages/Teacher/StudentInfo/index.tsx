@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Loading from '@/components/Loading';
-import { useStudentInfo, infoType } from '@/api/teacher';
+import { useStudentInfo } from '@/api/teacher';
+import { infoType } from '@/types/question';
 import { Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 

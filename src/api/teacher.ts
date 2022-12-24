@@ -1,4 +1,5 @@
 import { IResponse, isAgreeType, ISearch } from 'types/Request';
+import { infoType } from '@/types/question';
 import { axiosInstance } from 'utils/request';
 import { useQuery } from 'react-query';
 
@@ -75,34 +76,6 @@ export const approvedTeacher = (): Promise<IResponse> => {
     return res.data;
   });
 };
-
-export interface infoType {
-  motivation: number;
-  solo: number;
-
-  startTime: number;
-  dailyStartTime: number;
-  dailyEndTime: number;
-
-  place: number;
-
-  mathStartTime: number;
-  mathFirstRoundTime: number;
-  mathSecondRoundTime: number;
-
-  englishStartTime: number;
-
-  politicsStartTime: number;
-
-  specializedCoursesStartTime: number;
-  computerNetworks: number;
-  operatingSystems: number;
-  computerComposition: number;
-
-  noonTime: number;
-  exerciseTime: number;
-  [key: string]: string | number;
-}
 
 interface resType {
   questionnaire: infoType;

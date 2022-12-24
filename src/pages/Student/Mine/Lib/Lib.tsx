@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Affix, Button } from 'antd';
 import RankPieDoughnut from 'components/RankPieDoughnut';
-import { useLib } from 'api/student';
+import { useLib, useShareDataFromRank } from 'api/student';
 import useHtml2Canvas from 'utils/useHtml2Canvas';
 import getDays from 'utils/getDays';
 import styles from './index.module.less';
@@ -16,6 +16,8 @@ import { useUser } from 'context/userContext';
 const Lib = () => {
   /** @description 接口调用 */
   const { data } = useLib();
+  console.log('isData ok ?', data);
+  let { data: show } = useShareDataFromRank(data?.yesterday.countRank || 0);
 
   /** @description 获得在馆时间段展示字符串 */
   const periodFormat = data?.yesterday?.period?.map((period) => `${period.from.split(' ')[1]}-${period.to.split(' ')[1]}`)?.join(', ');
@@ -35,6 +37,7 @@ const Lib = () => {
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.position = 'absolute';
       (document.querySelector(`.${styles['pie-box']}`) as HTMLDivElement).style.top = '580px';
       (document.querySelector(`.${styles['affix-box']}`) as HTMLDivElement).style.display = 'none';
+      (document.querySelector(`.${styles['share-tips']}`) as HTMLElement).style.display = 'none';
       // document.querySelectorAll(`.${styles['pie-box']} > div`).forEach((div) => {
       //   (div as HTMLDivElement).style.width = '40%';
       // });
@@ -44,9 +47,7 @@ const Lib = () => {
 
   return (
     <div id="lib-container" className={styles['lib-container']}>
-      {/* <Button className={styles['back_college']} shape="round" type="dashed" onClick={() => {}}>
-          返回重邮院校详情
-      </Button> */}
+      <div className={styles['share-tips']}>{show?.item}</div>
 
       <div className={styles['affix-box']}>
         <Affix offsetTop={220}>
