@@ -2,6 +2,7 @@ import { Input, Space } from 'antd';
 import { getLeaderList, searchLeaderList } from '@/api/leader';
 import { LeaderPageInfo } from '@/types/leader';
 import { useEffect, useState } from 'react';
+import { message } from 'antd';
 
 export const sessionKey = (option: 'get' | 'set' | 'del', key: string, value?: string): string => {
   if (option == 'get') {
@@ -41,6 +42,11 @@ const Searchs = (props: searchProps) => {
     let result: LeaderPageInfo = await searchLeaderList({ inquire: value.trim(), page: 1 });
 
     let { total, items, current } = result;
+    if (total === 0) {
+      message.info('抱歉！没有查找到相关信息的数据，请修改搜索关键词试试！');
+      setInputValue('');
+      return;
+    }
     setLeaderList(items);
     setTotalPg(total);
     setcurrentpage(current);

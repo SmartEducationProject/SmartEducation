@@ -62,22 +62,22 @@ const Header = () => {
         <span className={styles['header-title']} ref={headerSpan} onClick={() => exitBtn()}>
           CQUPT2022 考研预测
         </span>
-        {location.pathname === '/' ||
-          (location.pathname.startsWith('/teacher') && (
-            <div>
-              <button
-                onClick={() => {
-                  navigator('/leader');
-                }}
-              >
-                查看导师信息
-              </button>
+        {/* 注意括号的位置 */}
+        {(location.pathname === '/' || location.pathname.startsWith('/teacher')) && (
+          <div>
+            <button
+              onClick={() => {
+                navigator('/leader');
+              }}
+            >
+              查看导师信息
+            </button>
 
-              <a href="https://xxb.cqupt.edu.cn/info/1087/2304.htm" target={'_blank'}>
-                VPN
-              </a>
-            </div>
-          ))}
+            <a href="https://xxb.cqupt.edu.cn/info/1087/2304.htm" target={'_blank'}>
+              VPN
+            </a>
+          </div>
+        )}
       </div>
 
       {location.pathname === '/' ? (

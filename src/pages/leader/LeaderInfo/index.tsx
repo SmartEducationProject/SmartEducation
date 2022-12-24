@@ -44,6 +44,8 @@ export default function LeaderInfo() {
       <div className={styles['des-container']}>
         {!detail && <Loading />}
         {detail && <Description detail={detail!}></Description>}
+
+        <div className={styles['bottom']}></div>
       </div>
     </div>
   );
