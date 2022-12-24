@@ -9,12 +9,12 @@ import 'normalize.css';
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <BrowserRouter>
+  <HashRouter>
     <QueryClientProvider client={queryClient}>
       <AppProviders>
         <App />
       </AppProviders>
       <ReactQueryDevtools />
     </QueryClientProvider>
-  </BrowserRouter>
+  </HashRouter>
 );
