@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Loading from '@/components/Loading';
+import {} from 'react-router';
 import { useStudentInfo } from '@/api/teacher';
 import { infoType } from '@/types/question';
 import { Table } from 'antd';
@@ -19,14 +19,15 @@ interface optionType<T> {
 }
 
 export default function studentInfo() {
-  const loaction = useLocation();
-  let stuId: number = parseInt(loaction.search?.split('=')[1]);
+  const { state, search } = useLocation();
+
+  let stuId: number = parseInt(search?.split('=')[1]);
 
   let [tableData, setTableData] = useState<DataType[]>();
   let { data, isFetching } = useStudentInfo(stuId);
 
-  console.log('data', data);
-  console.log('isFetching', isFetching);
+  // console.log('data', data);
+  // console.log('isFetching', isFetching);
 
   // 模拟后端返回的数据
   // let info : infoType  = {
@@ -92,6 +93,11 @@ export default function studentInfo() {
   // }
 
   // 可供选择
+  /**
+   * 为什么会显得如此复杂与机械，主要是因为提交问卷时不会携带这些中文信息，因此返回问卷数据时，也不会有这些中文信息
+   * 所以需要手动罗列，这的确与 types/question.ts的内容相关，但是暂时找不到一个好的办法去解耦（除非后端妥协），或许这个办法很复杂。
+   * 期待你能解耦这部分内容
+   */
   let options: optionType<string[]> = {
     motivation: ['考研动机', '提高学历，有利于更好就业', '获得更多知识，提高自身文化修养', '留恋校园生活', '其他'],
     solo: ['是否独自备战', '自己一个人备考', '与同学或者研友一起备考'],
@@ -155,6 +161,11 @@ export default function studentInfo() {
 
   return (
     <div className={styles['stdInfo']}>
+      <div className={styles['info']}>
+        <div>姓名:{state.name}</div>
+        <div>学号:{state.stuId}</div>
+        <div>班级:{state.class}</div>
+      </div>
       <Table loading={isFetching} bordered columns={columns} dataSource={tableData} pagination={false} />
     </div>
   );

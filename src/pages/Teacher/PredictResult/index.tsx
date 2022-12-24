@@ -11,6 +11,22 @@ import { SubmittedCond, Statistics, Search } from 'api/teacher';
 import useDebounceHook from 'utils/useDebounceFn';
 import guard from 'router/routeGuard';
 import { RightSquareOutlined } from '@ant-design/icons';
+interface collegeType {
+  name: string;
+  id: number;
+  rank: number;
+  rate: number;
+}
+interface DataType {
+  key: React.Key;
+  id: number;
+  class: string;
+  name: string;
+  stuId: string;
+  submitTime: string;
+  college: collegeType[];
+}
+
 const PredictResult: FunctionComponent = () => {
   const navigator = useNavigate();
   const { pathname } = useLocation();
@@ -25,22 +41,6 @@ const PredictResult: FunctionComponent = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  interface collegeType {
-    name: string;
-    id: number;
-    rank: number;
-    rate: number;
-  }
-  interface DataType {
-    key: React.Key;
-    id: number;
-    class: string;
-    name: string;
-    stuId: string;
-    submitTime: string;
-    college: collegeType[];
-  }
 
   //导出Excel数据的order
   const [order, setOrder] = useState<number>(0);
@@ -166,7 +166,7 @@ const PredictResult: FunctionComponent = () => {
             return (
               <span
                 onClick={() => {
-                  navigator(`/teacher/studentInfo?stuId=${args[1].stuId}`);
+                  navigator(`/teacher/studentInfo?stuId=${args[1].stuId}`, { state: args[1] });
                 }}
                 style={{ cursor: 'pointer', display: 'block' }}
               >
