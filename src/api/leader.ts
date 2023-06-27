@@ -33,5 +33,5 @@ export const searchLeaderList = ({ inquire, page }: { inquire: string; page: num
  * @returns 成功
  */
 export const addLeaderPv = ({ sfrzm }: { sfrzm: string }) => {
-  return axiosInstance.get(`/leader/addTeacherPv/${sfrzm}`).then((res) => res.data);
+  return axiosInstance.get(`/leader/addTeacherPv2/${sfrzm}`).then((res) => res.data);
 };

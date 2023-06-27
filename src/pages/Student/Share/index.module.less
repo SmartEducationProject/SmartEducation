@@ -1,8 +1,8 @@
-@import 'src/assets/style/common';
+@import '../../../assets/style/common.less';
 
 .header {
-  padding-top: 30px;
-  margin: 40px 0;
+  padding: 70px 0px;
+  // margin: 40px 0;
   display: flex;
   align-items: center;
 
@@ -15,5 +15,26 @@
   img {
     height: 18px;
     margin-left: 10px;
+  }
+}
+.tips {
+  display: flex;
+  flex-direction: column;
+  padding: 70px 0px;
+  width: 100%;
+  background-color: aliceblue;
+  text-align: center;
+  div {
+    padding: 10px 0px;
+    font-size: 1rem;
+    span {
+      font-size: 1.1rem;
+      color: @middle-green;
+    }
+  }
+  div:last-child {
+    width: 100%;
+    color: @middle-green;
+    font-size: 1.5rem;
   }
 }

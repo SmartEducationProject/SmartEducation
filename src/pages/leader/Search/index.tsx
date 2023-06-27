@@ -2,6 +2,7 @@ import { Input, Space } from 'antd';
 import { getLeaderList, searchLeaderList } from '@/api/leader';
 import { LeaderPageInfo } from '@/types/leader';
 import { useEffect, useState } from 'react';
+import { message } from 'antd';
 
 export const sessionKey = (option: 'get' | 'set' | 'del', key: string, value?: string): string => {
   if (option == 'get') {
@@ -33,11 +34,19 @@ const Searchs = (props: searchProps) => {
       // sessionStorage.setItem('isSearching' ,"true") // 有内容，进入搜索逻辑
       sessionKey('set', 'isSearching', 'true');
     }
-    sessionKey('set', 'key', value);
+    sessionKey('set', 'key', value.trim());
 
-    let result: LeaderPageInfo = await searchLeaderList({ inquire: value, page: 1 });
+    if (value.trim() == '') {
+      value = '';
+    }
+    let result: LeaderPageInfo = await searchLeaderList({ inquire: value.trim(), page: 1 });
 
     let { total, items, current } = result;
+    if (total === 0) {
+      message.info('抱歉！没有查找到相关信息的数据，请修改搜索关键词试试！');
+      setInputValue('');
+      return;
+    }
     setLeaderList(items);
     setTotalPg(total);
     setcurrentpage(current);

@@ -3,7 +3,7 @@ import { message } from 'antd';
 import { axiosInstance } from 'utils/request';
 import processData from 'utils/processData';
 import { IResponse } from 'types/Request';
-import { ISame, IDaily, ILib } from 'types/mine';
+import { ISame, IDaily, ILib, IShow } from 'types/mine';
 import { IComparison, IPredict, IOtherCollegeExperience } from 'types/college';
 import { AxiosError, AxiosResponse } from 'axios';
 import type { IPreviousDetail, IPreviousOverall } from 'types/previous';
@@ -62,6 +62,18 @@ export const useLib = () =>
     staleTime: 1000 * 60 * 60, // 1小时
     cacheTime: 1000 * 60 * 60 * 2 // 2小时
   });
+
+/**
+ * @description 根据昨日在馆时长排名获取评估数据
+ */
+export const useShareDataFromRank = (rankNum: number) => {
+  let params = new FormData();
+  params.append('dailyRank', '' + rankNum);
+  return useQuery<IShow>(['show', rankNum], () => axiosInstance.post('/student/lib/show', params).then((res) => res.data.data), {
+    staleTime: 1000 * 60 * 60, // 1小时
+    cacheTime: 1000 * 60 * 60 * 2 // 2小时
+  });
+};
 
 /**
  * @description 获取上岸概率详情

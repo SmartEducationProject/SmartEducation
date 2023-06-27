@@ -5,7 +5,7 @@
   align-items: center;
   background-color: @middle-green;
   width: 100%;
-  height: calc(100vh - @header-height);
+  height: calc(100vh - @header-line-height);
 
   & > main {
     position: relative;
@@ -39,13 +39,26 @@
         margin: 55px 0 0 80px;
       }
 
-      button:nth-of-type(1) {
-        .btn-with-bg(url('assets/pic/student/welcome-begin.png'), 206px, 38px);
-        margin: 40px 0 0 145px;
-      }
-      button:nth-of-type(2) {
-        .btn-with-bg(url('assets/pic/student/previous-btn.png'), 205px, 38px);
-        margin: 40px 0 0 145px;
+      .btns {
+        color: @high-green;
+        width: 80%;
+        margin: 10px 0 0 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        button {
+          cursor: pointer;
+        }
+
+        button:nth-of-type(1) {
+          .btn-with-bg(url('assets/pic/student/welcome-begin.png') , 250px, 80px);
+          background-size: 90%;
+        }
+
+        button:nth-of-type(2) {
+          .btn-with-bg(url('assets/pic/student/previous-btn.png'), 250px,  80px);
+        }
       }
     }
   }

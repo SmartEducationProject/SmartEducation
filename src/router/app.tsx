@@ -6,9 +6,10 @@ const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
 const HotCollege = lazy(() => import('pages/Student/HotCollege'));
 const Share = lazy(() => import('pages/Student/Share'));
-const ShareTopic = lazy(() => import('pages/Student/Share/Topic'));
-const ShareWall = lazy(() => import('pages/Student/Share/Wall'));
-const ShareDetail = lazy(() => import('pages/Student/Share/Detail'));
+// 暂时取消经验分享模块，需要数据支撑后开放
+// const ShareTopic = lazy(() => import('pages/Student/Share/Topic'));
+// const ShareWall = lazy(() => import('pages/Student/Share/Wall'));
+// const ShareDetail = lazy(() => import('pages/Student/Share/Detail'));
 const Choice = lazy(() => import('pages/Student/Choice'));
 const Questionnaire = lazy(() => import('pages/Student/Questionnaire'));
 const Welcome = lazy(() => import('pages/Student/Welcome'));
@@ -68,24 +69,24 @@ const routes: RouteObject[] = [
       },
       {
         path: 'share/*',
-        children: [
-          {
-            path: '',
-            element: <ShareTopic />
-          },
-          {
-            path: 'wall',
-            element: <ShareWall />
-          },
-          {
-            path: 'detail',
-            element: <ShareDetail />
-          },
-          {
-            path: '*',
-            element: <Navigate to="/" replace={true} />
-          }
-        ],
+        // children: [
+        //   {
+        //     path: '',
+        //     element: <ShareTopic />
+        //   },
+        //   {
+        //     path: 'wall',
+        //     element: <ShareWall />
+        //   },
+        //   {
+        //     path: 'detail',
+        //     element: <ShareDetail />
+        //   },
+        //   {
+        //     path: '*',
+        //     element: <Navigate to="/" replace={true} />
+        //   }
+        // ],
         element: <Share />
       },
       {

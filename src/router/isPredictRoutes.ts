@@ -47,45 +47,32 @@ export const isPredictRoutes = [
     path: 'share',
     role: 'predict',
     element: Share,
-    children: [
-      {
-        key: 'topic',
-        path: '',
-        role: '',
-        element: ShareTopic,
-        backUrl: hasPredict ? '/student/share' : '/student/welcome'
-      },
-      {
-        key: 'wall',
-        path: 'wall',
-        role: '',
-        element: ShareWall,
-        backUrl: hasPredict ? '/student/share' : '/student/welcome'
-      },
-      {
-        key: 'detail',
-        path: 'detail',
-        role: '',
-        element: ShareDetail,
-        backUrl: hasPredict ? '/student/share' : '/student/welcome'
-      }
-    ],
     backUrl: hasPredict ? '/student/choice' : '/student/welcome'
+    // 暂时取消经验分享页面
+    // children: [
+    //   {
+    //     key: 'topic',
+    //     path: '',
+    //     role: '',
+    //     element: ShareTopic,
+    //     backUrl: hasPredict ? '/student/share' : '/student/welcome'
+    //   },
+    //   {
+    //     key: 'wall',
+    //     path: 'wall',
+    //     role: '',
+    //     element: ShareWall,
+    //     backUrl: hasPredict ? '/student/share' : '/student/welcome'
+    //   },
+    //   {
+    //     key: 'detail',
+    //     path: 'detail',
+    //     role: '',
+    //     element: ShareDetail,
+    //     backUrl: hasPredict ? '/student/share' : '/student/welcome'
+    //   }
+    // ],
   },
-  // {
-  //   key: 'leader',
-  //   path: 'leader',
-  //   role: 'unPredict',
-  //   element: Leader,
-  //   backUrl: '/student/choice'
-  // },
-  // {
-  //   key: 'leaderinfo',
-  //   path: 'leaderinfo',
-  //   role: 'unPredict',
-  //   element: LeaderInfo,
-  //   backUrl: '/student/choice'
-  // },
   {
     key: 'mine',
     path: 'mine/*',
