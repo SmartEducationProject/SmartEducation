@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import {} from 'react-router';
 import { useStudentInfo } from '@/api/teacher';
 import { infoType } from '@/types/question';
 import { Table } from 'antd';
