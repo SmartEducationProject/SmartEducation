@@ -20,6 +20,11 @@ const CollegeRank: React.FC<CollegeRankProps> = ({ data: { college, count } }) =
   /** @description 展示其他院校 */
   if (!isCqupt) {
     college = college.filter((item) => item.name !== '重庆邮电大学(学硕)' && item.name !== '重庆邮电大学(专硕)');
+
+    /** @description 原logo url已失效 这里手动换成可以用的 */
+    // TODO: 后面接手的同学跟后端商量把数据库中的url换成可以用
+    college.find((item) => item.name == '电子科技大学')!.logo = 'https://upload.wikimedia.org/wikipedia/zh/4/4a/UESTC_logo.jpg';
+
     /** @description 通过概率的大小对college进行排序 */
     college.sort((a, b) => b.rate - a.rate);
 
