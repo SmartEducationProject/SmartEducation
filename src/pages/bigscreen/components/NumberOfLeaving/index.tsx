@@ -54,7 +54,6 @@ export default function NumberOfLeaving() {
                   <span>{i + 1}</span>
                   <svg
                     style={{ display: i <= 2 ? 'block' : 'none', fill: i == 0 ? '#ddba5e' : i === 1 ? '#adb3bb' : '#c2b4b6' }}
-                    t="1697361243238"
                     viewBox="0 0 1024 1024"
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +74,7 @@ export default function NumberOfLeaving() {
                     <div
                       style={{
                         right: `${8 - (e.lastWeek / max) * 8}vw`,
-                        backgroundColor: colors[Math.floor(() => Math.random(), []) * 5]
+                        backgroundColor: colors[Math.floor(Math.random()) * 5]
                       }}
                       className={styles['inner']}
                     ></div>

@@ -97,7 +97,7 @@ export default function StudentInfo() {
    * 所以需要手动罗列，这的确与 types/question.ts的内容相关，但是暂时找不到一个好的办法去解耦（除非后端妥协），或许这个办法很复杂。
    * 期待你能解耦这部分内容
    */
-  const options: optionType<string[] | number> = {
+  const options: optionType<string[]> = {
     motivation: ['考研动机', '提高学历，有利于更好就业', '获得更多知识，提高自身文化修养', '留恋校园生活', '其他'],
     solo: ['是否独自备战', '自己一个人备考', '与同学或者研友一起备考'],
     startTime: ['考研准备时间', '3月之前', '3月-4月', '5月-6月', '7月-8月', '9月及以后'],

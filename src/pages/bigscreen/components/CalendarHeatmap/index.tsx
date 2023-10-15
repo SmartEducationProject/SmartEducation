@@ -15,9 +15,9 @@ export default function CalendarHeatmap() {
     }
     return data;
   }
-  const option: echarts.EChartsOption = {
+  const option = {
     tooltip: {
-      formatter: (p) => `<div>${p.marker}${p.value[0]}：${p.value[1]}h</div>`
+      formatter: (p: { marker: any; value: any[] }) => `<div>${p.marker}${p.value[0]}：${p.value[1]}h</div>`
     },
     visualMap: {
       min: 0,
@@ -25,15 +25,12 @@ export default function CalendarHeatmap() {
       type: 'piecewise',
       orient: 'horizontal',
       left: 'center',
-      bottom: 50,
       textStyle: {
         color: '#fff'
       }
     },
     calendar: {
-      top: 120,
-      left: 30,
-      right: 30,
+      top: 170,
       cellSize: ['auto', 13],
       range: '2023',
       itemStyle: {

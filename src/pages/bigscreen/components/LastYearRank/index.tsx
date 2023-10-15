@@ -47,12 +47,8 @@ export default function LastYearRank() {
     percentage: ''
   };
   const onceItem = 8;
-  const total = Math.floor(data.length / onceItem);
-  const now = useRef(0);
-  const tbody = useRef<HTMLDivElement>();
-  const [nowData, setNowData] = useState(data.slice(0, onceItem * 2));
-  useEffect(() => {}, []);
-
+  const tbody = useRef<HTMLDivElement | null>(null);
+  const [nowData] = useState(data.slice(0, onceItem * 2));
   return (
     <div className={styles['warp']}>
       <div className={styles['title']}>19级考研数据一览</div>

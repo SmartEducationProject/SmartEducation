@@ -8,7 +8,7 @@ export default function AvgStudyTime() {
   const option = {
     tooltip: {
       trigger: 'axis',
-      formatter: function (p) {
+      formatter: function (p: { value: any; marker: any }[]) {
         return `<div>${p[0].marker}每周平均学习时长:${p[0].value}h</div>`;
       }
     },
@@ -17,8 +17,7 @@ export default function AvgStudyTime() {
       data: ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期天'],
       axisLabel: {
         interval: 0,
-        rotate: -40,
-        alignWithLabel: true
+        rotate: -40
       }
     },
     yAxis: {
