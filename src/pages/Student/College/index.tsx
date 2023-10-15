@@ -21,7 +21,7 @@ const College = () => {
   const { data: comparisonData, isFetching: cmpFetching } = useCompare(isCqupt);
   const { data: experienceData, isFetching: expFetching } = useExperience(isCqupt);
 
-  let [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setTimeout(() => {

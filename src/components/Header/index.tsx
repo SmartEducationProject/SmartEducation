@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from 'context/userContext';
 import styles from './index.module.less';
@@ -11,6 +11,7 @@ const Header = () => {
   const headerRef = useRef<HTMLElement | null>(null);
   const headerSpan = useRef<HTMLElement | null>(null);
   const headerDiv = useRef<HTMLImageElement | null>(null);
+  const [headerShow, setHeaderShow] = useState(true);
 
   useEffect(() => {
     if (location.pathname === '/' || location.pathname === '/student' || location.pathname === '/student/questionnaire') {
@@ -19,6 +20,11 @@ const Header = () => {
     } else {
       headerRef.current?.classList.remove(styles['header-green']);
       headerRef.current?.classList.add(styles['header-white']);
+    }
+    if (location.pathname === '/bigscreen') {
+      setHeaderShow(false);
+    } else {
+      setHeaderShow(true);
     }
   }, [location.pathname]);
 
@@ -39,7 +45,7 @@ const Header = () => {
     a.click();
   };
   return (
-    <header className={styles['header']} ref={headerRef}>
+    <header className={styles['header']} ref={headerRef} style={{ display: headerShow ? '' : 'none' }}>
       <div className={styles['header-left']}>
         <div
           className={styles['back']}
@@ -60,7 +66,7 @@ const Header = () => {
         </div>
 
         <span className={styles['header-title']} ref={headerSpan} onClick={() => exitBtn()}>
-          CQUPT2022 考研预测
+          CQUPT2023 考研预测
         </span>
         {/* 注意括号的位置 */}
         {(location.pathname === '/' || location.pathname.startsWith('/teacher')) && (
@@ -73,7 +79,7 @@ const Header = () => {
               查看导师信息
             </button>
 
-            <a href="https://xxb.cqupt.edu.cn/info/1087/2304.htm" target={'_blank'}>
+            <a href="https://xxb.cqupt.edu.cn/info/1087/2304.htm" target={'_blank'} rel="noreferrer">
               VPN
             </a>
           </div>

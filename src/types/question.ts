@@ -16,7 +16,7 @@ export interface IQuestion {
   content: string;
   composition?: boolean;
   multiple?: number;
-  options: IOption[];
+  options?: IOption[];
   subQuestions?: ISubQuestion[];
 }
 

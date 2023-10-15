@@ -118,7 +118,7 @@ const Overall = ({ year }: OverallProps) => {
           dataSource={[data as IPreviousOverall]}
           pagination={false}
           className={styles['table']}
-          rowKey={() => '2022'}
+          rowKey={() => '2023'}
           bordered
           size="middle"
           scroll={{ x: 1600 }}

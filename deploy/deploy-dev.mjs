@@ -5,6 +5,6 @@ deploy({
     distDir: config.distDir + '/dev/dist', // dist文件夹在服务器的位置
     imageName: config.imageName + '-dev',
     containerName: config.containerName + '-dev',
-    imageTag: '1.21',
+    imageTag: '1.23',
     port: '8003'
 })

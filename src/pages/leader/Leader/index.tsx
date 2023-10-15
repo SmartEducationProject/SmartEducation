@@ -19,13 +19,13 @@ const Leaders = () => {
 
   const [leaderList, setLeaderList] = useState<LeaderItemType[]>([]);
 
-  let setLeader = useCallback(setLeaderList, []);
+  const setLeader = useCallback(setLeaderList, []);
 
   let newPageInfo: LeaderPageInfo;
 
   const getLeaderListFun = async () => {
     if (localStorage.getItem('currentPage')) {
-      let localIndex = +localStorage.getItem('currentPage')!;
+      const localIndex = +localStorage.getItem('currentPage')!;
       newPageInfo = await getLeaderList({ page: localIndex.toString() });
       setcurrentpage(localIndex);
     } else {
@@ -33,15 +33,15 @@ const Leaders = () => {
       newPageInfo = await getLeaderList({ page: currentpage.toString() });
     }
 
-    let { current, items, total } = newPageInfo;
+    const { current, items, total } = newPageInfo;
     setTotalPg(total); //设置页面总数
     setLeaderList(items); // 设置leaderList总数
   };
 
   const searchList = async () => {
-    let result: LeaderPageInfo = await searchLeaderList({ inquire: sessionKey('get', 'key'), page: +localStorage.getItem('currentPage')! });
+    const result: LeaderPageInfo = await searchLeaderList({ inquire: sessionKey('get', 'key'), page: +localStorage.getItem('currentPage')! });
 
-    let { total, items, current } = result;
+    const { total, items, current } = result;
     setTotalPg(total); //设置页面总数
     setLeaderList(items); // 设置leaderList总数
   };

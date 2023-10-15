@@ -49,7 +49,7 @@ const ModalContent = ({ children, setVisible, onOk }: { children: React.ReactNod
 
 export const Portal = ({ children }: { children: React.ReactNode }) => {
   // 创建一个 container 节点，作为 portal 的容器节点
-  let containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   if (!containerRef.current) {
     containerRef.current = document.createElement('div');

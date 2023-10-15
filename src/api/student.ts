@@ -67,7 +67,7 @@ export const useLib = () =>
  * @description 根据昨日在馆时长排名获取评估数据
  */
 export const useShareDataFromRank = (rankNum: number) => {
-  let params = new FormData();
+  const params = new FormData();
   params.append('dailyRank', '' + rankNum);
   return useQuery<IShow>(['show', rankNum], () => axiosInstance.post('/student/lib/show', params).then((res) => res.data.data), {
     staleTime: 1000 * 60 * 60, // 1小时

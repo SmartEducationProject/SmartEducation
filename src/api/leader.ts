@@ -21,7 +21,7 @@ export const getLeaderDetail = ({ sfrzm }: { sfrzm: string }): Promise<DetailInf
  * @returns List
  */
 export const searchLeaderList = ({ inquire, page }: { inquire: string; page: number }): Promise<LeaderPageInfo> => {
-  let params = new FormData();
+  const params = new FormData();
   params.append('inquire', inquire);
   params.append('page', page.toString());
   return axiosInstance.post('/leader/getTeacherByCondition', params).then((res) => res.data.data.teacher);

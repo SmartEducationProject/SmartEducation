@@ -23,9 +23,9 @@ interface searchProps {
   setcurrentpage: React.Dispatch<any>;
 }
 const Searchs = (props: searchProps) => {
-  let [inputValue, setInputValue] = useState<string>(); //主要用于判断分页触发哪个请求
+  const [inputValue, setInputValue] = useState<string>(); //主要用于判断分页触发哪个请求
 
-  let { setLeaderList, setTotalPg, setcurrentpage } = props;
+  const { setLeaderList, setTotalPg, setcurrentpage } = props;
   const onSearch = async (value: string) => {
     if (!value.trim()) {
       // sessionStorage.setItem('isSearching' , "false") //点击清空，退出搜索逻辑（相当于搜索条件为空的搜索结果=直接查询所有）
@@ -39,9 +39,9 @@ const Searchs = (props: searchProps) => {
     if (value.trim() == '') {
       value = '';
     }
-    let result: LeaderPageInfo = await searchLeaderList({ inquire: value.trim(), page: 1 });
+    const result: LeaderPageInfo = await searchLeaderList({ inquire: value.trim(), page: 1 });
 
-    let { total, items, current } = result;
+    const { total, items, current } = result;
     if (total === 0) {
       message.info('抱歉！没有查找到相关信息的数据，请修改搜索关键词试试！');
       setInputValue('');

@@ -582,6 +582,82 @@ const data: IQuestion[] = [
         content: '10小时以上'
       }
     ]
+  },
+  {
+    questionId: 19,
+    value: 'zhangyu1000',
+    content: '张宇1000做了多少道题目？（重复做过的题可以重复算，没有做过写0，填写数字即可） '
+  },
+  {
+    questionId: 20,
+    value: 'lilin880',
+    content: '李林880做了多少道题目？（重复做过的题可以重复算，没有做过写0，填写数字即可）'
+  },
+  {
+    questionId: 21,
+    value: 'wuzhongxiang660',
+    content: '武忠祥660做了多少道题目？（重复做过的题可以重复算，没有做过写0，填写数字即可） '
+  },
+  {
+    questionId: 22,
+    value: 'tangjiafeng1800',
+    content: '汤家凤1800做了多少道题目？（重复做过的题可以重复算，没有做过写0，填写数字即可） '
+  },
+  {
+    questionId: 23,
+    value: 'other_teather',
+    content: '其他老师的数学做了多少道题目？（重复做过的题可以重复算，没有做过写0，填写数字即可）'
+  },
+  {
+    questionId: 24,
+    value: 'math_taoti',
+    content: '数学是否上套题',
+    options: [
+      {
+        optionId: 1,
+        content: '是'
+      },
+      {
+        optionId: 2,
+        content: '否'
+      }
+    ]
+  },
+
+  {
+    questionId: 25,
+    value: 'english_whole_reading_wrong',
+    content: ' 英语一套阅读会错多少题目？（包含七选五，填写数字即可）'
+  },
+  {
+    questionId: 26,
+    value: 'english_daily_practice',
+    content: '英语平均每天练习阅读篇数（填写数字即可） '
+  },
+  {
+    questionId: 27,
+    value: 'english_daily_wrong',
+    content: '英语平均每天阅读练习错误题数（填写数字即可）'
+  },
+  {
+    questionId: 28,
+    value: 'english_real_exam_second_time',
+    content: '英语真题阅读是否开始二刷',
+    options: [
+      {
+        optionId: 1,
+        content: '是'
+      },
+      {
+        optionId: 2,
+        content: '否'
+      }
+    ]
+  },
+  {
+    questionId: 29,
+    value: 'summer_back_home_days',
+    content: '暑假回家多少天？（填写数字即可） '
   }
 ];
 

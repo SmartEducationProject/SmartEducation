@@ -10,9 +10,9 @@ import Description from './Description';
 export default function LeaderInfo() {
   const location = useLocation();
 
-  let sfrzm: string = location.state;
+  const sfrzm: string = location.state;
 
-  let [detail, setDetail] = useState<DetailInfo>();
+  const [detail, setDetail] = useState<DetailInfo>();
 
   let timer: any = null;
 
@@ -23,7 +23,7 @@ export default function LeaderInfo() {
   }
 
   async function getDetial() {
-    let result: DetailInfo = await getLeaderDetail({ sfrzm });
+    const result: DetailInfo = await getLeaderDetail({ sfrzm });
     setDetail(result);
   }
 

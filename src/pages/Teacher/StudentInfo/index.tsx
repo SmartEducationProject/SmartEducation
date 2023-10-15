@@ -17,13 +17,13 @@ interface optionType<T> {
   [k: keyof infoType]: T;
 }
 
-export default function studentInfo() {
+export default function StudentInfo() {
   const { state, search } = useLocation();
 
-  let stuId: number = parseInt(search?.split('=')[1]);
+  const stuId: number = parseInt(search?.split('=')[1]);
 
-  let [tableData, setTableData] = useState<DataType[]>();
-  let { data, isFetching } = useStudentInfo(stuId);
+  const [tableData, setTableData] = useState<DataType[]>();
+  const { data, isFetching } = useStudentInfo(stuId);
 
   // console.log('data', data);
   // console.log('isFetching', isFetching);
@@ -97,7 +97,7 @@ export default function studentInfo() {
    * 所以需要手动罗列，这的确与 types/question.ts的内容相关，但是暂时找不到一个好的办法去解耦（除非后端妥协），或许这个办法很复杂。
    * 期待你能解耦这部分内容
    */
-  let options: optionType<string[]> = {
+  const options: optionType<string[] | number> = {
     motivation: ['考研动机', '提高学历，有利于更好就业', '获得更多知识，提高自身文化修养', '留恋校园生活', '其他'],
     solo: ['是否独自备战', '自己一个人备考', '与同学或者研友一起备考'],
     startTime: ['考研准备时间', '3月之前', '3月-4月', '5月-6月', '7月-8月', '9月及以后'],
@@ -115,7 +115,18 @@ export default function studentInfo() {
     operatingSystems: ['操作系统开始备考时间', '5月之前', '5月-6月', '7月-8月', '9月-10月', '11月及以后', '无'],
     computerComposition: ['计算机组成开始备考时间', '5月之前', '5月-6月', '7月-8月', '9月-10月', '11月及以后', '无'],
     noonTime: ['备考期间是否午休', '图书馆午休', '教室午休', '回寝室午休', '不午休'],
-    exerciseTime: ['每周锻炼时间', '2小时以下', '2-5小时', '5-10小时', '10小时以上']
+    exerciseTime: ['每周锻炼时间', '2小时以下', '2-5小时', '5-10小时', '10小时以上'],
+    zhangyu1000: ['张宇1000做了多少道题目'],
+    lilin880: ['李林880做了多少道题目'],
+    wuzhongxiang660: ['武忠祥660做了多少道题目'],
+    tangjiafeng1800: ['汤家凤1800做了多少道题目'],
+    other_teather: ['其他老师的数学做了多少道题目'],
+    math_taoti: ['数学是否上套题', '是', '否'],
+    english_whole_reading_wrong: ['英语一套阅读会错多少题目'],
+    english_daily_practice: ['英语平均每天练习阅读篇数'],
+    english_daily_wrong: ['英语平均每天阅读练习错误题数'],
+    english_real_exam_second_time: ['英语真题阅读是否开始二刷', '是', '否'],
+    summer_back_home_days: ['暑假回家多少天']
   };
 
   useEffect(() => {
@@ -143,16 +154,16 @@ export default function studentInfo() {
    * @description 拿到后端数据更新tableData
    */
   function updateTabelData() {
-    let list: DataType[] = Object.keys(options).map((item: string, index: number) => {
-      let arrIndex: number = +data!.questionnaire[item];
+    const list: DataType[] = Object.keys(options).map((item: string, index: number) => {
+      const arrIndex: number = +data!.questionnaire[item];
 
-      let value: string[] = options[item];
+      const value: string[] = options[item];
 
       return {
         key: index + 1,
         reason: options[item][0],
         option: item,
-        value: value[arrIndex]
+        value: value[arrIndex] ?? ''
       };
     });
     setTableData(list);

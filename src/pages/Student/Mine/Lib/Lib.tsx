@@ -17,7 +17,7 @@ const Lib = () => {
   /** @description 接口调用 */
   const { data } = useLib();
   console.log('isData ok ?', data);
-  let { data: show } = useShareDataFromRank(data?.yesterday.countRank || 0);
+  const { data: show } = useShareDataFromRank(data?.yesterday.countRank || 0);
 
   /** @description 获得在馆时间段展示字符串 */
   const periodFormat = data?.yesterday?.period?.map((period) => `${period.from.split(' ')[1]}-${period.to.split(' ')[1]}`)?.join(', ');

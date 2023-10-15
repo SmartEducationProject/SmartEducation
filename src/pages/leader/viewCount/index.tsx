@@ -6,8 +6,8 @@ interface propsType {
   pv: number;
 }
 export default function ViewCount(props: propsType) {
-  let { pv } = props;
-  let pvRef = useRef(null);
+  const { pv } = props;
+  const pvRef = useRef(null);
 
   const startCount = () => {
     new CountUp(pvRef.current! as HTMLElement, pv, { duration: 0.5 }).start();

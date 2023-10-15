@@ -17,6 +17,11 @@ const StudyTime: React.FC<StudyTimeProps> = ({ data }) => {
 
   const getRate = (num: number) => Number((num * 100).toFixed(2));
 
+  // 错误处理，这里出现过返回null的情况
+  const dailyStudyFailed = typeof dailyStudy?.failed === 'number' ? Number(dailyStudy?.failed.toFixed(1)) : 0;
+  const dailyStudyStudent = typeof dailyStudy?.student === 'number' ? Number(dailyStudy?.student.toFixed(1)) : 0;
+  const dailyStudySuccess = typeof dailyStudy?.success === 'number' ? Number(dailyStudy?.success.toFixed(1)) : 0;
+
   return (
     <div className={styles['college-time']}>
       <PartHeader title="学习时长" icon={iconImg} />
@@ -33,11 +38,7 @@ const StudyTime: React.FC<StudyTimeProps> = ({ data }) => {
             data={[getRate(review?.failed), getRate(review?.student), getRate(review?.success)]}
             tooltipContents={['未上岸同学当前复习进度', '你当前复习进度', '上岸同学当前复习进度']}
           />
-          <BarChart
-            title="每天学习时间(h)"
-            data={[Number(dailyStudy?.failed.toFixed(1)), Number(dailyStudy?.student.toFixed(1)), Number(dailyStudy?.success.toFixed(1))]}
-            tooltipContents={['未上岸同学每天学习时间', '你每天学习时间', '上岸同学每天学习时间']}
-          />
+          <BarChart title="每天学习时间(h)" data={[dailyStudyFailed, dailyStudyStudent, dailyStudySuccess]} tooltipContents={['未上岸同学每天学习时间', '你每天学习时间', '上岸同学每天学习时间']} />
 
           <BarChart title="每周锻炼时间(h)" data={[exercise?.failed, exercise?.student, exercise?.success]} tooltipContents={['未上岸同学每周锻炼时间', '你每周锻炼时间', '上岸同学每周锻炼时间']} />
         </div>

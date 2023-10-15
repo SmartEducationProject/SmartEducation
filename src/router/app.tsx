@@ -23,6 +23,7 @@ const Lib = lazy(() => import('pages/Student/Mine/Lib/Lib'));
 const Same = lazy(() => import('pages/Student/Mine/Same/Same'));
 const Leader = lazy(() => import('pages/leader/Leader'));
 const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
+const BigScreen = lazy(() => import('pages/bigscreen'));
 
 const routes: RouteObject[] = [
   {
@@ -139,7 +140,10 @@ const routes: RouteObject[] = [
       }
     ]
   },
-
+  {
+    path: '/bigscreen',
+    element: <BigScreen />
+  },
   {
     path: '*',
     element: <Navigate to="/" replace={true} />

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import data from 'data/questionnaire';
 import SingleQuestion from 'components/SingleQuestion';
 import MultipleQuestion from 'components/MultipleQuestion';
+import FillInTheBlankQuestion from 'components/FillInTheBlankQuestion';
 import { useSubmit } from 'api/student';
 import { ISubQuestion } from 'types/question';
 import styles from './index.module.less';
@@ -47,17 +48,21 @@ const Welcome = () => {
         </header>
         <Form layout="vertical" requiredMark={false} scrollToFirstError form={form} onFinish={onChange} className={styles['form-box']}>
           {data.map((question, index) =>
-            question.composition ? (
-              <MultipleQuestion
-                index={index + 1}
-                question={question.content}
-                subQuestion={question.subQuestions as ISubQuestion[]}
-                options={question.options}
-                multiple={question?.multiple}
-                key={question.questionId}
-              />
+            question.options ? (
+              question.composition ? (
+                <MultipleQuestion
+                  index={index + 1}
+                  question={question.content}
+                  subQuestion={question.subQuestions as ISubQuestion[]}
+                  options={question.options}
+                  multiple={question?.multiple}
+                  key={question.questionId}
+                />
+              ) : (
+                <SingleQuestion name={String(question.value)} index={index + 1} options={question.options} question={question.content} key={question.questionId} />
+              )
             ) : (
-              <SingleQuestion name={String(question.value)} index={index + 1} options={question.options} question={question.content} key={question.questionId} />
+              <FillInTheBlankQuestion name={String(question.value)} index={index + 1} question={question.content} key={question.questionId} />
             )
           )}
           <button className={styles['submit-btn']} type="submit"></button>

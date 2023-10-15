@@ -16,15 +16,19 @@ const Student = lazy(() => import('pages/Student'));
 const Teacher = lazy(() => import('pages/Teacher'));
 const Leader = lazy(() => import('@/pages/leader/Leader'));
 const LeaderInfo = lazy(() => import('pages/leader/LeaderInfo'));
+const BigScreen = lazy(() => import('pages/bigscreen'));
 
 function App() {
   const { pathname } = useLocation();
   const greenPath = ['/', '/student', '/student/', '/student/choice', '/student/welcome', '/student/welcome/'];
   return (
     <div className={styles['app']} style={{ backgroundColor: greenPath.includes(pathname) ? 'rgb(126,189,71)' : 'white' }}>
-      <Header />
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
         <Suspense fallback={<FullPageWithLoading />}>
+          <Routes>
+            <Route path="/bigscreen" element={<BigScreen />} />
+          </Routes>
+          <Header />
           <main className={styles['main']}>
             <Routes>
               <Route path="/*" element={<SignIn />}></Route>
@@ -60,7 +64,6 @@ function App() {
                   );
                 })}
               </Route>
-
               <Route path="/leader" element={<Leader />} />
               <Route path="/leader/leaderInfo" element={<LeaderInfo />} />
             </Routes>

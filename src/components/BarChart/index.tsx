@@ -32,7 +32,6 @@ interface BarChartProp {
 }
 
 const BarChart: React.FC<BarChartProp> = ({ data, title, tooltipContents }) => {
-  let i = 0;
   const option = {
     title: {
       text: title,

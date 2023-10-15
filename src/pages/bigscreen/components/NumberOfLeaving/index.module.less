@@ -1,0 +1,59 @@
+.wrap {
+  position: absolute;
+  top: 21vh;
+  right: 3vw;
+  width: 27vw;
+  height: 30vh;
+  background-color: #17214e80;
+  .title {
+    color: #fff;
+    text-align: center;
+    margin-top: 1vw;
+  }
+  .tableWrap {
+    margin: 1vw;
+    table {
+      width: 26vw;
+      .head {
+        color: #9298a0;
+        font-size: 1vw;
+        th {
+          text-align: left;
+        }
+      }
+      .column {
+        height: 4vh;
+        color: #fff;
+        td {
+          position: relative;
+          text-align: left;
+          span {
+            position: absolute;
+            top: 0.5vw;
+            left: 0.6vw;
+            font-size: 1vw;
+          }
+          svg {
+            font-size: 1vw;
+            width: 1.7vw;
+            height: 1.7vw;
+          }
+          .bar {
+            position: relative;
+            width: 8vw;
+            height: 0.8vw;
+            background-color: #aeaeae;
+            border-radius: 5px;
+            overflow: hidden;
+            .inner {
+              position: absolute;
+              width: 8vw;
+              height: 0.8vw;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

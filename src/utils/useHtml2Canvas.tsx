@@ -42,7 +42,7 @@ const useHtml2Canvas: UseHtml2Canvas = (domId, isDownLoad, options = defaultOpti
           });
         } else {
           /** @description 下载图片 */
-          let aLink = document.createElement('a');
+          const aLink = document.createElement('a');
           aLink.download = 'picture.jpeg';
           aLink.href = canvas.toDataURL('image/jpeg');
           aLink.click();
