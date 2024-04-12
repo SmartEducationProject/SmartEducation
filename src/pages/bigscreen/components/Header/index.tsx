@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './index.module.less';
 
 export default function Header() {
-  const examTime = new Date('2023-12-24').getTime();
+  const examTime = new Date('2023-12-23').getTime();
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'long',
@@ -36,7 +36,7 @@ export default function Header() {
         <div className={styles['left']}>{formatter.format(nowTime)}</div>
         <div className={styles['center']}>智慧教育系统</div>
         <div className={styles['right']}>
-          距离23年考研还有
+          距离2024年考研还有
           <span>{Math.floor((examTime - nowTime.getTime()) / (1000 * 60 * 60 * 24) / 10)}</span>
           <span>{Math.floor(((examTime - nowTime.getTime()) / (1000 * 60 * 60 * 24)) % 10)}</span>天
         </div>

@@ -32,7 +32,7 @@ export default function CalendarHeatmap() {
     calendar: {
       top: 170,
       cellSize: ['auto', 13],
-      range: '2023',
+      range: '2024',
       itemStyle: {
         borderWidth: 0.5
       },
@@ -50,7 +50,7 @@ export default function CalendarHeatmap() {
     series: {
       type: 'heatmap',
       coordinateSystem: 'calendar',
-      data: getVirtualData('2023')
+      data: getVirtualData('2024')
     }
   };
   useEffect(() => {

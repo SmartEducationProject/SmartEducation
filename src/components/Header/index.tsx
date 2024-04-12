@@ -66,7 +66,7 @@ const Header = () => {
         </div>
 
         <span className={styles['header-title']} ref={headerSpan} onClick={() => exitBtn()}>
-          CQUPT2023 考研预测
+          CQUPT2024 考研预测
         </span>
         {/* 注意括号的位置 */}
         {(location.pathname === '/' || location.pathname.startsWith('/teacher')) && (
