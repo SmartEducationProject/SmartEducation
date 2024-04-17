@@ -6,7 +6,7 @@ import Experience from './Experience';
 import Detail from './Detail';
 
 const Previous = () => {
-  const year = 2024;
+  const year = 2023;
   return (
     <div className={styles['container']}>
       <header className={styles['header-container']}>
