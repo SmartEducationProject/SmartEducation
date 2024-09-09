@@ -152,15 +152,22 @@ const PredictResult: FunctionComponent = () => {
     // 获取存储在localStorage中的Token
     const token = localStorage.getItem('token');
 
+    if (!token) {
+      // 如果没有Token，可能需要提示用户登录或处理错误
+      console.error('Token not found. Please log in.');
+      return;
+    }
+
     try {
       const url = `http://172.20.2.82:8989/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
 
+      const urlWithToken = `${url}&token=${token}`;
+
       // 发送请求到后端以获取授权
-      const response = await fetch(url, {
+      const response = await fetch(urlWithToken, {
         method: 'GET',
-        // 将Token放在请求头中
         headers: {
-          token: `${token}`
+          'Content-Type': 'application/json'
         }
       });
 
@@ -169,8 +176,8 @@ const PredictResult: FunctionComponent = () => {
         message.loading('正在导出数据');
         // 创建一个用于下载的链接
         const link = document.createElement('a');
-        link.href = url;
         link.download = 'aa.xlsx';
+        link.href = urlWithToken;
         link.click();
       } else {
         message.error('导出失败');
