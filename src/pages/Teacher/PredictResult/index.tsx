@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
-import { Spin, Button } from 'antd';
+import { Spin, Button, message } from 'antd';
 import type { TableProps, ColumnsType } from 'antd/es/table';
 import TableComponent from '../Table';
 import styles from './index.module.less';
@@ -141,12 +141,56 @@ const PredictResult: FunctionComponent = () => {
    * @return  {}
    */
 
+  // const exportExcel = async () => {
+  //   const link = document.createElement('a');
+  //   link.download = 'aa.xlsx';
+  //   link.href = `http://172.20.2.82:8989/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
+  //   link.click();
+  // };
+
   const exportExcel = async () => {
-    const link = document.createElement('a');
-    link.download = 'aa.xlsx';
-    link.href = `http://172.20.2.82:8989/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
-    link.click();
+    // 获取存储在localStorage中的Token
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      // 如果没有Token，可能需要提示用户登录或处理错误
+      console.error('Token not found. Please log in.');
+      return;
+    }
+
+    try {
+      const url = `http://172.20.2.82:8989/teacher/statistics/excel?order=${order + 1}&method=${orderDirection}`;
+
+      const urlWithToken = `${url}&token=${token}`;
+
+      // 发送请求到后端以获取授权
+      const response = await fetch(urlWithToken, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      // 检查后端是否同意请求
+      if (response.ok) {
+        message.loading('正在导出数据');
+        // 创建一个用于下载的链接
+        const link = document.createElement('a');
+        link.download = 'aa.xlsx';
+        link.href = urlWithToken;
+        link.click();
+      } else {
+        message.error('导出失败');
+        // 如果后端不同意，处理错误
+        console.error('Server rejected the request.');
+      }
+    } catch (error) {
+      message.error('请求失败');
+      // 处理请求过程中的任何错误
+      console.error('Error during Excel export:', error);
+    }
   };
+
   //table属性列
   const columns: ColumnsType<DataType> = [
     {
