@@ -5,6 +5,7 @@ import { ICollege, IPredict } from 'types/college';
 import useCqupt from 'utils/useCqupt';
 import { Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import dzkjdxLogo from './dzkjdx.png'; // 导入图片
 
 interface CollegeRankProps {
   data: IPredict;
@@ -23,7 +24,7 @@ const CollegeRank: React.FC<CollegeRankProps> = ({ data: { college, count } }) =
 
     /** @description 原logo url已失效 这里手动换成可以用的 */
     // TODO: 后面接手的同学跟后端商量把数据库中的url换成可以用
-    college.find((item) => item.name == '电子科技大学')!.logo = 'https://upload.wikimedia.org/wikipedia/zh/4/4a/UESTC_logo.jpg';
+    college.find((item) => item.name === '电子科技大学')!.logo = dzkjdxLogo;
 
     /** @description 通过概率的大小对college进行排序 */
     college.sort((a, b) => b.rate - a.rate);

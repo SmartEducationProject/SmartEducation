@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './index.module.less';
-import Person from 'assets/pic/signin/person.png';
+import Person from 'assets/pic/signin/person2024.png';
 import Signin from 'assets/pic/signin/signin.png';
 import { studentLogin } from 'api/student';
 import { addApplication, teacherLogin } from 'api/teacher';

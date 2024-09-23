@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.less';
-import peopleImg from 'assets/pic/student/people.png';
+import peopleImg from 'assets/pic/student/people2024.png';
 
 const Welcome = () => {
   const navigate = useNavigate();

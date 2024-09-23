@@ -5,7 +5,7 @@ import { useLib, useShareDataFromRank } from 'api/student';
 import useHtml2Canvas from 'utils/useHtml2Canvas';
 import getDays from 'utils/getDays';
 import styles from './index.module.less';
-import sharePeopleImg from 'assets/pic/student/people.png';
+import sharePeopleImg from 'assets/pic/student/people2024.png';
 import effortImg from 'assets/pic/student/student-mine-share-effort.png';
 import shareUrlImg from 'assets/pic/student/student-mine-share-url.png';
 import shareQrCodeImg from 'assets/pic/student/student-mine-share-qr-code.png';
