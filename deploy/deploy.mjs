@@ -20,9 +20,9 @@ export default async (_config) => {
 
 
         /** @description 上传dist文件夹 */
-        await runCommand(`rm -rf ${distDir}`, { cwd: distDir })// 删除原项目的文件
+        await runCommand(`rm -rf ${distDir}/dist`, { cwd: distDir })// 删除原项目的文件
         console.log('🛠️  put directory...');
-        await ssh.putDirectory(path.resolve(process.cwd(), 'dist'), distDir, {
+        await ssh.putDirectory(path.resolve(process.cwd(), 'dist'), path.resolve(distDir, "dist"), {
             recursive: true,
             concurrency: 10,
             // validate: function (itemPath) { },
@@ -33,7 +33,7 @@ export default async (_config) => {
 
         /** @description 创建项目镜像 */
         console.log('🛠️  build images...');
-        await runCommand(`docker build -f Dockerfile -t ${imageName}:${imageTag} .`, { cwd: `${distDir}/../` });
+        await runCommand(`docker build -f ../Dockerfile -t ${imageName}:${imageTag} .`, { cwd: distDir });
         console.log('✅ build images success');
 
 
@@ -75,13 +75,13 @@ export default async (_config) => {
 
         const _containerName = `${containerName}-v${imageTag.split(".").join("-")}`;
 
-        const result = await runCommand(`docker run -d --name ${_containerName} -p ${port}:8080 --restart=always ${imageName}:${imageTag}`);
+        const result = await runCommand(`docker run -d --name ${_containerName} -p ${port}:80 --restart=always ${imageName}:${imageTag}`);
 
         if (result.stderr.includes("port is already allocated")) {
             // 端口被占用
             console.log('🛠️  stop and remove the old container...');
             const psResult = await runCommand("docker ps -a", { isStdout: false });
-            const oldContainerName = psResult.stdout.match(/(?<=0\.0\.0\.0:[0-9]*->8080\/tcp)(.*)/g)[0].trim();
+            const oldContainerName = psResult.stdout.match(/(?<=0\.0\.0\.0:[0-9]*->80\/tcp)(.*)/g)[0].trim();
             await runCommand(`docker stop ${oldContainerName}`);
             await runCommand(`docker rm ${oldContainerName}`);
             await runCommand(`docker start ${_containerName}`);
